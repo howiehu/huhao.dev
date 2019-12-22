@@ -55,7 +55,7 @@ tags:
 - [《DDD工作坊准入条件和产出物图例》](https://pan.baidu.com/s/10eVNdJ0kN5dPZX1On7V5bg)（提取码: 9jza）
 - [《DDD工作坊操作手册》](https://pan.baidu.com/s/16zP-QFuljJqQeE4PWovG4g)（提取码: uu1d）
 - [《DDD工作坊概念讲解》](https://pan.baidu.com/s/1PnXfqr1RsGG-z9QXTGY4Uw)（提取码: b4ft）
-- [DDD基准化代码结构样例](https://github.com/howiehu/ddd-architecture-samples)
+- [《DDD基准化代码结构样例》](https://github.com/howiehu/ddd-architecture-samples)
 - 《DDD成熟度评估标准》(还在完善中，请期待)
 
 对于这些基准化的产出，我已经通过带领7个新咨询师进行了可复用性的验证，这些新咨询师只需要通过我讲解或示范一遍，就能够独立承担后续的DDD设计咨询工作，并且还能够实现概念和手法的一致性。
