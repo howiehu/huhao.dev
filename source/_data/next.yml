@@ -10,6 +10,13 @@ menu:
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
 
+avatar:
+  url: /images/avatar.jpg
+  rounded: true
+
+footer:
+  since: 2019
+
 social:
   GitHub: https://github.com/howiehu || github
   Weibo: https://weibo.com/howiehu || weibo
