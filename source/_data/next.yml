@@ -20,6 +20,7 @@ footer:
 social:
   GitHub: https://github.com/howiehu || github
   Weibo: https://weibo.com/howiehu || weibo
+  RSS: /atom.xml || rss
 
 social_icons:
   icons_only: true
