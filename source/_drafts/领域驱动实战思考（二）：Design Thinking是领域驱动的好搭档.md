@@ -58,6 +58,8 @@ tags:
 
 ## 将DDD与Design Thinking进行对接
 
+{% asset_img dt-ddd-rainbow.png 产品研发“彩虹图” %}
+
 #### 在说不清业务和产品愿景的情况下
 
 #### 在没有时间的情况下
