@@ -34,12 +34,8 @@ seo: true
 
 index_with_subtitle: true
 
-exturl: false
-
-google_site_verification:
-
 bing_site_verification: 0F08F252C8D1F3EDE6EA6BFDFCDCACFB
 
 baidu_site_verification: 17XyprouqJ
 
-baidu_push: false
+baidu_push: true
