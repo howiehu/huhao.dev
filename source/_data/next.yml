@@ -1,1 +1,15 @@
 scheme: Pisces
+
+social:
+  GitHub: https://github.com/howiehu || github
+  Weibo: https://weibo.com/howiehu || weibo
+
+social_icons:
+  icons_only: true
+  transition: true
+
+creative_commons:
+  license: by-nc-nd
+  sidebar: true
+  post: true
+  language: deed.zh
