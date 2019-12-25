@@ -23,3 +23,23 @@ creative_commons:
   sidebar: true
   post: true
   language: deed.zh
+
+# ---------------------------------------------------------------
+# SEO Settings
+# ---------------------------------------------------------------
+
+disable_baidu_transformation: true
+
+seo: true
+
+index_with_subtitle: true
+
+exturl: true
+
+google_site_verification:
+
+bing_site_verification: 0F08F252C8D1F3EDE6EA6BFDFCDCACFB
+
+baidu_site_verification:
+
+baidu_push: false
