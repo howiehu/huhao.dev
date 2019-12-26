@@ -26,23 +26,27 @@ abbrlink: 33c29020
 
 <!-- more -->
 
-## 那些过往的面向对象建模方法
+## 那些过往的领域建模方法
 
 ### 用例分析法
+
+### DDD之初：“大声地”建模
 
 ### 四色建模
 
 {% asset_img four-color-modeling.png 四色建模示例 %}
 
-## DDD：“大声地”建模
+### Event Storming的崛起
 
-## Event Storming的崛起
+## Design Thinking 简介
 
-## Design Thinking
+## 将DDD与DT进行对接
 
-## 将DDD与Design Thinking进行对接
+### DT与DDD其实是“一样的”
 
 {% asset_img dt-ddd-rainbow.png 产品研发“彩虹图” %}
+
+## 不同场景下的取舍
 
 ### 在说不清业务和产品愿景的情况下
 
