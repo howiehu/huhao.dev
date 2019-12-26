@@ -32,6 +32,9 @@ creative_commons:
   post: true
   language: deed.zh
 
+vendors:
+  fontawesome: https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css
+
 # ---------------------------------------------------------------
 # SEO Settings
 # ---------------------------------------------------------------
