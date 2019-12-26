@@ -1,11 +1,12 @@
 ---
 title: 领域驱动实战思考（一）：用TDD思想对DDD的协作设计过程进行基准化
-date: 2019-12-21 16:30:28
 categories:
   - Domain Driven Development
 tags:
   - DDD
   - TDD
+abbrlink: 130bb570
+date: 2019-12-21 16:30:28
 ---
 
 ## 前言

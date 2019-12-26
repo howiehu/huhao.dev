@@ -1,14 +1,15 @@
 ---
 title: 领域驱动实战思考（二）：Design Thinking是领域驱动的好搭档
 categories:
-  - [Domain Driven Development]
-  - [Design Thinking]
-  - [Event Storming]
+  - - Domain Driven Development
+  - - Design Thinking
+  - - Event Storming
 tags:
   - DT
   - DDD
   - ES
   - CJ-ES
+abbrlink: 33c29020
 ---
 
 ## 前言
