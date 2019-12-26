@@ -37,6 +37,14 @@ github_banner:
   permalink: https://github.com/howiehu
   title: Follow me on GitHub
 
+utteranc:
+  enable: true
+  repo: howiehu/huhao.dev
+  pathname: pathname
+  # theme: github-light,github-dark,github-dark-orange
+  theme: github-light
+  cdn: https://utteranc.es/client.js
+
 vendors:
   fontawesome: https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css
 
