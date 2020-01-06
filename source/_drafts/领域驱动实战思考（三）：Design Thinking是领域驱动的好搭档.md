@@ -1,5 +1,5 @@
 ---
-title: 领域驱动实战思考（二）：Design Thinking是领域驱动的好搭档
+title: 领域驱动实战思考（三）：Design Thinking是领域驱动的好搭档
 categories:
   - - Domain Driven Development
   - - Design Thinking
@@ -85,6 +85,14 @@ abbrlink: 33c29020
 至于那些觉得“我一个人也能做好领域驱动设计”的人，我觉得吧：要么是他智商太高，要么是复杂度不够，要么就是只有他一个人写代码……
 
 ### DT与DDD其实是“一样的”
+
+#### 都是协作设计
+
+#### 都是先发散再收敛
+
+#### 都会对业务流程进行梳理
+
+#### DT为DDD提供了领域问题的深度澄清
 
 {% asset_img dt-ddd-rainbow.png 产品研发“彩虹图” %}
 
