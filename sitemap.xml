@@ -2,30 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://huhao.dev/tags/index.html</loc>
-    
-    <lastmod>2020-01-06T06:42:04.344Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://huhao.dev/posts/130bb570/</loc>
     
-    <lastmod>2020-01-06T06:42:04.340Z</lastmod>
+    <lastmod>2020-01-06T08:42:19.008Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://huhao.dev/about/index.html</loc>
     
-    <lastmod>2020-01-06T06:42:04.340Z</lastmod>
+    <lastmod>2020-01-06T08:42:19.008Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://huhao.dev/categories/index.html</loc>
     
-    <lastmod>2020-01-06T06:42:04.340Z</lastmod>
+    <lastmod>2020-01-06T08:42:19.008Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://huhao.dev/tags/index.html</loc>
+    
+    <lastmod>2020-01-06T08:42:19.008Z</lastmod>
     
   </url>
   
