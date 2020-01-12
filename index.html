@@ -198,6 +198,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/58fe0824/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/58fe0824/" class="post-title-link" itemprop="url">领域驱动实战思考（二）：用分段思想改进那些混乱的战略设计和战术设计</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-12 21:10:53" itemprop="dateCreated datePublished" datetime="2020-01-12T21:10:53+08:00">2020-01-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Domain-Driven-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">Domain Driven Development</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2019年，在我<a href="https://huhao.dev/posts/130bb570/">对DDD进行基准化</a>的过程中，遇到过非常多的挑战，其中一个便是：</p>
+<p><strong>DDD的设计过程，到底应该分为多少个阶段？每个阶段做什么事情？</strong></p>
+<p>这个困惑来自于书本上，以及其他咨询师在咨询过程中对于DDD设计和操作的差异：</p>
+<ul>
+<li>有的人会从电梯演讲和用户地图开始做设计和分析；</li>
+<li>有的人会从事件风暴开始做设计和分析；</li>
+<li>有的人会从子域开始做设计和分析；</li>
+<li>有的人会从限界上下文开始做设计和分析；</li>
+<li>有的人会直接从领域建模的聚合、实体、值对象开始做设计和分析；</li>
+<li>当然，还有的人会使用“名词动词法”直接从用例描述开始做设计和分析。</li>
+</ul>
+<p>对于实际的学习者和使用者来说，这种混乱的操作手法所形成的不一致和不流畅体验，对于坚持进行DDD设计和减少吵架来说，简直是一种毁灭性的影响。</p>
+<p>在这个过程中，最让我感触深刻的，是在于大家在落地DDD的时候，使用了大量具有“二义性”的词汇，讽刺的是，这与DDD所强调的统一语言是背道而驰的。</p>
+<p>其中对于上述混乱影响最大的因素之一，就是大家对于DDD的“战略设计”和“战术设计”认知不一致（甚至说是混沌）的问题。</p>
+<p>所以，这篇文章，就是围绕这两个概念，来说一说我是如何在基准化的过程中解决这个问题，统一并形成较为流畅的分段式的设计过程的。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/58fe0824/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/130bb570/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -229,7 +319,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-12 11:25:11" itemprop="dateModified" datetime="2020-01-12T11:25:11+08:00">2020-01-12</time>
+                <time title="修改时间：2020-01-12 21:10:53" itemprop="dateModified" datetime="2020-01-12T21:10:53+08:00">2020-01-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -350,7 +440,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
