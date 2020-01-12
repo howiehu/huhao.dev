@@ -10,6 +10,9 @@ menu:
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
 
+toc:
+  expand_all: true  
+
 avatar:
   url: /images/avatar.jpg
   rounded: true
