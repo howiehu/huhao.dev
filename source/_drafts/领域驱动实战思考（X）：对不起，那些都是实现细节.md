@@ -1,5 +1,5 @@
 ---
-title: 领域驱动实战思考（四）：对不起，那些都是实现细节
+title: 领域驱动实战思考（X）：对不起，那些都是实现细节
 categories:
   - - Domain Driven Development
 tags:

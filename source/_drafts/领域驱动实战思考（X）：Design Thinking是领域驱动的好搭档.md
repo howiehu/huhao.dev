@@ -1,5 +1,5 @@
 ---
-title: 领域驱动实战思考（三）：Design Thinking是领域驱动的好搭档
+title: 领域驱动实战思考（X）：Design Thinking是领域驱动的好搭档
 categories:
   - - Domain Driven Development
   - - Design Thinking
@@ -34,7 +34,7 @@ abbrlink: 33c29020
 
 首先，在面向对象设计（OOD）诞生后的很长一段时间内，人们最常使用的一种业务分析和领域建模方法就是“用例分析法”。这种方式简单说来，就是基于一段业务描述，抽取其中的名词和动词，然后基于俗称“三特性五原则（封装、继承、多态，SOLID）”的面向对象原则，通过架构师的抽象思维进行建模，如图所示：
 
-{% asset_img use-case-design.png 用例分析法 %}
+
 
 这种建模方法应该是绝大多数人在进行面向对象设计时都使用过的方法，非常的“原生态”。当然我也听说过这种方法还有某些变体，比如“名词动词法”，就是通过系统架构师对业务专家进行不断的提问，从而对领域概念进行萃取和抽象，最终完成建模。
 
@@ -50,7 +50,7 @@ abbrlink: 33c29020
 
 我所做过的一个内部系统的四色建模的示例如下：
 
-{% asset_img four-color-modeling.png 四色建模示例 %}
+![四色建模示例](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-14-four-color-modeling.png)
 
 - **这种方法的好处是：**分离关注点，一次只关注一件事情，比“大声地名词动词法建模”更加套路化。
 - **这种方法的缺点是：**抽象级别高，专注于抽象的概念（关注名词而非动词），对于业务流程缺乏显式的映射，导致对于人的能力要求比较高。从我的个人体验来说，正如上图向四周扩展的拓扑状建模图例所示，过程还是挺烧脑的。
@@ -94,7 +94,7 @@ abbrlink: 33c29020
 
 #### DT为DDD提供了领域问题的深度澄清
 
-{% asset_img dt-ddd-rainbow.png 产品研发“彩虹图” %}
+![产品研发“彩虹图”](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-14-dt-ddd-rainbow.png)
 
 ### 不同场景下的取舍
 
