@@ -19,7 +19,7 @@ tags:
 
 ![DDD核心原则](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050540.png)
 
-![DDD是更有套路的设计方式](../../../../Downloads/DDD工作坊 - 概念讲解V2/幻灯片15.png)
+![DDD是更有套路的设计方式](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050542.png)
 
 ## DDD的分段式协作设计
 
