@@ -15,11 +15,29 @@ tags:
 
 ## DDD解决问题的方法
 
+![DDD与传统设计方法的对比](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050456.png)
+
+![DDD核心原则](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050540.png)
+
+![DDD是更有套路的设计方式](../../../../Downloads/DDD工作坊 - 概念讲解V2/幻灯片15.png)
+
 ## DDD的分段式协作设计
 
 ### 战略设计
 
+![事件风暴](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050210.png)
+
+![限界上下文依赖关系](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050302.png)
+
+![问题子域划分](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050316.png)
+
 ### 战术设计
+
+![领域建模](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050342.png)
+
+![业务服务划分](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050358.png)
+
+![业务服务接口能力识别](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050408.png)
 
 ### 技术实现
 
