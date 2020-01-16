@@ -9,6 +9,8 @@ tags:
 
 ## 前言
 
+
+
 <!-- more -->
 
 ## DDD解决的问题
@@ -42,6 +44,10 @@ tags:
 ### 技术实现
 
 ## 总结
+
+## 广告时间
+
+<img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-16-123317.jpg" alt="领域驱动设计练功房（第一期）" style="zoom:50%;" />
 
 ---
 
