@@ -1,5 +1,8 @@
 scheme: Pisces
 
+post_meta:
+  updated_at: false
+
 menu:
   home: / || home
   tags: /tags/ || tags  
