@@ -19,6 +19,10 @@ tags:
 
 ## DDD解决的问题和方法
 
+在介绍分段式设计之前，让我们回顾一下DDD希望解决的问题：
+
+> 系统核心复杂性
+
 ![DDD与传统设计方法的对比](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050456.png)
 
 ![DDD核心原则](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050540.png)
