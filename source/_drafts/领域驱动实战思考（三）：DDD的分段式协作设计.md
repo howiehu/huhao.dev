@@ -56,7 +56,19 @@ tags:
 
 ![DDD与传统设计方法的对比](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050456.png)
 
+而聚焦到DDD本身，DDD首先强调的就是我们应当从过去一上来就先考虑“数据模型和数据库表怎么设计”这种“面向技术进行架构”的方式，改为优先考虑“我们要解决的问题是什么”这种“面向业务进行架构”的方式。
+
+为此，Eric Evans提出了如下三个DDD的核心原则，原文（《Domain-Driven Design Reference: Definitions and Pattern Summaries》）和我的解释图如下：
+
+> 1. **Focus on the core domain.**（聚焦核心域）
+> 2. **Explore models in a creative collaboration of domain practitioners and software practitioners.**（领域专家和软件专家通过创造性的协作探索模型）
+> 3. **Speak a ubiquitous language within an explicitly bounded context.**（利用明确且有边界的上下文统一语言）
+
 ![DDD核心原则](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050540.png)
+
+而在DDD思想出现之前，人们进行基于面向对象思想（OO）的系统架构设计的时候，更多的是通过“用例分析法 + SOLID原则 + UML”的方式，基于业务描述中的名词和动词，利用近似“拍脑袋”和“凭经验”的方式来进行建模的，相信但凡长期从事面向对象设计的同行都会有所体会。
+
+而在DDD思想出现和逐渐发展后，该思想使得人们能够从业务抽象、统一语言和问题域划分等多维度进行“更有套路”的面向对象分析，所以DDD被业内人士评价为：**OO Done Right**（正确的完成面向对象设计），如下图所示：
 
 ![DDD是更有套路的设计方式](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-15-050542.png)
 
