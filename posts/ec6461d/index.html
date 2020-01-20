@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="msvalidate.01" content="0F08F252C8D1F3EDE6EA6BFDFCDCACFB">
+  <meta name="baidu-site-verification" content="17XyprouqJ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://huhao.dev').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言自接触并学习DevOps起，到交付DevOps相关的培训和咨询服务至今已差不多一年时间。 最近一段时间正在帮助我们的一个重要客户实现DevOps转型，在此过程中，每一天都会有新的发现和新的感悟。 客户方的负责人开玩笑给我说：“如果我们能成功，固然很好，但是如果不尽如人意，大不了写本书呗！” 我觉得好有道理！ 于是，秉着“到此一游总要留下点什么”以及“写不了一本书也要写个册子”的精益思想，开始把">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DevOps转型手记（一）：你以为你以为的DevOps就是你以为的DevOps吗？">
+<meta property="og:url" content="https://huhao.dev/posts/ec6461d/index.html">
+<meta property="og:site_name" content="胡皓 - 枪炮与代码">
+<meta property="og:description" content="前言自接触并学习DevOps起，到交付DevOps相关的培训和咨询服务至今已差不多一年时间。 最近一段时间正在帮助我们的一个重要客户实现DevOps转型，在此过程中，每一天都会有新的发现和新的感悟。 客户方的负责人开玩笑给我说：“如果我们能成功，固然很好，但是如果不尽如人意，大不了写本书呗！” 我觉得好有道理！ 于是，秉着“到此一游总要留下点什么”以及“写不了一本书也要写个册子”的精益思想，开始把">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114446.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114505.jpg">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png">
+<meta property="article:published_time" content="2018-10-23T13:13:07.000Z">
+<meta property="article:modified_time" content="2018-10-23T13:13:07.000Z">
+<meta property="article:author" content="胡皓">
+<meta property="article:tag" content="DevOps">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114446.png">
+
+<link rel="canonical" href="https://huhao.dev/posts/ec6461d/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>DevOps转型手记（一）：你以为你以为的DevOps就是你以为的DevOps吗？ | 胡皓 - 枪炮与代码</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="胡皓 - 枪炮与代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">胡皓 - 枪炮与代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">从士兵到软件匠人的侃侃而谈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/howiehu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/ec6461d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          DevOps转型手记（一）：你以为你以为的DevOps就是你以为的DevOps吗？
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-10-23 21:13:07" itemprop="dateCreated datePublished" datetime="2018-10-23T21:13:07+08:00">2018-10-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DevOps%E8%BD%AC%E5%9E%8B%E6%89%8B%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">DevOps转型手记</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自接触并学习DevOps起，到交付DevOps相关的培训和咨询服务至今已差不多一年时间。</p>
+<p>最近一段时间正在帮助我们的一个重要客户实现DevOps转型，在此过程中，每一天都会有新的发现和新的感悟。</p>
+<p>客户方的负责人开玩笑给我说：“如果我们能成功，固然很好，但是如果不尽如人意，大不了写本书呗！”</p>
+<p>我觉得好有道理！</p>
+<p>于是，秉着“到此一游总要留下点什么”以及“写不了一本书也要写个册子”的精益思想，开始把感悟到的东西都记录下来写成文章，一方面供自己总结精进，一方面供他人参考借鉴。</p>
+<p>这些文章不会有严格的顺序，纯粹想到了就写，容日后编撰成册吧。</p>
+<a id="more"></a>
+
+<h2 id="你以为你以为的DevOps就是你以为的DevOps吗？"><a href="#你以为你以为的DevOps就是你以为的DevOps吗？" class="headerlink" title="你以为你以为的DevOps就是你以为的DevOps吗？"></a>你以为你以为的DevOps就是你以为的DevOps吗？</h2><blockquote>
+<p>“您对DevOps一定有误解……”</p>
+</blockquote>
+<p>我每次我在面对需要做转型的团队的时候，我都会先问在场的所有人一个问题：“大家所理解的DevOps到底是什么？”</p>
+<p>得到的答案五花八门，常见的主要有以下几种：</p>
+<ul>
+<li>“没听说过。”</li>
+<li>“听说过但是不了解。”</li>
+<li>“DevOps就是要做敏捷。”</li>
+<li>“DevOps是一种套路。”</li>
+<li>“DevOps就是让开发人员（Dev）和运维人员（Ops）一起工作。”</li>
+<li>“DevOps就是CI/CD。”</li>
+<li>“DevOps就是做一个平台，让我们能够在上面方便开发。”</li>
+<li>“DevOps就是一大堆工具做自动化。”</li>
+</ul>
+<p>这些回答，与前些年“敏捷”一词风风火火的时候，对于大多数人“敏捷就是Scrum”的理解是何其相像！</p>
+<p>其实，这也不能完全怪大家，尤其是DevOps在今天来说，依然处于一场“迷之盛宴”的阶段。</p>
+<h2 id="DevOps的迷之盛宴"><a href="#DevOps的迷之盛宴" class="headerlink" title="DevOps的迷之盛宴"></a>DevOps的迷之盛宴</h2><p>这场“迷之盛宴”中有几类典型的“教派”在其中“群魔乱舞”：</p>
+<ul>
+<li>忽悠神教</li>
+<li>套路神教</li>
+<li>平台神教</li>
+</ul>
+<p>接下来，让我们挨个说起。</p>
+<h3 id="忽悠神教"><a href="#忽悠神教" class="headerlink" title="忽悠神教"></a>忽悠神教</h3><blockquote>
+<p>“你们这些方面与DevOps的要求相比，还有很大差距……（没了）”</p>
+</blockquote>
+<p>正如“敏捷”火爆时候的满大街各种连敏捷实践都没做过的所谓“认证敏捷教练”，还有“区块链”出来以后满大街套着“区块链”字眼招摇撞骗的创业项目。每一次某种概念突然火爆的时候，总是少不了这样一些人：</p>
+<ul>
+<li>他们以炒作概念为生，但绝不负责落地。</li>
+<li>他们喜欢制定种种度量或认证标准敛财，然后到处去做评估赚钱。</li>
+<li>他们夸夸其谈，但是怂于实践。</li>
+</ul>
+<p>这些人干的事情就是：到处“念歪经”、“传歪经”，钱到手了立刻拍拍屁股走人。</p>
+<p>记得我所接触的第一个试点团队，团队看到我们的第一个反应是：“怎么又来了一波搞DevOps的”。在初期的几次接触中，明显能够感受到团队对于这一次工作抱有相当的抵触和不信任感。</p>
+<p>当我拿到“某国际知名咨询公司（该公司压根没啥技术实践）”之前针对该团队的评估报告的时候，我的第一个反应就是：“WTF?”</p>
+<p>该评估报告本质上就是一个基于打分表的问卷调查，寥寥几个维度加上不同的标准，做了做问卷调查和简单的访谈，就为团队打了个分，定了个性。然后到了该有改进方案部分，直接粘贴了几个不知道从哪里找来的广告般的可视化面板的截图，然后标注了一个醒目的单词“Sample”。然后就再也没有然后了……</p>
+<p>团队告诉我们，大家根据这份评估结果，努力的在可视化和自动化方面做了很多尝试，但是“并没有感到有太大的变化”。</p>
+<p>后来，随着和团队几次深入的交流、对实际代码和实践进行分析，我们发现该团队的开发环节完全掌控在一个以产品垄断为基础的强势供应商手上，产品的封闭程度也非常之高（纯Win32图形化操作，所有的中间数据和最终数据都被存为了专有格式的二进制文件，合同限制团队只能得到开发之后编译的二进制文件而不是代码）。如果不能把开发环节控制在自己手上的话，永远都难以优化Dev而只能优化Ops，这显然是不能实现从Dev到Ops顺畅的价值流动的。而团队在其他环节上已经根据自身的理解采取了多方面的努力和尝试，采购了专门针对图形化应用的测试工具编写了自动化验收测试，甚至还每人都购买和阅读了《凤凰项目》一书。</p>
+<p>所以我们的最终评估认为，该团队已经做出了很多努力，受制于现实约束，进一步优化的空间十分有限。</p>
+<p>以上就是一个我亲眼见到的“拍拍屁股就走”的例子，如果按照他们的方式再来一次“忽悠”型的咨询，还真不知道会对这个团队造成怎样的伤害。</p>
+<h3 id="套路神教"><a href="#套路神教" class="headerlink" title="套路神教"></a>套路神教</h3><blockquote>
+<p>“我听不懂，我就只想知道怎么验收？什么时候能做完？”</p>
+</blockquote>
+<p>我相信有很多人同我一样会经常遇到上面这样的提问，往往出自于某个具有领导角色的人口中。在他们的心中，DevOps是一种工具性的存在，只要按照说明书操作，就理应能够“实现”。</p>
+<p>而从“DevOps三步工作法”来看，DevOps的最终目标之一，是对组织文化进行改造，建立一种相互信任、持续改进和不断创新的组织文化[^1]：</p>
+<blockquote>
+<p>第一步：实现开发到运维工作快速地从左向右流动；</p>
+<p>第二步：在从右向左的每个阶段中，应用持续、快速的工作反馈机制；</p>
+<p>第三步：建立具有创意和高度信任的企业文化，支持动态的、严格的科学实验；</p>
+</blockquote>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114446.png" alt="DevOps三步工作法"></p>
+<p>（我习惯将以上三步简称为：优化价值流动；优化反馈机制；建立持续改进的文化）</p>
+<p>而既然说到了组织，我们知道每一个组织他们所面对的自身实际、目标和挑战是不同的，所以这个世界上并不存在“DevOps灵丹妙药”，每个组织都需要严肃认真的对待和分析自身实际，走出满足自身需要的转型之路。</p>
+<p>另一方面，持续改进告诉的是让我们变得“更好”，所以并不会出现“做完了”的情况。</p>
+<p>但可惜的是，这个行业里有太多不顾核心问题而急于赚钱的人，他们最擅长的就是提供一套“标准化”的解决方案去迎合这种急功近利的心态，并建立一种“只要按照这种套路做下去，就能实现DevOps”的迷信。</p>
+<p>心急吃不了热豆腐，天下也没有免费的午餐。相比“摸着石头过河”来说，好在我们还有很多行业标杆可以参考。</p>
+<h3 id="平台神教"><a href="#平台神教" class="headerlink" title="平台神教"></a>平台神教</h3><blockquote>
+<p>“没有什么DevOps的问题是用一套平台不能解决的！”</p>
+</blockquote>
+<p>之前参加了大大小小不同的DevOps社区活动，也去不同类型的企业做过DevOps方面的培训或交流，最让我印象深刻的是，几乎各大企业都在做自己的DevOps平台，并且各种服务商也在大力的推销自己的产品。</p>
+<p>首先，DevOps平台本身并没有什么问题，通常将运维融入日常开发工作的方式有以下三种[^1]：</p>
+<blockquote>
+<ul>
+<li>创建共享服务，提高开发生产力。</li>
+<li>将运维工程师融入服务团队。</li>
+<li>为每个服务团队分派运维联络人。</li>
+</ul>
+</blockquote>
+<p>其中“创建共享服务”指的就是通过创造集中式平台或者工具链的方式，通过自动化的方式降低开发过程中开发人员对于基础设施的注意力损耗，建立更快速的反馈和响应力。</p>
+<p>在这种指导思想下，开发工程师最好能够在运维工程师的帮助下实现这样一种理想中的工作状态：</p>
+<ol>
+<li>随便找到一台能够使用Web浏览器的设备，通过浏览器打开云端集成开发环境。</li>
+<li>使用云端集成开发环境针对实例化需求编写测试代码并实现。</li>
+<li>将编写完成的代码提交进本地版本控制的变更集，同时触发属分布式持续集成和自动化构建流水线。</li>
+<li>当分布式流水线无误通过后，触发后续的自动化/手动测试、部署等环节并交付上线。</li>
+<li>在整个过程中，开发人员应当保持对业务实现的高度关注，而尽可能的不去关注基础设施可能产生的干扰。</li>
+</ol>
+<p>然而，这种看似理想的工作状态在引入人工智能后将会产生另一个“黑暗的”版本：</p>
+<ol>
+<li>在所使用的框架和平台不断进步的情况下，开发人员所编写的代码将越来越多的由胶水代码构成。</li>
+<li>基于大量的人工智能学习和训练，需求分析人员开始使用基于业务场景的自动化测试用例生成工具生成测试用例。</li>
+<li>人工智能学习和抽象更多的胶水代码案例，根据测试用例自动生成胶水代码。</li>
+<li>最终只会写胶水代码的开发工程师被人工智能所取代，“码农”终于失业了。</li>
+</ol>
+<p>当然了，“黑暗”是针对“只会写胶水代码”的人而言的，如果是一个具有分析、设计能和驾驭整个端到端交付能力的“高级开发人员”来说，甭提有多爽快了。</p>
+<p>话说回来，既然平台的前景这么广阔，哪里有问题呢？</p>
+<p>问题恰好就出在了盲目夸大平台的作用，而忽略了“实现开发到运维工作快速地从左向右流动”这个地方。</p>
+<p>根据我的观察，目前绝大多数的集中式品台都是由各大公司的运维部门主导开发完成的，我见过完成度非常高的平台，也见过完成度比较低的平台，但是他们都具有一个关键的基础，就是自动化构建和部署流水线（Pipeline），而流水线的一个必要条件就是：要有自动化测试。</p>
+<p>那么问题来了：<strong>有多少公司的开发和测试团队具备良好的自动化测试能力？</strong></p>
+<p>对不起，亲眼所见，仅就国内而言，不多……</p>
+<p>上到知名互联网企业，下到中小型传统IT企业，先姑且不说测试驱动开发，仅是有自动化测试的连过半都没有。</p>
+<p>没有自动化测试兜底，你告诉我，开发到运维咋个快速流动嘛！更别谈持续反馈了，要不要用手点的方式表演个快速回归看看？</p>
+<p>所以，这也是我们所见到的大多数所谓“DevOps平台”很难落地的原因。至于为啥今天做平台那么火爆，我个人有个非常不负责任的理解就是：</p>
+<p>作为长期被忽视的运维工程师们，好不容易打了一次翻身仗，愈战愈勇用，加上之前所说的套路化迷思，最后从上到下集体妄图用工具和平台一统天下……最终促进人工智能替代胶水代码工程师的伟大未来。<strong>（我就是开个玩笑，别打我！）</strong></p>
+<p>说到这里，我就想起了之前评估过的一个团队，做了大量基础设施搭建工作的运维工程师用非常无奈的眼神看着我说的话：</p>
+<blockquote>
+<p>“我们工具都搭好了，可是开发就是不用……”（因为没有自动化构建也没有自动化测试）</p>
+</blockquote>
+<p>阻挡平台落地的因素有很多，自动化测试是我见到的最惨烈的一个。</p>
+<h2 id="DevOps到底是什么？"><a href="#DevOps到底是什么？" class="headerlink" title="DevOps到底是什么？"></a>DevOps到底是什么？</h2><p>穿过浮躁，回归本质，让我们来看看：DevOps到底是什么？</p>
+<p>其实DevOps思想是建立在软件行业经过实践验证的一系列旨在提升响应力的思想和实践的融合过程之上的（所谓“DevOps大融合”），它们包括且不限于[^1]：</p>
+<blockquote>
+<ul>
+<li>精益运动</li>
+<li>敏捷运动</li>
+<li>Velocity大会运动（最为有名的就是演讲“每日10次部署：Dev和Ops在Flicker的协作”）</li>
+<li>敏捷基础设施运动</li>
+<li>持续交付运动</li>
+<li>丰田套路运动</li>
+<li>精益创业运动</li>
+<li>精益用户体验运动</li>
+<li>Rugged Computing运动</li>
+</ul>
+</blockquote>
+<p>所以，DevOps即是一种“融合思想”，里面含有了大量需要长期学习、理会、实践的东西。</p>
+<p>而其中最为核心且占主导地位的，在我看来就是“精益思想”和“持续交付”。我们在DevOps转型过程中能够看到的绝大多数问题都基本不超出这两种思想的范围（当然他们也是建立在一系列思想和实践之上的）。换句话说，如果你所遇到的问题在这两种思想中找不到答案，那你的DevOps实践水平已经相对其他组织来说非常高了。</p>
+<p>另一方面，DORA团队在近4年的研究基础上，总结了5类共24项能够影响和推动软件交付效能的关键能力，并且绘制了关系图，这5类能力为[^2]：</p>
+<blockquote>
+<ul>
+<li>持续交付<ul>
+<li>对所有生产工件使用版本控制</li>
+<li>自动化部署过程</li>
+<li>实现持续集成</li>
+<li>使用基于主干的开发方法</li>
+<li>实现自动化测试</li>
+<li>管理测试数据</li>
+<li>将安全性集成到软件和测试阶段</li>
+<li>实现持续交付</li>
+</ul>
+</li>
+<li>架构<ul>
+<li>使用松耦合架构</li>
+<li>构建自治团队</li>
+</ul>
+</li>
+<li>产品和流程<ul>
+<li>收集和实施客户反馈</li>
+<li>通过价值流可视化工作流动</li>
+<li>小批量工作</li>
+<li>培养和支持团队实验</li>
+</ul>
+</li>
+<li>精益管理和监控<ul>
+<li>使用轻量级变更审批流程</li>
+<li>监控应用和基础架构以支持业务决策</li>
+<li>主动检查系统健康状况</li>
+<li>通过限制在制品改进流程和管理工作</li>
+<li>可视化工作以便监控质量和促进团队沟通</li>
+</ul>
+</li>
+<li>文化<ul>
+<li>支持生机型文化</li>
+<li>鼓励和支持学习</li>
+<li>鼓励和支持团队间的合作</li>
+<li>提供使工作有意义的资源和工具</li>
+<li>支持或体现变革型领导力</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114505.jpg" alt="Overall Research Program"></p>
+<p>怎么样？是不是感觉24项关键能力每个拿出来都够喝一壶的？</p>
+<p>你看，DevOps融合了这么多种实践和思想，还需要锻炼这么多关键能力，那些希望能够有个“明确完成时间”的想法是不是显得很可笑了？</p>
+<p>总而言之，DevOps所代表的就是一种追求能够从组织、文化、技术角度等多个方向上，利用新的思想和工具，全面提升IT组织响应力，同时让客户和员工都满意的价值追求。</p>
+<p>当然，如果一定要问我DevOps转型到一个理想状态需要多长时间的话，我会说：</p>
+<blockquote>
+<p>“谁知道呢，根据统计，一个企业完成精益转型需要5年时间，作为DevOps转型来说，没个奋战3-5年的心理准备，还是洗洗睡吧……”</p>
+</blockquote>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>作为DevOps转型的推动者，在这喧嚣浮躁的阶段，我们应当看清现实，树立正确的DevOps价值观，用实践检验真理，我相信喧嚣过后，总是会大浪淘沙，去伪存真。</p>
+<p>而对于那些正因为各种原因“被转型”的人们，我想说：莫急，不慌，多学习。</p>
+<p>[^1]: 出自《DevOps Handbook》，文字来自中译版《DevOps实践指南》。<br>[^2]: 内容和图片出自《Accelerate》: The Science of Lean Software and DevOps》。</p>
+<hr>
+<h2 id="欢迎关注我的微信公众号"><a href="#欢迎关注我的微信公众号" class="headerlink" title="欢迎关注我的微信公众号"></a>欢迎关注我的微信公众号</h2><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png" alt="枪炮与玫瑰"></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="胡皓 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="胡皓 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>胡皓
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://huhao.dev/posts/ec6461d/" title="DevOps转型手记（一）：你以为你以为的DevOps就是你以为的DevOps吗？">https://huhao.dev/posts/ec6461d/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DevOps/" rel="tag"># DevOps</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/c0297a43/" rel="prev" title="44天读8本书——习惯养成不能靠信念和鸡汤">
+      <i class="fa fa-chevron-left"></i> 44天读8本书——习惯养成不能靠信念和鸡汤
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/bbbc99b/" rel="next" title="DevOps转型手记（二）：关注价值流">
+      DevOps转型手记（二）：关注价值流 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你以为你以为的DevOps就是你以为的DevOps吗？"><span class="nav-number">2.</span> <span class="nav-text">你以为你以为的DevOps就是你以为的DevOps吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DevOps的迷之盛宴"><span class="nav-number">3.</span> <span class="nav-text">DevOps的迷之盛宴</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#忽悠神教"><span class="nav-number">3.1.</span> <span class="nav-text">忽悠神教</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#套路神教"><span class="nav-number">3.2.</span> <span class="nav-text">套路神教</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平台神教"><span class="nav-number">3.3.</span> <span class="nav-text">平台神教</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DevOps到底是什么？"><span class="nav-number">4.</span> <span class="nav-text">DevOps到底是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎关注我的微信公众号"><span class="nav-number">6.</span> <span class="nav-text">欢迎关注我的微信公众号</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="胡皓"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">胡皓</p>
+  <div class="site-description" itemprop="description">胡皓的个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/howiehu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/howiehu" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">胡皓</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

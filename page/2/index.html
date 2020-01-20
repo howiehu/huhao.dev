@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="msvalidate.01" content="0F08F252C8D1F3EDE6EA6BFDFCDCACFB">
+  <meta name="baidu-site-verification" content="17XyprouqJ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://huhao.dev').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="胡皓的个人技术博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="胡皓 - 枪炮与代码">
+<meta property="og:url" content="https://huhao.dev/page/2/index.html">
+<meta property="og:site_name" content="胡皓 - 枪炮与代码">
+<meta property="og:description" content="胡皓的个人技术博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="胡皓">
+<meta property="article:tag" content="hhu">
+<meta property="article:tag" content="huhao">
+<meta property="article:tag" content="haohu">
+<meta property="article:tag" content="howiehu">
+<meta property="article:tag" content="Hu Hao">
+<meta property="article:tag" content="Hao Hu">
+<meta property="article:tag" content="胡皓">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://huhao.dev/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>胡皓 - 枪炮与代码 - 从士兵到软件匠人的侃侃而谈</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="胡皓 - 枪炮与代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">胡皓 - 枪炮与代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">从士兵到软件匠人的侃侃而谈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/howiehu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/8c4d00f3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/8c4d00f3/" class="post-title-link" itemprop="url">我和思沃学院（二）：缘起</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-05-30 00:19:00" itemprop="dateCreated datePublished" datetime="2016-05-30T00:19:00+08:00">2016-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/" itemprop="url" rel="index">
+                    <span itemprop="name">从士兵到程序员再到咨询师</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="新人报到"><a href="#新人报到" class="headerlink" title="新人报到"></a>新人报到</h2><p>入职第一天，一群同一天入职的同事们坐在会议室里，等待接下来去加入新的工作岗位，每个人脸上和眼中都洋溢着喜悦的憧憬。</p>
+<p>在那个时候，办公室中的新人入职，会到每一个团队那里相互进行自我介绍，了解每一位在办公室里的同事，让新人快速融入公司。（很可惜后来公司人越来越多，这种介绍花费的时间成本太高，所以取消了）</p>
+<p>漂亮大方的 HR 妹子像一个快乐精灵一样带着一群懵懂的新人从这个桌子走到那个桌子，在每个桌子前大家起立并相互自我介绍，然后从 15 楼转到 11 楼……</p>
+<p>就在我们转到 11 楼一张略显空荡的桌子的时候（那时候 11 楼基本一半以上是空的），我注意到一个满脸大胡子，造型非常个性，却显得很有内涵和技术大牛范儿的人，我的第一印象觉得他可能是个老外，或者是华裔，再或者是个港澳同胞吧！</p>
+<p>他略显羞涩并且带着京腔自我介绍到：</p>
+<p>“大家好，我是来自北京办公室的仝键，现在正在西安出差，我现在正在从事教育和培训相关的工作，大家以后应该能经常见到我！”</p>
+<p>我靠，他居然是个中国人！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/8c4d00f3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/8a2f70fd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/8a2f70fd/" class="post-title-link" itemprop="url">我和思沃学院（一）：成为 ThoughtWorker</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-05-29 23:58:00" itemprop="dateCreated datePublished" datetime="2016-05-29T23:58:00+08:00">2016-05-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/" itemprop="url" rel="index">
+                    <span itemprop="name">从士兵到程序员再到咨询师</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2015 年 12 月 1 日</p>
+<p>再有四个半月，我来到 ThoughtWorks 就有两年了（2014年04月08日入职），新的 MacBook Pro 正在冲我招手，突然觉得，时间过得如飞速一般，我当义务兵的那两年咋就没觉得时间有这么快呢？这说明，我度过的这两年是相当充实且有意义的。</p>
+<p>在加入 ThoughtWorks 三个月后，我就从国内交付项目上转入了思沃学院团队（那时还是个没有名字且加上我只有三个人的团队），到现在已经一年零五个月了，所以，这篇文章注定篇幅短不了。<br>为了能够给大家补充更多的上下文，更加全面的从我的角度去了解思沃学院，所以，接下来将从我加入 ThoughtWorks 开始，来讲述这个故事。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/8a2f70fd/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/e0bc865f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/e0bc865f/" class="post-title-link" itemprop="url">打造基于Linux的高效学习和工作环境：硬件篇</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-05-29 22:07:10" itemprop="dateCreated datePublished" datetime="2016-05-29T22:07:10+08:00">2016-05-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%89%93%E9%80%A0%E5%9F%BA%E4%BA%8ELinux%E7%9A%84%E9%AB%98%E6%95%88%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/" itemprop="url" rel="index">
+                    <span itemprop="name">打造基于Linux的高效学习和工作环境</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="程序员应该使用怎样的操作系统？"><a href="#程序员应该使用怎样的操作系统？" class="headerlink" title="程序员应该使用怎样的操作系统？"></a>程序员应该使用怎样的操作系统？</h2><p>我们日常所能够接触到的主流操作系统无非就是微软的 Windows 系列，苹果的 OS X 系列，以及基于 Linux 或其它“类 Unix”（Unix-Like） 操作系统的各种<a href="https://zh.wikipedia.org/wiki/Linux%E5%8F%91%E8%A1%8C%E7%89%88" target="_blank" rel="noopener">发行版</a>。</p>
+<p>那么，究竟应该选择何种操作系统作为你的首选操作系统呢？</p>
+<p>这是一个旷日持久的论战，而我不准备把这个战火引入到这篇文章中，因为这个问题受到以下三个因素的影响：</p>
+<ul>
+<li>使用者的水平</li>
+<li>使用的目的</li>
+<li>经济条件</li>
+</ul>
+<p>所以，任何一种忽略了以上三个因素而得出的“XXX 才是王道，其它都是垃圾！”的结论都是错误的，这个问题是个适用性的问题，而不是好与坏的问题。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/e0bc865f/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/b80f0613/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/b80f0613/" class="post-title-link" itemprop="url">从士兵到程序员再到SOHO程序员 (三) - 游击战与阻力</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-03-01 10:36:37" itemprop="dateCreated datePublished" datetime="2014-03-01T10:36:37+08:00">2014-03-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/" itemprop="url" rel="index">
+                    <span itemprop="name">从士兵到程序员再到咨询师</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>自从上一篇文章（<a href="https://huhao.dev/posts/90a65bc6/">《从士兵到程序员再到SOHO程序员 (二) - 求职》</a>）到现在又过去了差不多3个月的时间，也是时候来总结一下这三个月来的经历和经验教训了。</p>
+<p>很多朋友告诉我，前两篇文章带给大家了许多“正能量”和“激情”，但是这一次，我要用我的实际经历来给大家泼泼凉水。 <strong>所有的努力和奋斗在初始阶段都不会是一帆风顺的</strong> ，这个道理你知我知，我也提前有心理准备，但是后来所遇到的很多问题却超出了自己的预想。</p>
+<p>到了现在自己回过头想一想，其实人生的旅途也需要敏捷，所有的变化都是合理的，如果变化过大，说明先前总有哪个地方没做好，埋下了隐患。最后，既然发生了变化，就要勇于去处理解决以及适应变化。</p>
+<p>接下来我会先总结一下这3个月来的工作和成长经历，然后说一说除了工作以外更加重要的现实阻力。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/b80f0613/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/90a65bc6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/90a65bc6/" class="post-title-link" itemprop="url">从士兵到程序员再到SOHO程序员 (二) - 求职</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-12-13 23:46:28" itemprop="dateCreated datePublished" datetime="2013-12-13T23:46:28+08:00">2013-12-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/" itemprop="url" rel="index">
+                    <span itemprop="name">从士兵到程序员再到咨询师</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>当我开始写这篇文章的时候，我猛然发现，此时此刻距离我辞职（2013年9月13日）至今刚好整整3个月时间，看来写这样一篇文章是冥冥之中必须干的事儿。</p>
+<p>那么就让我接着上一篇文章继续写下去吧（上一篇文章请见<a href="https://huhao.dev/posts/7d37a609/" title="从士兵到程序员再到SOHO程序员">《从士兵到程序员再到SOHO程序员》</a>）。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/90a65bc6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/7d37a609/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/7d37a609/" class="post-title-link" itemprop="url">从士兵到程序员再到SOHO程序员 (一) - 起航</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-09-14 23:24:00" itemprop="dateCreated datePublished" datetime="2013-09-14T23:24:00+08:00">2013-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/" itemprop="url" rel="index">
+                    <span itemprop="name">从士兵到程序员再到咨询师</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>2013年9月13日，我从就职了一年半的S公司正式离职，并开始了我梦寐以求的“SOHO程序员”之路。</p>
+<p>这对于我来说，是一次人生道路上的重要选择，在这里，我想分享一下我是如何选择了这条道路的，同时也是对我到目前为止的程序员生涯做一个回顾。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/7d37a609/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/7842d101/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/7842d101/" class="post-title-link" itemprop="url">三个月家里蹲转型 Ruby on Rails + SOHO 计划</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-08-26 23:18:00" itemprop="dateCreated datePublished" datetime="2013-08-26T23:18:00+08:00">2013-08-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/" itemprop="url" rel="index">
+                    <span itemprop="name">从士兵到程序员再到咨询师</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本人目前就职于北京盛安德科技发展有限公司西安第一分公司，由于趁自己还年轻（29了算不算年轻啊……），一直希望能够利用自己所喜爱的技术实现在家办公的愿望，所以我于8月7日向经理提出了辞职的想法，8月19日提交的辞职申请，目前正处于一个月的工作交接期内，也就是说，从下个月（9月份）开始，我就可以正式离职并利用三个月时间转型Ruby on Rails + SOHO工作了。</p>
+<p>在这里罗列一下本人的技术状况和这三个月的计划，希望各路有经验的大牛能够根据经验多多提供宝贵意见。</p>
+<p>PS：我之前在北京待了9年，去年初回到西安，家就在西安，所以生活上没有太多顾虑才敢考虑辞职SOHO的。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/7842d101/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="胡皓"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">胡皓</p>
+  <div class="site-description" itemprop="description">胡皓的个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/howiehu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/howiehu" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">胡皓</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

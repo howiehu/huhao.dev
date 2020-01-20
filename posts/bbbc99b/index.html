@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="msvalidate.01" content="0F08F252C8D1F3EDE6EA6BFDFCDCACFB">
+  <meta name="baidu-site-verification" content="17XyprouqJ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://huhao.dev').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="A：“能麻烦您给我讲一讲你们的工作流程吗？” B：“哦，这个呀，就是需求分析、设计、开发、测试、上线呗！” A：“Hum…” B：（心里不爽：明知故问嘛！） B：“你不是来给我们解决技术问题的嘛？你了解这些东西对我们有什么用？” A：“哦，但凡能用技术解决的问题都不是什么问题……不知道您听说过这句话吗？” （陷入尴尬）  这是个我曾经在做各种调研时，为了了解对方的端到端工作流程而习惯问的问题，当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DevOps转型手记（二）：关注价值流">
+<meta property="og:url" content="https://huhao.dev/posts/bbbc99b/index.html">
+<meta property="og:site_name" content="胡皓 - 枪炮与代码">
+<meta property="og:description" content="A：“能麻烦您给我讲一讲你们的工作流程吗？” B：“哦，这个呀，就是需求分析、设计、开发、测试、上线呗！” A：“Hum…” B：（心里不爽：明知故问嘛！） B：“你不是来给我们解决技术问题的嘛？你了解这些东西对我们有什么用？” A：“哦，但凡能用技术解决的问题都不是什么问题……不知道您听说过这句话吗？” （陷入尴尬）  这是个我曾经在做各种调研时，为了了解对方的端到端工作流程而习惯问的问题，当">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114858.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114923.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114942.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-115006.jpg">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-115028.jpg">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png">
+<meta property="article:published_time" content="2018-11-12T17:11:22.000Z">
+<meta property="article:modified_time" content="2018-11-12T17:11:22.000Z">
+<meta property="article:author" content="胡皓">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="价值流">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114858.png">
+
+<link rel="canonical" href="https://huhao.dev/posts/bbbc99b/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>DevOps转型手记（二）：关注价值流 | 胡皓 - 枪炮与代码</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="胡皓 - 枪炮与代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">胡皓 - 枪炮与代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">从士兵到软件匠人的侃侃而谈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/howiehu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/bbbc99b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          DevOps转型手记（二）：关注价值流
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-11-13 01:11:22" itemprop="dateCreated datePublished" datetime="2018-11-13T01:11:22+08:00">2018-11-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DevOps%E8%BD%AC%E5%9E%8B%E6%89%8B%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">DevOps转型手记</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>A：“能麻烦您给我讲一讲你们的工作流程吗？”</p>
+<p>B：“哦，这个呀，就是需求分析、设计、开发、测试、上线呗！”</p>
+<p>A：“Hum…”</p>
+<p>B：（心里不爽：明知故问嘛！）</p>
+<p>B：“你不是来给我们解决技术问题的嘛？你了解这些东西对我们有什么用？”</p>
+<p>A：“哦，但凡能用技术解决的问题都不是什么问题……不知道您听说过这句话吗？”</p>
+<p>（陷入尴尬）</p>
+</blockquote>
+<p>这是个我曾经在做各种调研时，为了了解对方的端到端工作流程而习惯问的问题，当然收到的回答也是如上面一样相当的一致。</p>
+<p>后来，我逐渐发现这种问问题的方法是基本上难以收获我想要的满意答案的，<strong>尤其是在同一个团队中不同的人使用的词汇和对流程理解不一致的情况下，但是从实际来说，这种认知不一致恰恰就是最普遍甚至可以说是几乎100%存在的情况。</strong></p>
+<a id="more"></a>
+
+<p>而在DevOps转型的开始和过程中，从全局视角出发，持续跟踪和关注端到端流程（有时候两端可能还会延伸到当前团队的范围之外）中的瓶颈是DevOps非常重要的一个基本要求和能力，正所谓：</p>
+<blockquote>
+<ul>
+<li>全局优化高于局部优化。</li>
+<li>将局部经验转化为全局改进。</li>
+</ul>
+</blockquote>
+<p>（这两句是我拼在一起的，他们有非常强烈的联系并持续相互作用，是一个持续改进的过程。）</p>
+<p>在遇到DevOps之前，我遇到了“精益思想”，从中学会了“价值流”这样一个重要的视角和工具，所以从那时起就开始习惯从价值流的角度出发去思考和分析，逐渐觉得自己的视角开始不一样了，会不自觉的从全局优化的角度思考问题和寻找瓶颈。</p>
+<p>庆幸的是，“精益思想”恰恰就是DevOps的重要思想基础之一，让我们回顾一下DevOps的“三步工作法”：</p>
+<blockquote>
+<p>第一步：实现开发到运维工作快速地从左向右流动；</p>
+<p>第二步：在从右向左的每个阶段中，应用持续、快速的工作反馈机制；</p>
+<p>第三步：建立具有创意和高度信任的企业文化，支持动态的、严格的科学实验；</p>
+</blockquote>
+<p>其中第一步的“……从左向右……”，和第二步的“……从右向左……”就是相对于价值流流动的方向来说的，所以“价值流”也是DevOps重要的思考工具和可视化工具。</p>
+<p>如果能够利用好价值流这个工具，则能够使我们快速的统一团队语言和认知，并发现潜在的瓶颈点。</p>
+<p>接下来，我便从精益思想的基础概念、精益思想在软件行业中的特点以及我在日常工作中的实践三个部分，来说一说“价值流”在DevOps转型工作中的重要作用。</p>
+<h2 id="什么是精益思想？"><a href="#什么是精益思想？" class="headerlink" title="什么是精益思想？"></a>什么是精益思想？</h2><p>精益思想来源于以“丰田生产方式”为代表的传统制造行业，在过去的几十年中已经被大量引入并被各行各业所实践。</p>
+<p>“精益（Lean）”所针对并致力于消除的反义词是“浪费（Muda）”，至于为啥浪费的英文是是Muda？正是因为来源于“丰田生产方式”，用的是日语的音译。</p>
+<p>什么是“浪费”？在《精益思想》一书中给出了如下定义：</p>
+<blockquote>
+<p>浪费（Muda），专指消耗了资源而不创造价值的一切人类活动。</p>
+</blockquote>
+<p>比如<a href="来自于《精益思想》中文版">^1</a>：</p>
+<blockquote>
+<ul>
+<li>需要纠正的错误。</li>
+<li>生产了无需求的产品。</li>
+<li>因生产了无需求的产品而造成的库存和积压。</li>
+<li>不必要的工作。</li>
+<li>员工的盲目走动。</li>
+<li>货物从一地到另一地的盲目搬运。</li>
+<li>由于上道工序发送传递不及时，使下一道工序的人只能等待。</li>
+<li>商品和服务不能满足客户的要求。</li>
+</ul>
+</blockquote>
+<p>那什么又是“价值（Value）”呢？简单来说就是：</p>
+<blockquote>
+<p>那些对最终客户有积极意义和有用处的东西。</p>
+</blockquote>
+<p>而精益思想的核心目标则是：</p>
+<blockquote>
+<p>通过及时的反馈消除或将浪费转化为价值。</p>
+</blockquote>
+<p>为了实现这个目标，精益思想总结归纳了5个基本的步骤或者说是原则<a href="来自于《精益思想》中文版">^1</a>：</p>
+<blockquote>
+<ol>
+<li>定义<strong>价值</strong>；</li>
+<li>识别<strong>价值流</strong>，并消灭明显的浪费步骤；</li>
+<li>并使保留下来的、创造价值的各个步骤<strong>重新流动</strong>起来；</li>
+<li>按客户需要<strong>拉动</strong>价值；</li>
+<li><strong>尽善尽美</strong>。</li>
+</ol>
+</blockquote>
+<p>以上用粗体标注的文字都是非常重要基础概念，但由于篇幅有限并且本文重点不是给大家讲精益思想，而是希望把注意力放在价值流图对于开展DevOps转型工作的作用上，所以不再进一步解释，大家可以通过阅读《精益思想》这本书去进行系统性的了解。</p>
+<p>说了那么一大堆，现在终于该说什么是价值流了……咳咳……</p>
+<blockquote>
+<p>价值流是指从原材料转变为成品、并给它赋予价值的全部活动。</p>
+</blockquote>
+<p>通常，我们用“价值流图”来对价值流进行可视化。</p>
+<h3 id="价值流图（Value-Stream-Map，简称VSM）"><a href="#价值流图（Value-Stream-Map，简称VSM）" class="headerlink" title="价值流图（Value Stream Map，简称VSM）"></a>价值流图（Value Stream Map，简称VSM）</h3><p>以可口可乐公司生产罐装的可口可乐为例，对于一提盒罐装可乐来说，粗略的价值流图大概长这样<a href="来自于《精益思想》中文版">^1</a>：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114858.png" alt="生产一提盒罐装可乐的价值流"></p>
+<p>（虚线部分展示的是罐体回收并重新创造价值的过程。）</p>
+<p>为什么说是“粗略”呢？是因为其中的每一个步骤都如同电子地图可以缩放，都有其内部的价值流动过程，所以“缩放”的思维在对待价值流这件事儿上非常重要，你必须知道在不同的场合下，需要关注的工作的粒度是怎样一个大小。</p>
+<p>另外一个方面需要注意的是，价值流的每一个步骤都是有输入物和产出物的，换句话说：如果没有原料，你不可能凭空生产出任何东西。（其实就是管道思维）</p>
+<p>那什么时候这些可乐才会真正的交付价值呢？其实就是在最后时刻——被最终客户（消费者）买回家喝进肚子里的时候。在那之前，这些可乐都处于“创造价值（增值）”或“产生浪费”的阶段。换句话说：</p>
+<blockquote>
+<p>未被喝掉的可乐是没有价值的。</p>
+</blockquote>
+<h2 id="软件开发过程中的价值流"><a href="#软件开发过程中的价值流" class="headerlink" title="软件开发过程中的价值流"></a>软件开发过程中的价值流</h2><p>精益思想诞生于传统的生产制造行业，价值流图在展现传统生产制造行业的价值流动时是非常醒目和易于识别浪费的（精益思想在软件行业的落地最有名的就是“看板方法”，篇幅所限，就不在此介绍了，感兴趣的可以阅读《看板方法》一书）。</p>
+<p>但是，在我们所处的IT行业，尤其是软件开发工作，与传统生产制造行业有相当大的区别，在我看来主要有以下不同：</p>
+<blockquote>
+<ul>
+<li>软件开发没有“原料”，流入软件开发价值流的是“需求”。</li>
+<li>软件开发是创造性的脑力工作，通过创新来产生价值，所以软件开发及其易变，而制造业则具有低变异性。</li>
+<li>软件天然是“软”的，相比“硬”的制造业来说，软件更易于以低成本进行变化。</li>
+<li>软件交付的价值是：满足最终客户需要，并且可以工作的软件。</li>
+</ul>
+</blockquote>
+<p>软件交付的价值流，一般是从获得需求开始，到成功上线结束。如果要用价值流来表达一个较为常见的粗粒度的软件开发过程，大概是这样：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114923.png" alt="粗粒度的软件开发价值流"></p>
+<p>我想你应该会说：“这不就是瀑布式的流程吗？这有什么好画的？”</p>
+<p>别急嘛！我就是简单表示一下，还记得我之前所说的“缩放”吧？来让我们展示个细粒度的价值流图——以我所就职的ThoughtWorks的交付实践为例，一个迭代中的价值流是这样的（只展现了Happy Path的情况，因为任何测试检查环节只要不通过，就会回退到开始开发的阶段）：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-114942.png" alt="ThoughtWorks的软件交付实践价值流"></p>
+<p>哇咔咔！怎么样？是不是很多步骤？这还不是最细呢！</p>
+<p>你可能会问：“步骤这么多？不累吗？交付速度能快吗？”</p>
+<p>放心，不累，也很快，因为这一切都建立在自动化的基础之上。</p>
+<p>而这些自动化的基础设施又是怎么来的呢？</p>
+<p><strong>正是由这张图上所看不见，但是其实处处都在的幕后工作者——Ops（运维工程师）所构建的。</strong></p>
+<p>在DevOps的世界里，运维工程师从项目的一开始就进入，并与其他角色紧密协作：评估未来上线后的运维环境，制定相应的对策和计划，搭建能够让其他角色快速开展工作的基础设施，并在整个开发过程中从运维侧解决阻碍价值快速流动的瓶颈。</p>
+<p>这就是与过去传统的开发与运维相分离的工作方式本质上的不同。</p>
+<h2 id="价值流分析工作坊"><a href="#价值流分析工作坊" class="headerlink" title="价值流分析工作坊"></a>价值流分析工作坊</h2><blockquote>
+<p>说了这么多，这东西在做DevOps转型的时候怎么用啊？</p>
+</blockquote>
+<p>我觉得主要体现在两个方面：</p>
+<ol>
+<li>在咨询师刚刚接触一个新团队的时候，利用价值流去快速了解团队现有的端到端交付现状，统一团队成员的认识；</li>
+<li>应用看板方法，团队定期进行价值流分析，不断寻找新的瓶颈，从而“尽善尽美”，持续改进。</li>
+</ol>
+<p>后者在看板方法中有更多的描述，所以这里我主要讲一讲前者。</p>
+<p>最近在帮助客户开展DevOps转型工作的时候，需要同时应对5个试点团队，如何能够在一开始快速了解5个试点团队的现状，并且尽可能减少因为沟通中目标角色单一所造成的信息收集不全面的挑战呢？</p>
+<p>答案就是：开展价值流分析工作坊。（经实践，2个小时就够，2个小时以上嘛……你能约出对方这么多时间吗？什么？能？那就做的更细致一些喽！）</p>
+<p>工作坊的流程如下（这是我个人设计和在实践中完善的，不代表其他同仁的做法）：</p>
+<blockquote>
+<ol>
+<li>所有人做自我介绍。</li>
+<li>简要介绍什么是价值流地图及其作用。</li>
+<li>介绍产出物的要求（价值流图、前置时间、实际完成时间），统一预期。</li>
+<li>每个角色使用便利贴按照时间顺序书写和排列自己的工作，相互不要进行交流，绘制时关注过程的输入和输出以及时间。</li>
+<li>所有人按照时间线从第一个人的价值流图开始尝试通过讨论将全部工作串起来，并根据流动（关注输入和输出）进行分析。如果有缺失的就补上，如果有重复的就合并，如果有并行的就分开，如果有BAU工作而不会在流动中流经的就去掉。</li>
+<li>归类并划分大的阶段，比如需求分析、开发、测试、部署、发布等等。</li>
+<li>对每一个大的阶段进行时间估算，最终推出前置时间和实际完成时间，尝试大致分析核心瓶颈的位置。</li>
+<li>讨论答疑，产出下一步的Action。</li>
+</ol>
+</blockquote>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-115006.jpg" alt="价值流分析工作坊"></p>
+<p>在工作坊的过程中，作为组织者，应当针对大家所贴的内容多问如下问题以便澄清和统一大家的认知：</p>
+<blockquote>
+<ul>
+<li>这是什么？能举个例子描述一下场景吗？</li>
+<li>所依赖的输入是什么？</li>
+<li>这一步的输出是什么？</li>
+<li>多长时间会发生一次？</li>
+<li>一次大概需要多长时间？</li>
+<li>有什么遗漏的吗？</li>
+<li>……</li>
+</ul>
+</blockquote>
+<p>通过工作坊，经常能够发现一些普遍性的问题，比如：团队中各个角色对于当前的交付流程理解不一致，实际实践与所绘制的价值流中的表现不一致等等。</p>
+<p>另外还会发现一些让人哭笑不得的做法，比如：</p>
+<ul>
+<li>因为畏惧合并代码出问题，所以虽然有使用版本控制，但是在测试的时候是使用开发人员修改后的本地代码进行打包，然后用FTP拷到测试环境进行手动测试，测试完成后才敢把本地的代码变更提交进代码库。（测试时所使用的代码和部署生产所使用的代码压根不是同一个代码）</li>
+<li>使用了版本控制，但是测试环境和生产环境的代码不是从代码仓库拉取的，而是通过参照一份详细罗列了修改过的文件的Word文档，然后手工把这些修改过的文件通过FTP拷贝到不同环境的。（如果是这样的话，那我们使用版本控制的目的到底是什么呢？仅仅是不需要使用QQ传吗？）</li>
+</ul>
+<p>这里有两张照片，也很有意思：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-115028.jpg" alt="运维工程师在哪里？"></p>
+<p>上图是梳理出来的价值流，下图是运维工程师们贴出来的自己的很多工作，这些工作压根就没有出现在价值流图上（正如之前在介绍价值流的时候所说的，运维工程师们是幕后英雄，他们的工作实际上贯穿了整个价值流流动过程，为价值流的流动构建了基础设施和条件）。</p>
+<p>当时，当大家梳理完价值流之后，其中一位员工很肯定地说：“这样整个工作就做完了，剩下就是运维了，也就没啥事儿了！”</p>
+<p>话毕，几个运维工程师站在旁边沉默不语……眼中似乎有晶莹的东西在闪烁……</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>价值流是能够让我们进行全局观察和优化的重要工具，在进行DevOps转型的过程中必不可少，学会很容易，但是需要坚持、自觉和重复的使用。</p>
+<p>同时，通过价值流分析工作坊，我发现当前对于绝大多数团队来说，制约DevOps落地的最关键问题无外乎：</p>
+<ol>
+<li>需求变更没有节奏，需求实例化差；</li>
+<li>没有自动化测试；</li>
+<li>人员能力弱，学习能力差。</li>
+</ol>
+<p>这是这个行业老大难的问题，同时让我感到可悲的是，国内很多知名大厂和IT服务公司依旧如此，还有那些号称十几年工作经验的人们，也依旧如此。</p>
+<blockquote>
+<p><strong>学习，真的有那么难吗？</strong></p>
+</blockquote>
+<hr>
+<h2 id="欢迎关注我的微信公众号"><a href="#欢迎关注我的微信公众号" class="headerlink" title="欢迎关注我的微信公众号"></a>欢迎关注我的微信公众号</h2><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png" alt="枪炮与玫瑰"></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="胡皓 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="胡皓 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>胡皓
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://huhao.dev/posts/bbbc99b/" title="DevOps转型手记（二）：关注价值流">https://huhao.dev/posts/bbbc99b/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DevOps/" rel="tag"># DevOps</a>
+              <a href="/tags/%E4%BB%B7%E5%80%BC%E6%B5%81/" rel="tag"># 价值流</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/ec6461d/" rel="prev" title="DevOps转型手记（一）：你以为你以为的DevOps就是你以为的DevOps吗？">
+      <i class="fa fa-chevron-left"></i> DevOps转型手记（一）：你以为你以为的DevOps就是你以为的DevOps吗？
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/28ca5398/" rel="next" title="契约测试拨乱反正：最简介绍">
+      契约测试拨乱反正：最简介绍 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是精益思想？"><span class="nav-number">1.</span> <span class="nav-text">什么是精益思想？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#价值流图（Value-Stream-Map，简称VSM）"><span class="nav-number">1.1.</span> <span class="nav-text">价值流图（Value Stream Map，简称VSM）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件开发过程中的价值流"><span class="nav-number">2.</span> <span class="nav-text">软件开发过程中的价值流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#价值流分析工作坊"><span class="nav-number">3.</span> <span class="nav-text">价值流分析工作坊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎关注我的微信公众号"><span class="nav-number">5.</span> <span class="nav-text">欢迎关注我的微信公众号</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="胡皓"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">胡皓</p>
+  <div class="site-description" itemprop="description">胡皓的个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/howiehu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/howiehu" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">胡皓</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

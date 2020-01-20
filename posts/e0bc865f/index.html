@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="msvalidate.01" content="0F08F252C8D1F3EDE6EA6BFDFCDCACFB">
+  <meta name="baidu-site-verification" content="17XyprouqJ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://huhao.dev').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="程序员应该使用怎样的操作系统？我们日常所能够接触到的主流操作系统无非就是微软的 Windows 系列，苹果的 OS X 系列，以及基于 Linux 或其它“类 Unix”（Unix-Like） 操作系统的各种发行版。 那么，究竟应该选择何种操作系统作为你的首选操作系统呢？ 这是一个旷日持久的论战，而我不准备把这个战火引入到这篇文章中，因为这个问题受到以下三个因素的影响：  使用者的水平 使用的目的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="打造基于Linux的高效学习和工作环境：硬件篇">
+<meta property="og:url" content="https://huhao.dev/posts/e0bc865f/index.html">
+<meta property="og:site_name" content="胡皓 - 枪炮与代码">
+<meta property="og:description" content="程序员应该使用怎样的操作系统？我们日常所能够接触到的主流操作系统无非就是微软的 Windows 系列，苹果的 OS X 系列，以及基于 Linux 或其它“类 Unix”（Unix-Like） 操作系统的各种发行版。 那么，究竟应该选择何种操作系统作为你的首选操作系统呢？ 这是一个旷日持久的论战，而我不准备把这个战火引入到这篇文章中，因为这个问题受到以下三个因素的影响：  使用者的水平 使用的目的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png">
+<meta property="article:published_time" content="2016-05-29T14:07:10.000Z">
+<meta property="article:modified_time" content="2016-05-29T14:07:10.000Z">
+<meta property="article:author" content="胡皓">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png">
+
+<link rel="canonical" href="https://huhao.dev/posts/e0bc865f/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>打造基于Linux的高效学习和工作环境：硬件篇 | 胡皓 - 枪炮与代码</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="胡皓 - 枪炮与代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">胡皓 - 枪炮与代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">从士兵到软件匠人的侃侃而谈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/howiehu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/e0bc865f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          打造基于Linux的高效学习和工作环境：硬件篇
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-05-29 22:07:10" itemprop="dateCreated datePublished" datetime="2016-05-29T22:07:10+08:00">2016-05-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%89%93%E9%80%A0%E5%9F%BA%E4%BA%8ELinux%E7%9A%84%E9%AB%98%E6%95%88%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/" itemprop="url" rel="index">
+                    <span itemprop="name">打造基于Linux的高效学习和工作环境</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="程序员应该使用怎样的操作系统？"><a href="#程序员应该使用怎样的操作系统？" class="headerlink" title="程序员应该使用怎样的操作系统？"></a>程序员应该使用怎样的操作系统？</h2><p>我们日常所能够接触到的主流操作系统无非就是微软的 Windows 系列，苹果的 OS X 系列，以及基于 Linux 或其它“类 Unix”（Unix-Like） 操作系统的各种<a href="https://zh.wikipedia.org/wiki/Linux%E5%8F%91%E8%A1%8C%E7%89%88" target="_blank" rel="noopener">发行版</a>。</p>
+<p>那么，究竟应该选择何种操作系统作为你的首选操作系统呢？</p>
+<p>这是一个旷日持久的论战，而我不准备把这个战火引入到这篇文章中，因为这个问题受到以下三个因素的影响：</p>
+<ul>
+<li>使用者的水平</li>
+<li>使用的目的</li>
+<li>经济条件</li>
+</ul>
+<p>所以，任何一种忽略了以上三个因素而得出的“XXX 才是王道，其它都是垃圾！”的结论都是错误的，这个问题是个适用性的问题，而不是好与坏的问题。</p>
+<a id="more"></a>
+
+<p><del>而回到“程序员应该使用怎样的操作系统？”这个问题上，并且排除了使用虚拟机这个选项以后，我需要直接给出的结论是（你也可以理解为我强行注入给你的观点）：</del></p>
+<p><del><strong>“在当前，每一个程序员都应该想尽办法拥有一台苹果的 MacBook Pro 并且使用 OS X 操作系统。如果你实在是经济条件不够，请使用 Linux。如果你必须且主要从事 Windows 相关技术的开发，请使用 Windows，或者考虑用虚拟机运行 Windows。”</strong></del></p>
+<p><del>形成以上结论的事实是：</del></p>
+<ul>
+<li><del>我们的互联网和你周围的智能设备 90% 运行在非 Windows 环境中。</del></li>
+<li><del>基于上一条理由，作为一名程序员，如果你只工作或生存在 Windows 环境中，那么你将很有可能丢失 90% 的世界和机会，所以我们应当优先选择 OS X 或者 Linux。</del></li>
+<li><del>基于上一条理由，OS X 由于兼容 <a href="https://zh.wikipedia.org/wiki/POSIX" target="_blank" rel="noopener">POSIX</a> 标准，能够兼容绝大多数的 Unix-Like 开发需求，即使不行，也能凭借高性能的硬件在虚拟环境中运行 Linux 或 Windows，而 OS X 却难以在虚拟环境中运行，所以从兼容性和全面性的角度来说，应当优先选择 OS X。</del></li>
+<li><del>基于上一条理由，因为 OS X 只能在苹果的硬件设备上运行，且考虑软件及硬件的性能、易用性和使用体验几个因素，目前无人能够打败苹果的 Mac 和 OS X。</del></li>
+</ul>
+<p><del>同时给出一个可以颠覆以上结论的可能：</del></p>
+<p><del><strong>“除非 Linux 或 Windows 能够比 OS X 更顺畅的兼容一切，并且硬件设备买得起。”</strong></del></p>
+<p><strong>微软以大局出发，在最新的 Windows 10 周年更新中已经包含了 Linux 子系统，所以，在我看来系统之争终于有了一个相对完美的解决方式。</strong></p>
+<h2 id="为什么我们选择了-Linux？"><a href="#为什么我们选择了-Linux？" class="headerlink" title="为什么我们选择了 Linux？"></a>为什么我们选择了 Linux？</h2><p>因为苹果的 Mac 系列真的很贵，绝大多数人买不起，尤其是学生（而普遍用机械硬盘的学生笔记本用 Windows 10 装了一大堆流氓软件后也卡到毁天灭地），所以我们选择了 Linux。</p>
+<p><del>换句话说，如果你买得起 MacBook Pro 笔记本电脑，请一定要买！请一定要使用 OS X！并且你可以忽略这个系列的文章。</del>（如果你的笔记本能流畅的跑 Windows 10 并更新了 2016 年的周年更新，可以使用 Linux 子系统并无视这句话）</p>
+<p>另外，还要特别提醒：</p>
+<p><strong>那个超轻薄的 MacBook 千万别买！那个性能不是用来搞软件开发的！</strong><br><strong>那个超轻薄的 MacBook 千万别买！那个性能不是用来搞软件开发的！</strong><br><strong>那个超轻薄的 MacBook 千万别买！那个性能不是用来搞软件开发的！</strong></p>
+<h2 id="如何选择适合-Linux-的笔记本电脑？"><a href="#如何选择适合-Linux-的笔记本电脑？" class="headerlink" title="如何选择适合 Linux 的笔记本电脑？"></a>如何选择适合 Linux 的笔记本电脑？</h2><p>首先，基于便携性和可靠性考虑，我们排除了台式机，因为台式机的硬件种类更加复杂，不可控因素太多。</p>
+<p>其次，搞清楚你买笔记本电脑的目的，比如如果你喜欢玩游戏并且无法割舍，那么请买一个带独显的笔记本电脑，并且考虑有一个大一点的固态硬盘，以便双系统安装 Windows 和 Linux，也能够尽可能的发挥出全部的硬件性能。</p>
+<p>但是，基于 Linux 对于独立显卡兼容性较差的事实（虽然现在有了长足的进步，但是真的依然很差，经常动不动就黑屏无法进入系统什么的……），以及专心研究技术和好好学习的理由，我们还是优先推荐使用 Intel 技术架构和集成显卡（现在笔记本所采用的 Intel 的 CPU 都集成了显示芯片，并且对 Linux 兼容非常好）。</p>
+<p>再有，绝不要买各种能够当平板使用并且配备触摸屏等新型硬件的笔记本电脑，因为对 Linux 的兼容性目前真的太差。</p>
+<p>我不想再详细论述具体的需求和硬件选择依据，毕竟我们不是硬件评测文章，所以我直接给出当前适用于 Linux 操作系统并且兼顾开发和性能需要的<strong>最低配置底线</strong>：</p>
+<ul>
+<li>Intel i5 移动处理器（搞软件开发的最低底线，不解释）</li>
+<li>8G DDR3 内存（流畅运行虚拟机跑 Windows 的最靠谱底线，关键是这年头内存条不值钱……）</li>
+<li>128G 固态硬盘（当今世界机械硬盘是造成系统的性能低下的最大瓶颈，而且十分严重，和固态硬盘相比简直一个天上一个地下，珍爱生命，远离机械硬盘！）</li>
+</ul>
+<p>至于笔记本电脑的品牌，从对 Linux 的兼容性为根本出发，同时考虑质量和口碑，我们刻意的推荐（绝对不是打广告，也绝非利益相关）：</p>
+<ul>
+<li>联想的 ThinkPad 系列</li>
+</ul>
+<p>是的，ThinkPad 系列，一方面是因为 ThinkPad 一直以来的口碑和“真正的笔记本电脑”的评价，更重要的是 ThinkPad 系列对 Linux 的支持真的是目前最好的。其次是戴尔的笔记本电脑，但是根据我们长期校园教学的经验，戴尔的笔记本电脑对 Linux 的兼容性真的参差不齐，所以不推荐。</p>
+<p>你可以前往 ThinkPad 官方商城选购自己喜欢的型号：</p>
+<p><a href="http://www.thinkworldshop.com.cn/" target="_blank" rel="noopener">http://www.thinkworldshop.com.cn/</a></p>
+<p>型号参考请参阅：</p>
+<p><a href="https://www.zhihu.com/question/21299566" target="_blank" rel="noopener">https://www.zhihu.com/question/21299566</a></p>
+<p><strong>但是我要特别强调的是：</strong></p>
+<ol>
+<li>配置请一定不要低于前面说的最低标准。</li>
+<li>对于 Linux 来说，硬件选择上的保守比激进更稳妥。</li>
+<li>如果价钱已经和 MacBook Pro 相当了，请不要犯傻，改买 MacBook，除非你特别强调玩游戏。</li>
+</ol>
+<h2 id="对于现有设备如何进行改造？"><a href="#对于现有设备如何进行改造？" class="headerlink" title="对于现有设备如何进行改造？"></a>对于现有设备如何进行改造？</h2><p>由于绝大多数的人都已经拥有了各种型号的笔记本电脑，所以考虑如何以较低的成本改造手中的笔记本电脑是最佳选择。</p>
+<p>在此，我基于经验和认真思考，给予以下建议：</p>
+<ul>
+<li>我默认你将会以 Linux 作为主要的操作系统。</li>
+<li>购买一块儿符合自己笔记本电脑接口的128G或更大的固态硬盘，换掉现有的机械硬盘。</li>
+<li>购买一个 USB 3.0 的笔记本硬盘盒，用来将换下来的机械硬盘存放并作为移动硬盘使用，这样不但可以备份了资料，未来还可以当作数据盘或者备份盘使用，以应对因 Linux 使用不当造成的需要重装系统的可能性。</li>
+<li>如果内存容量低于 8G，请将内存扩充到 8G，买内存条之前请看清自己的笔记本内存插槽有几个，以及现有内存的规格和品牌，尽可能保持一致，这样兼容性和稳定性比较好。</li>
+</ul>
+<p>根据以上建议，我给出几个举例，再次强调，我不是托儿：</p>
+<ul>
+<li><a href="http://item.jd.com/2010277.html" target="_blank" rel="noopener">http://item.jd.com/2010277.html</a></li>
+<li><a href="http://item.jd.com/407729.html" target="_blank" rel="noopener">http://item.jd.com/407729.html</a></li>
+<li><a href="http://item.jd.com/1066754.html" target="_blank" rel="noopener">http://item.jd.com/1066754.html</a></li>
+</ul>
+<p>如果不考虑内存，只需要不到 350 块钱就能将你现有的笔记本升级到一个顺畅的状态！并且经过合理的设置和搭配合理的应用，还能使其易用性达到一个非常理想的水平。</p>
+<h2 id="我的电脑已经达标了，我该怎么开始使用-Linux？"><a href="#我的电脑已经达标了，我该怎么开始使用-Linux？" class="headerlink" title="我的电脑已经达标了，我该怎么开始使用 Linux？"></a>我的电脑已经达标了，我该怎么开始使用 Linux？</h2><p>推荐一个基于我们的教学经验而总结的简单的 Linux 安装及设置指南，使用了比较适合新手的发行版 Ubuntu：</p>
+<p><a href="http://thoughtworks-academy.github.io/linux-guide/" target="_blank" rel="noopener">http://thoughtworks-academy.github.io/linux-guide/</a></p>
+<p>仅适用于新手，并且只是建议，后续文章中我会推荐许多易于新手使用的炫酷 Linux 软件，敬请关注！</p>
+<hr>
+<h2 id="欢迎关注我的微信公众号"><a href="#欢迎关注我的微信公众号" class="headerlink" title="欢迎关注我的微信公众号"></a>欢迎关注我的微信公众号</h2><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png" alt="枪炮与玫瑰"></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="胡皓 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="胡皓 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>胡皓
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://huhao.dev/posts/e0bc865f/" title="打造基于Linux的高效学习和工作环境：硬件篇">https://huhao.dev/posts/e0bc865f/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/b80f0613/" rel="prev" title="从士兵到程序员再到SOHO程序员 (三) - 游击战与阻力">
+      <i class="fa fa-chevron-left"></i> 从士兵到程序员再到SOHO程序员 (三) - 游击战与阻力
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/8a2f70fd/" rel="next" title="我和思沃学院（一）：成为 ThoughtWorker">
+      我和思沃学院（一）：成为 ThoughtWorker <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#程序员应该使用怎样的操作系统？"><span class="nav-number">1.</span> <span class="nav-text">程序员应该使用怎样的操作系统？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我们选择了-Linux？"><span class="nav-number">2.</span> <span class="nav-text">为什么我们选择了 Linux？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何选择适合-Linux-的笔记本电脑？"><span class="nav-number">3.</span> <span class="nav-text">如何选择适合 Linux 的笔记本电脑？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对于现有设备如何进行改造？"><span class="nav-number">4.</span> <span class="nav-text">对于现有设备如何进行改造？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的电脑已经达标了，我该怎么开始使用-Linux？"><span class="nav-number">5.</span> <span class="nav-text">我的电脑已经达标了，我该怎么开始使用 Linux？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎关注我的微信公众号"><span class="nav-number">6.</span> <span class="nav-text">欢迎关注我的微信公众号</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="胡皓"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">胡皓</p>
+  <div class="site-description" itemprop="description">胡皓的个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/howiehu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/howiehu" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">胡皓</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
