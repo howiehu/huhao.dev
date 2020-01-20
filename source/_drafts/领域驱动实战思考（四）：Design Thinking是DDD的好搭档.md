@@ -1,5 +1,5 @@
 ---
-title: 领域驱动实战思考（X）：Design Thinking是领域驱动的好搭档
+title: 领域驱动实战思考（四）：Design Thinking是DDD的好搭档
 categories:
   - - Domain Driven Development
   - - Design Thinking
@@ -106,10 +106,14 @@ abbrlink: 33c29020
 
 ## 对于未来的畅想
 
----
-
-## 扩展阅读
+## 参考资料
 
 1. [Object Modeling in Color](https://en.wikipedia.org/wiki/Object_Modeling_in_Color)
 2. [运用四色建模法进行领域分析](https://www.infoq.cn/article/xh-four-color-modeling)
 3. [谈谈领域建模](http://www.fanyilun.me/2018/04/08/%E8%B0%88%E8%B0%88%E9%A2%86%E5%9F%9F%E5%BB%BA%E6%A8%A1/)
+
+---
+
+## 欢迎关注我的个人公众号
+
+![枪炮与玫瑰](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png)
