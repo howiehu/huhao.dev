@@ -1,7 +1,6 @@
 ---
 title: 从士兵到程序员再到SOHO程序员 (一) - 起航
-date: '2013-09-14 23:24'
-comments: true
+date: 2013-09-14 23:24
 categories:
   - - 从士兵到程序员再到咨询师
 tags:

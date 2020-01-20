@@ -1,7 +1,6 @@
 ---
 title: 从士兵到程序员再到SOHO程序员 (二) - 求职
-date: '2013-12-13 23:46:28 +0800'
-comments: true
+date: 2013-12-13 23:46:28
 categories:
   - - 从士兵到程序员再到咨询师
 tags:
