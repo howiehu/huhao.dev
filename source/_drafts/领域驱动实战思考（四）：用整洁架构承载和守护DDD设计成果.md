@@ -1,5 +1,5 @@
 ---
-title: 领域驱动实战思考（五）：用整洁架构承载和守护DDD设计成果
+title: 领域驱动实战思考（四）：用整洁架构承载和守护DDD设计成果
 abbrlink: b69e772e
 categories:
   - - Domain Driven Development

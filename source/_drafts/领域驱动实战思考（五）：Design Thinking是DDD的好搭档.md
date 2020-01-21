@@ -1,5 +1,5 @@
 ---
-title: 领域驱动实战思考（四）：Design Thinking是DDD的好搭档
+title: 领域驱动实战思考（五）：Design Thinking是DDD的好搭档
 categories:
   - - Domain Driven Development
   - - Design Thinking
