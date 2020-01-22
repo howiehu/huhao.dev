@@ -47,7 +47,7 @@ asdf-vm是一个能够按项目管理多种语言运行时版本的命令行工�
 
 官网地址为：https://asdf-vm.com
 
-并且，这个工具已经在[2019年11月的“ThoughtWorks技术雷达”中被第一次纳入雷达范围，当前处于“评估”状态。
+并且，这个工具已经在[2019年11月的“ThoughtWorks技术雷达”](https://www.thoughtworks.com/cn/radar/tools/asdf-vm)中被第一次纳入雷达范围，当前处于“评估”状态。
 
 > 评估：在了解它将对你的企业产生什么影响的前提下值得探索。
 
