@@ -3,9 +3,9 @@ title: 打造基于Linux的高效学习和工作环境：发行版选择篇
 abbrlink: f6d4160c
 date: 2016-06-03 12:19:33
 categories:
-  - - 打造基于Linux的高效学习和工作环境
+  - 打造基于Linux的高效学习和工作环境
 tags:
-  - linux
+  - Linux
 ---
 
 ## 什么是 Linux 发行版？

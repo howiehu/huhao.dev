@@ -2,10 +2,9 @@
 title: 领域驱动实战思考（四）：用整洁架构承载和守护DDD设计成果
 abbrlink: b69e772e
 categories:
-  - - Domain Driven Development
-  - - Clean Architecture
+  - 领域驱动实战思考
 tags:
-  - DDD
+  - 领域驱动设计
   - 整洁架构
 ---
 

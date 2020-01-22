@@ -2,10 +2,10 @@
 title: 神器推荐：用asdf-vm将你从各种语言的版本管理器之中解救出来
 abbrlink: 61efd12a
 categories:
-  - - 神器推荐
+  - 神器推荐
 tags:
-  - asdf-vm
-  - version manager
+  - 工具
+  - 版本管理器
 ---
 
 ## 前言

@@ -3,9 +3,9 @@ title: 打造基于Linux的高效学习和工作环境：硬件篇
 abbrlink: e0bc865f
 date: 2016-05-29 22:07:10
 categories:
-  - - 打造基于Linux的高效学习和工作环境
+  - 打造基于Linux的高效学习和工作环境
 tags:
-  - linux
+  - Linux
 ---
 
 ## 程序员应该使用怎样的操作系统？

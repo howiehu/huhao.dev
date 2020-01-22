@@ -2,9 +2,9 @@
 title: 领域驱动实战思考（三）：DDD的分段式协作设计
 abbrlink: 61190ae2
 categories: 
-  - - Domain Driven Development
+  - 领域驱动实战思考
 tags:
-  - DDD
+  - 领域驱动设计
   - 战略设计
   - 战术设计
 date: 2020-01-18 18:05:28

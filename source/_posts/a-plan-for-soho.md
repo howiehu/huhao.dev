@@ -3,9 +3,9 @@ title: 三个月家里蹲转型 Ruby on Rails + SOHO 计划
 date: '2013-08-26 23:18'
 comments: true
 categories:
-  - - 从士兵到程序员再到咨询师
+  - 从士兵到程序员再到咨询师
 tags:
-  - freelancer
+  - 在家办公
 abbrlink: 7842d101
 ---
 

@@ -1,14 +1,11 @@
 ---
 title: 领域驱动实战思考（五）：Design Thinking是DDD的好搭档
 categories:
-  - - Domain Driven Development
-  - - Design Thinking
-  - - Event Storming
+  - 领域驱动实战思考
 tags:
-  - DT
-  - DDD
-  - ES
-  - CJ-ES
+  - 设计思维
+  - 领域驱动设计
+  - 事件风暴
 abbrlink: 33c29020
 ---
 

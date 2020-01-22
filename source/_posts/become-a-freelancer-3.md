@@ -2,9 +2,9 @@
 title: 从士兵到程序员再到SOHO程序员 (三) - 游击战与阻力
 date: 2014-03-01 10:36:37
 categories:
-  - - 从士兵到程序员再到咨询师
+  - 从士兵到程序员再到咨询师
 tags:
-  - freelancer
+  - 在家办公
 abbrlink: b80f0613
 ---
 

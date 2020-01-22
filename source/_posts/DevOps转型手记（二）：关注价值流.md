@@ -3,7 +3,7 @@ title: DevOps转型手记（二）：关注价值流
 abbrlink: bbbc99b
 date: 2018-11-13 01:11:22
 categories:
-  - - DevOps转型手记
+  - DevOps转型手记
 tags:
   - DevOps
   - 价值流

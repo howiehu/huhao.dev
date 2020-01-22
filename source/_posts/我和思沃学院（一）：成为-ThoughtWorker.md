@@ -3,7 +3,7 @@ title: 我和思沃学院（一）：成为 ThoughtWorker
 abbrlink: 8a2f70fd
 date: 2016-05-29 23:58
 categories:
-  - - 从士兵到程序员再到咨询师
+  - 从士兵到程序员再到咨询师
 tags:
   - ThoughtWorks
   - 思沃学院

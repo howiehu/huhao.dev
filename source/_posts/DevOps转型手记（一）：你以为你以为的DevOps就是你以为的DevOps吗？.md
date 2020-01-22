@@ -3,7 +3,7 @@ title: DevOps转型手记（一）：你以为你以为的DevOps就是你以为�
 abbrlink: ec6461d
 date: 2018-10-23 21:13:07
 categories:
-  - - DevOps转型手记
+  - DevOps转型手记
 tags:
   - DevOps
 ---
