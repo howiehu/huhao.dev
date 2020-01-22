@@ -43,10 +43,10 @@
     </summary>
     
     
-      <category term="Domain Driven Development" scheme="https://huhao.dev/categories/Domain-Driven-Development/"/>
+      <category term="领域驱动实战思考" scheme="https://huhao.dev/categories/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E5%AE%9E%E6%88%98%E6%80%9D%E8%80%83/"/>
     
     
-      <category term="DDD" scheme="https://huhao.dev/tags/DDD/"/>
+      <category term="领域驱动设计" scheme="https://huhao.dev/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
     
       <category term="战略设计" scheme="https://huhao.dev/tags/%E6%88%98%E7%95%A5%E8%AE%BE%E8%AE%A1/"/>
     
@@ -84,10 +84,10 @@
     </summary>
     
     
-      <category term="Domain Driven Development" scheme="https://huhao.dev/categories/Domain-Driven-Development/"/>
+      <category term="领域驱动实战思考" scheme="https://huhao.dev/categories/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E5%AE%9E%E6%88%98%E6%80%9D%E8%80%83/"/>
     
     
-      <category term="DDD" scheme="https://huhao.dev/tags/DDD/"/>
+      <category term="领域驱动设计" scheme="https://huhao.dev/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
@@ -121,12 +121,12 @@
     </summary>
     
     
-      <category term="Domain Driven Development" scheme="https://huhao.dev/categories/Domain-Driven-Development/"/>
+      <category term="领域驱动实战思考" scheme="https://huhao.dev/categories/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E5%AE%9E%E6%88%98%E6%80%9D%E8%80%83/"/>
     
     
-      <category term="DDD" scheme="https://huhao.dev/tags/DDD/"/>
+      <category term="领域驱动设计" scheme="https://huhao.dev/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
     
-      <category term="TDD" scheme="https://huhao.dev/tags/TDD/"/>
+      <category term="测试驱动开发" scheme="https://huhao.dev/tags/%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
     
       <category term="基准化" scheme="https://huhao.dev/tags/%E5%9F%BA%E5%87%86%E5%8C%96/"/>
     
@@ -329,7 +329,7 @@
       <category term="打造基于Linux的高效学习和工作环境" scheme="https://huhao.dev/categories/%E6%89%93%E9%80%A0%E5%9F%BA%E4%BA%8ELinux%E7%9A%84%E9%AB%98%E6%95%88%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/"/>
     
     
-      <category term="linux" scheme="https://huhao.dev/tags/linux/"/>
+      <category term="Linux" scheme="https://huhao.dev/tags/Linux/"/>
     
   </entry>
   
@@ -418,7 +418,7 @@
       <category term="打造基于Linux的高效学习和工作环境" scheme="https://huhao.dev/categories/%E6%89%93%E9%80%A0%E5%9F%BA%E4%BA%8ELinux%E7%9A%84%E9%AB%98%E6%95%88%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/"/>
     
     
-      <category term="linux" scheme="https://huhao.dev/tags/linux/"/>
+      <category term="Linux" scheme="https://huhao.dev/tags/Linux/"/>
     
   </entry>
   
@@ -444,7 +444,7 @@
       <category term="从士兵到程序员再到咨询师" scheme="https://huhao.dev/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/"/>
     
     
-      <category term="freelancer" scheme="https://huhao.dev/tags/freelancer/"/>
+      <category term="在家办公" scheme="https://huhao.dev/tags/%E5%9C%A8%E5%AE%B6%E5%8A%9E%E5%85%AC/"/>
     
   </entry>
   
@@ -468,7 +468,7 @@
       <category term="从士兵到程序员再到咨询师" scheme="https://huhao.dev/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/"/>
     
     
-      <category term="freelancer" scheme="https://huhao.dev/tags/freelancer/"/>
+      <category term="在家办公" scheme="https://huhao.dev/tags/%E5%9C%A8%E5%AE%B6%E5%8A%9E%E5%85%AC/"/>
     
   </entry>
   
@@ -492,7 +492,7 @@
       <category term="从士兵到程序员再到咨询师" scheme="https://huhao.dev/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/"/>
     
     
-      <category term="freelancer" scheme="https://huhao.dev/tags/freelancer/"/>
+      <category term="在家办公" scheme="https://huhao.dev/tags/%E5%9C%A8%E5%AE%B6%E5%8A%9E%E5%85%AC/"/>
     
   </entry>
   
@@ -517,7 +517,7 @@
       <category term="从士兵到程序员再到咨询师" scheme="https://huhao.dev/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/"/>
     
     
-      <category term="freelancer" scheme="https://huhao.dev/tags/freelancer/"/>
+      <category term="在家办公" scheme="https://huhao.dev/tags/%E5%9C%A8%E5%AE%B6%E5%8A%9E%E5%85%AC/"/>
     
   </entry>
   
