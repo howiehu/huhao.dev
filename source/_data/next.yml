@@ -19,7 +19,7 @@ toc:
 
 avatar:
   url: https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-23-avatar.jpg
-  rounded: true
+  rounded: false
 
 footer:
   since: 2019
