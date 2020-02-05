@@ -136,4 +136,6 @@ asdf global golang 1.13.6
 
 ## 欢迎关注我的个人公众号
 
+微信搜索：`枪炮与代码`，或者搜索公众号ID：`guns-n-code`
+
 ![枪炮与玫瑰](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png)

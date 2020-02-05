@@ -52,3 +52,11 @@ PS：我之前在北京待了9年，去年初回到西安，家就在西安，�
 - [Ruby元编程](http://www.amazon.cn/gp/product/B0073APSCK/ref=oh_details_o01_s00_i02?ie=UTF8&psc=1)
 
 第一个月剩下的时间和之后的两个月首先来制作 **西安Rubyist** 的网站，用于练手，然后在此过程中接触些实际项目实习一下，之后尽可能的将实习转为全职正式工作。
+
+---
+
+## 欢迎关注我的微信公众号
+
+微信搜索：`枪炮与代码`，或者搜索公众号ID：`guns-n-code`
+
+![枪炮与玫瑰](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png)
