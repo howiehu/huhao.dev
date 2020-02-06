@@ -57,6 +57,6 @@ PS：我之前在北京待了9年，去年初回到西安，家就在西安，�
 
 ## 欢迎关注我的微信公众号
 
-微信搜索：`枪炮与代码`，或者搜索公众号ID：`guns-n-code`
+微信搜索：`枪炮与代码`，或者搜索公众号ID：`guns_n_code`
 
 ![枪炮与玫瑰](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png)
