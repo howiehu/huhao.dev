@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="msvalidate.01" content="0F08F252C8D1F3EDE6EA6BFDFCDCACFB">
+  <meta name="baidu-site-verification" content="17XyprouqJ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://huhao.dev').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言在上一篇文章（沟通篇）中，我们讲了有关软件研发组织“在家办公”受到的沟通方面的挑战。 可能是在一家敏捷的公司待得久了，所以我很长一段时间认为“敏捷”在中国已经是家喻户晓不需要再去谈的东西。可是直到我后来做了技术顾问，开始为客户提供架构和工程能力的咨询服务时才发现，绝大多数技术架构和持续交付实践难以落地的问题，最后都会遇到团队不够敏捷这个关键障碍，而真正敏捷的团队，在整个中国的IT行业中，则是极">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10倍团队（二）：在家办公是软件研发组织的“敏捷试金石”之项目管理篇">
+<meta property="og:url" content="https://huhao.dev/posts/4f3996e/index.html">
+<meta property="og:site_name" content="胡皓 - 枪炮与代码">
+<meta property="og:description" content="前言在上一篇文章（沟通篇）中，我们讲了有关软件研发组织“在家办公”受到的沟通方面的挑战。 可能是在一家敏捷的公司待得久了，所以我很长一段时间认为“敏捷”在中国已经是家喻户晓不需要再去谈的东西。可是直到我后来做了技术顾问，开始为客户提供架构和工程能力的咨询服务时才发现，绝大多数技术架构和持续交付实践难以落地的问题，最后都会遇到团队不够敏捷这个关键障碍，而真正敏捷的团队，在整个中国的IT行业中，则是极">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206211914.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206185526.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206141705.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206211612.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200205214837.jpg">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206213655.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png">
+<meta property="article:published_time" content="2020-02-06T13:58:40.000Z">
+<meta property="article:modified_time" content="2020-02-06T13:58:40.000Z">
+<meta property="article:author" content="胡皓">
+<meta property="article:tag" content="10倍团队">
+<meta property="article:tag" content="敏捷">
+<meta property="article:tag" content="在家办公">
+<meta property="article:tag" content="项目管理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206211914.png">
+
+<link rel="canonical" href="https://huhao.dev/posts/4f3996e/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>10倍团队（二）：在家办公是软件研发组织的“敏捷试金石”之项目管理篇 | 胡皓 - 枪炮与代码</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="胡皓 - 枪炮与代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">胡皓 - 枪炮与代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">从士兵到软件匠人的侃侃而谈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-概念图">
+
+    <a href="https://cmap.huhao.dev/" rel="noopener" target="_blank"><i class="fa fa-fw fa-lightbulb-o"></i>概念图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/howiehu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/4f3996e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-23-avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          10倍团队（二）：在家办公是软件研发组织的“敏捷试金石”之项目管理篇
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-06 21:58:40" itemprop="dateCreated datePublished" datetime="2020-02-06T21:58:40+08:00">2020-02-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10%E5%80%8D%E5%9B%A2%E9%98%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">10倍团队</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<a href="https://huhao.dev/posts/e2efaab2/">上一篇文章（沟通篇）</a>中，我们讲了有关软件研发组织“在家办公”受到的沟通方面的挑战。</p>
+<p>可能是在一家敏捷的公司待得久了，所以我很长一段时间认为“敏捷”在中国已经是家喻户晓不需要再去谈的东西。可是直到我后来做了技术顾问，开始为客户提供架构和工程能力的咨询服务时才发现，<strong>绝大多数技术架构和持续交付实践难以落地的问题，最后都会遇到团队不够敏捷这个关键障碍，而真正敏捷的团队，在整个中国的IT行业中，则是极少的。</strong></p>
+<blockquote>
+<p><strong>因为不够敏捷，所以能够用于改进的带宽就不足，因为改进的带宽不足，所以就难以应用更好的技术实践，如此反复就变成了死循环……</strong></p>
+</blockquote>
+<p>而在众多导致不敏捷的原因中，首当其冲的，就和软件研发组织的项目管理方法和项目管理人员的能力有直接的关系。</p>
+<p>而本次新型冠状病毒（2019-nCoV）疫情导致的“在家办公”的要求，则瞬间放大了相关影响。</p>
+<p>所以，在这一篇中，我们将关注项目管理方式对于“在家办公”的挑战。</p>
+<a id="more"></a>
+
+<h2 id="传统的项目管理方法"><a href="#传统的项目管理方法" class="headerlink" title="传统的项目管理方法"></a>传统的项目管理方法</h2><blockquote>
+<p><strong>传统的项目管理方法以资源投入为着眼点，强调按约定进行交付</strong></p>
+</blockquote>
+<p>说起项目管理三角形（Project Management Triangle），我相信很多学过项目管理的人，都会脱口而出：<code>时间（Time）</code>，<code>范围（Scope）</code>，<code>成本（Cost）</code>。</p>
+<p><em>PS：在实际中，很多团队的项目管理人员过去都是从开发人员干上来的，我特别喜欢在客户现场问这个问题，相当一部分团队所谓的项目管理人员，则根本回答不上来这个项目管理的基本概念，这也是一个国内软件研发企业很有意思的一个现象，屡试不爽……</em></p>
+<p>但是在“脱口而出”的时候，却很少有人记得或者忽略了，作为“传统的项目管理三角形”，时间、范围、成本所构成的三角形中间，是非常重要的：<code>质量（Quality）</code>。</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206211914.png" alt="项目管理三角形"></p>
+<p>这个三角形告诉我们了这样一个相互影响的关系：</p>
+<blockquote>
+<p>在项目质量要求不变的情况下（一般来说，在传统的工程类项目中质量要求都是一经确定难以变更的）：</p>
+<ul>
+<li>如果需要缩短项目时间，那么就要减少项目范围或增加项目成本投入；</li>
+<li>如果要节约项目成本，那么就需要减少项目范围或延长项目时间；</li>
+<li>如果要增加项目范围，那么就要增加项目成本或延长项目实践。</li>
+</ul>
+</blockquote>
+<p>这个“传统的项目管理三角形”非常科学，就拿这次抗击新型冠状病毒（2019-nCoV）的“雷神山”和“火神山”两个医院的神速建设来说：</p>
+<blockquote>
+<p>首先，两个医院的建设标准和质量是不可妥协的，同时，施工范围是不可变的，工期也是不可变的，那么在这个基础上，只能不计成本的动用体制优势进行建设。</p>
+</blockquote>
+<p>是不是特别有道理！</p>
+<p><strong>但是呢？这个“传统的项目管理三角形”（注意我一直在用引号强调“传统”二字），在我们的软件工程中，则通常是不能正常工作的！</strong></p>
+<p>为什么呢？<strong>因为传统的工程项目，其项目本身的<code>范围</code>更加可控，经验或资源的“复用性”更强，项目过程中的变化相对稳定；而软件工程，是属于“知识型工作”，其“创新性”更高，项目过程中的变化往往非常频繁，所以项目的<code>范围</code>则通常很难控制。</strong></p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206185526.png" alt="“雷神山”和“火神山”这样的工程规模和速度在软件行业中非常困难"></p>
+<p>所以，这也是为什么“雷神山”和“火神山”两个医院的建设工程，能够在2天左右的时间出图纸，然后在5-7天基本完工的关键，因为这里面有大量现成的经验和方案组合，完全依据设计图纸进行施工的方式，以及固定的施工工艺和预制件的使用——这一切能够确保所有参战工人和施工队，按照统一的标准进行快速的建设工作。</p>
+<p>而作为一个软件项目，想要从0开始，做到这两个医院的建设方式，则是极其困难的。首先我们就很难完全按照详尽的设计图纸或者严格的工程标准进行工作——除非此类软件所解决的问题已经在业内属于通用型问题，有大量的现成产品、开发套件或者开源方案拿来改改就能用（嗯，尤其是开发套件这个东西，往往是误入歧途，成为未来变更瓶颈的开始）。</p>
+<p>一般来说，<strong>如果一个软件研发组织，在平时进行项目管理的时候，是基于“甘特图”的管理方式，那么大概率的就是在用以资源为核心的传统管理方法，来错误的管理以价值为核心的软件研发项目。</strong>（嗯，曾经做项目管理时的我也年少轻狂甘特图过……）</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206141705.png" alt="基于Microsoft Project的甘特图式项目管理"></p>
+<p>在实际中，“甘特图式”的项目管理，与强调精准管控，基于严格阶段划分和详尽文档的瀑布式软件开发流程往往密不可分。在这种开发流程中，一个可工作的软件，往往只有在某个开发节点到达后，其全部的功能才有可能被集成完毕，然后进行批量测试和验收。而在这个节点前的过程中，是难以集成甚至是“可工作”的，所以更不用提测试和验收了。正所谓越是想精确，越是十万八千里。</p>
+<p>在这种管理模式下，由于项目精准管控的需要，往往项目管理人员都具备相当的管理权力或职级，属于比较强势的管理人员，而很多程序员八卦中那些对于项目管理人员声嘶力竭和官僚式的管理风格的描述，往往也是反映的这种管理风格下的研发团队。</p>
+<p>而一旦转入在家办公，随着现场办公的便利性的消失，工作透明度的降低，以及各种协作难度的增加，软件研发的进度将变得愈发不可控，能否按时完成所有工作项的开发、集成、测试和验收，就变成了一个更加“烧香拜佛听天由命”的事情。</p>
+<p>到时候项目管理人员怎么办呢？嗯……买套非常“好用”的在线协作工具，靠更多的视频会议来继续“声嘶力竭”和“追着屁股”的“连环Call”吗？</p>
+<p>（你要是再不赶紧搞定，就在家里永远不要来公司上班了！！！手动滑稽……）</p>
+<h2 id="敏捷的项目管理方法"><a href="#敏捷的项目管理方法" class="headerlink" title="敏捷的项目管理方法"></a>敏捷的项目管理方法</h2><blockquote>
+<p><strong>敏捷的项目管理方法以价值交付为着眼点，强调适应变化。</strong></p>
+</blockquote>
+<p>与“传统的项目管理方法”相比，“敏捷”类的软件项目管理办法，强调“以价值交付为核心”，通过“适应”的方式，着眼提升应对需求变化的能力。</p>
+<p><strong><em>PS：我的同事，ThoughtWorks中国区CTO徐昊曾经总结过针对“敏捷”价值观的经典一句话描述，就是“Value delivery over follow practice（价值交付优于循规蹈矩）”，这也体现了“适应”的精髓。换句话说，如果有人告诉你，敏捷就一定要做……（例如迭代式开发），那就是有问题的了，必须要综合多方考虑，在不同的环境下，找到最利于价值交付的方式，才是真正的敏捷。</em></strong></p>
+<p>如何做到“以价值交付为核心”和“适应”呢？仅就项目管理的方式来讲，在我看来，这里面有两个非常关键的区别，我们分别来讲一讲：</p>
+<ul>
+<li>敏捷三角形（Agile Triangle）</li>
+<li>可视化卡片系统（kanban）</li>
+</ul>
+<h3 id="敏捷三角形"><a href="#敏捷三角形" class="headerlink" title="敏捷三角形"></a>敏捷三角形</h3><p>首先，我们来讲一讲用“敏捷三角形（Agile Triangle）”代替“传统的项目管理三角形”。</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206211612.png" alt="从传统的项目管理三角形到敏捷三角形"></p>
+<p>如上图所示，“敏捷三角形”所关注的三个角是：<code>价值（Value）</code>、<code>质量（Quality）</code>和<code>约束（Constraints）</code>，其中<code>约束</code>就是以前的“传统项目管理三角形”。从这张图上我们可以看到，敏捷三角形在传统三角形的基础上将<code>质量</code>和<code>价值</code>进行了显式的关注。</p>
+<p>简单来说（我所总结的）：</p>
+<blockquote>
+<p>因为在软件领域，随着时间的推移，影响<code>约束</code>变化的东西太多了，敏捷的项目管理，应该在<code>约束</code>的条件下，优先关注以适合的<code>质量</code>为客户交付优先级最高的<code>价值</code>。而另一方面，由于精准的度量实在是太难了，所以我们应当以更轻量级的手段，来跟踪和度量<code>价值</code>的交付速度（例如燃烧图、燃尽图、累积流图等等），从而获得虽然模糊但是相对更准的预测。</p>
+</blockquote>
+<p><em>PS：有关敏捷三角形的相关概念，这里不展开讲，感兴趣的话可以参考这篇文章：<a href="https://www.infoq.cn/article/2009/08/agile-triangle" target="_blank" rel="noopener">https://www.infoq.cn/article/2009/08/agile-triangle</a></em></p>
+<p>那么这样做的好处是什么呢？</p>
+<p>首先，轻量级的方法，会让项目管理的成本显著降低（这对增加了管理成本的在家办公来说当然是一件好事）。</p>
+<p>同时，另一个好处，就是轻量级的管理办法，能够更容易应用让整个团队（而非少数项目管理人员）共享和关注的可视化手段，这个就是基于“可视化卡片系统”的管理办法。</p>
+<h3 id="可视化卡片系统"><a href="#可视化卡片系统" class="headerlink" title="可视化卡片系统"></a>可视化卡片系统</h3><p>由于以关注“价值的交付”代替了“关注资源的使用”，所以我们可以用以卡片为可视化单元的“可视化卡片系统”进行项目进度的跟踪和度量，也就是我们常说的“卡墙”或者“看板”，如图所示：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200205214837.jpg" alt="看板方法的拉动式看板"></p>
+<p>（有关可视化的好处，我们在<a href="https://huhao.dev/posts/e2efaab2/">上一篇文章（沟通篇）</a>中已经有过介绍，这里不再展开讲。）</p>
+<p>在基于卡片的可视化系统中，我们所关注的，主要是：</p>
+<ul>
+<li>团队的工作流程（纵向分栏）</li>
+<li>当前的卡片数量（累积工作）</li>
+<li>卡片的状态（工作的进度）</li>
+</ul>
+<p>而我们所要做的事情，就是要去想办法让卡片系统中的卡，尽快的从左边一步一步的挪到右边的“完成（Done）”一栏。</p>
+<p>这种只需要便利贴和大白板的管理办法，比基于“甘特图”这种需要依赖重量级管理工具（Microsoft Project等）还不直观的方式，简直是轻量级太多啊！嗯，而且这种轻量级的办法，特别有利于协作，让对于项目管理这件事变成团队每个人都可以关注和参与的事情！</p>
+<p>正因为敏捷的可视化卡片系统具有这样的好处，所以大家会注意到当今以Trello和Jira为代表的在线可视化项目管理工具，都是以卡片系统的方式来实现的（嗯，包括最近因为在家办公大火的各种在线协作产品也是这样的）。</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200206213655.png" alt="Trello"></p>
+<p><em>PS：特别需要注意的是，敏捷的卡片系统一定是以价值交付为核心的，卡片代表的是价值。我曾经在客户现场见过一种非常典型的“伪敏捷看板”（很可惜因为保密原因不能拍照）——在看板的左侧从上往下以每个人的名字为一栏进行拆分（横列俗称泳道），然后跟踪每个人所负责的卡片，这种就是一种典型的将人作为关注的核心（把人当资源用），将卡片系统用成了甘特图。（嗯，各位赶紧回去自查一下自己的看板是不是这种……）</em></p>
+<p>洋洋洒洒围绕项目管理说了这么一大堆，综上所述，<strong>如果一个软件研发组织，不能以敏捷的项目管理方法来管理项目，如何能够降低在家办公的项目管理成本呢？</strong></p>
+<p>最起码的就是：你就算现买一个在线协作办公的产品，也用不起来嘛！</p>
+<p>但很遗憾，现实中，我们还是能够看到大量的软件研发组织，还是依靠传统的项目管理方法来管理软件开发，或者使用错误的方式来应用敏捷的项目管理方法。</p>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>按理来说，以上内容但凡是看过基本敏捷方法相关的书籍都应该知晓，但是非常残酷的是，通过我在实际咨询工作中的观察，现实中的绝大多数软件研发团队项目管理人员，除了是从开发人员转过来的以外，还有大量的是从传统的项目管理转过来的（或者学的是传统的项目管理方法论），所以能够说清楚以上项目管理方法论区别的人，则属于少数。</p>
+<p>由于篇幅原因，我无法对影响在家办公的项目管理问题进行一一讲解，这里只能专注于最基本的传统项目管理与敏捷项目管理的差异，但还是那句话：</p>
+<blockquote>
+<p><strong>以绝大多数软件研发组织的敏捷实践水平之低，还谈不上如何在家办公。</strong></p>
+</blockquote>
+<p>希望本文能为众多因为“被在家办公”搞得鸡飞狗跳的软件研发组织提供一些参考和帮助。</p>
+<p>后续文章，我会从另外的方面，来继续讲一讲，为什么在家办公是软件研发组织的“敏捷试金石”。</p>
+<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h2><ul>
+<li><a href="https://huhao.dev/posts/e2efaab2/">在家办公是软件研发组织的“敏捷试金石”之沟通篇</a></li>
+</ul>
+<hr>
+<h2 id="欢迎关注我的个人公众号"><a href="#欢迎关注我的个人公众号" class="headerlink" title="欢迎关注我的个人公众号"></a>欢迎关注我的个人公众号</h2><p>微信搜索：<code>枪炮与代码</code>，或者搜索公众号ID：<code>guns_n_code</code></p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png" alt="枪炮与玫瑰"></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="胡皓 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="胡皓 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>胡皓
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://huhao.dev/posts/4f3996e/" title="10倍团队（二）：在家办公是软件研发组织的“敏捷试金石”之项目管理篇">https://huhao.dev/posts/4f3996e/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/10%E5%80%8D%E5%9B%A2%E9%98%9F/" rel="tag"># 10倍团队</a>
+              <a href="/tags/%E6%95%8F%E6%8D%B7/" rel="tag"># 敏捷</a>
+              <a href="/tags/%E5%9C%A8%E5%AE%B6%E5%8A%9E%E5%85%AC/" rel="tag"># 在家办公</a>
+              <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="tag"># 项目管理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/e2efaab2/" rel="prev" title="10倍团队（一）：在家办公是软件研发组织的“敏捷试金石”之沟通篇">
+      <i class="fa fa-chevron-left"></i> 10倍团队（一）：在家办公是软件研发组织的“敏捷试金石”之沟通篇
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统的项目管理方法"><span class="nav-number">2.</span> <span class="nav-text">传统的项目管理方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#敏捷的项目管理方法"><span class="nav-number">3.</span> <span class="nav-text">敏捷的项目管理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷三角形"><span class="nav-number">3.1.</span> <span class="nav-text">敏捷三角形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可视化卡片系统"><span class="nav-number">3.2.</span> <span class="nav-text">可视化卡片系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后话"><span class="nav-number">4.</span> <span class="nav-text">后话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关阅读"><span class="nav-number">5.</span> <span class="nav-text">相关阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎关注我的个人公众号"><span class="nav-number">6.</span> <span class="nav-text">欢迎关注我的个人公众号</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="胡皓"
+      src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-23-avatar.jpg">
+  <p class="site-author-name" itemprop="name">胡皓</p>
+  <div class="site-description" itemprop="description">胡皓的个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/howiehu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/howiehu" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">胡皓</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
