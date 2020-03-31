@@ -1,5 +1,5 @@
 ---
-title: 领域驱动实战思考（四）：对不起，没有D3方法，DDD只会坑死你！
+title: 领域驱动实战思考（四）：少了这2个D，DDD基本“不工作”。
 abbrlink: 1bdeacf3
 categories:
   - 领域驱动实战思考
@@ -12,13 +12,13 @@ tags:
 
 ## 前言
 
-## 你知道你现在是怎么被坑死的吗？
+## DDD为什么不工作
 
-## 为什么需要Design Thinking
+## 你缺少了Design Thinking
 
-## 为什么需要DevOps
+## 你缺少了DevOps
 
-## 什么是D3方法
+## 使用D3方法实现BizDevOps
 
 ## 总结
 
