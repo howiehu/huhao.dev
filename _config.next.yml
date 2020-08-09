@@ -1,18 +1,20 @@
 scheme: Pisces
 
+darkmode: true
+
 post_meta:
   updated_at: false
 
 menu:
-  home: / || home
-  tags: /tags/ || tags  
-  categories: /categories/ || th
-  archives: /archives/ || archive
-  概念图: https://cmap.huhao.dev || lightbulb-o
-  about: /about/ || user
-  #schedule: /schedule/ || calendar
-  #sitemap: /sitemap.xml || sitemap
-  #commonweal: /404/ || heartbeat
+  home: / || fa fa-home
+  tags: /tags/ || fa fa-tags
+  categories: /categories/ || fa fa-th
+  archives: /archives/ || fa fa-archive
+  概念图: https://cmap.huhao.dev || fa fa-lightbulb-o
+  about: /about/ || fa fa-user
+  #schedule: /schedule/ || fa fa-calendar
+  #sitemap: /sitemap.xml || fa fa-sitemap
+  #commonweal: /404/ || fa fa-heartbeat
 
 favicon:
   small: /images/favicon-16x16.png
@@ -33,9 +35,9 @@ footer:
   since: 2019
 
 social:
-  GitHub: https://github.com/howiehu || github
-  Weibo: https://weibo.com/howiehu || weibo
-  RSS: /atom.xml || rss
+  GitHub: https://github.com/howiehu || fa fa-github
+  Weibo: https://weibo.com/howiehu || fa fa-weibo
+  RSS: /atom.xml || fa fa-rss
 
 social_icons:
   icons_only: true
@@ -71,7 +73,7 @@ utteranc:
   cdn: https://utteranc.es/client.js
 
 vendors:
-  fontawesome: https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css
+  fontawesome: https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
 
 # ---------------------------------------------------------------
 # SEO Settings
