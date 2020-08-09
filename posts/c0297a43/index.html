@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -19,11 +19,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
 
-<script id="hexo-configurations">
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
   <meta name="description" content="我是一个超级不爱看书的人，同时还觉得成天看书的人往往纸上谈兵，很傻。 但是，从 2017 年 2 月 2 日下定决心培养阅读习惯开始，我坚持每天读书至少 1 个小时，截至2017 年 3 月 18 日，在这 44 天里，我已经读完了 8 本书，这比我 2016 年整整一年所读过的书都要多。  然而，这个过程并不是心中时刻默念：“我要培养阅读习惯！加油！”，然后靠着信念一本接一本读下去的过程，如果是">
@@ -49,7 +51,7 @@
 <link rel="canonical" href="https://huhao.dev/posts/c0297a43/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -69,24 +71,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -97,22 +111,23 @@
   <div class="container use-motion">
     <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">胡皓 - 枪炮与代码</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">从士兵到软件匠人的侃侃而谈</p>
   </div>
@@ -125,37 +140,36 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-概念图">
 
-    <a href="https://cmap.huhao.dev/" rel="noopener" target="_blank"><i class="fa fa-fw fa-lightbulb-o"></i>概念图</a>
+    <a href="https://cmap.huhao.dev/" rel="noopener" target="_blank"><i class="fa fa-lightbulb-o fa-fw"></i>概念图</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
   </ul>
@@ -165,9 +179,88 @@
 
 
 </div>
-    </header>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
 
-    
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BF%A1%E5%BF%B5%E5%92%8C%E9%B8%A1%E6%B1%A4%E4%B8%8D%E9%9D%A0%E8%B0%B1%EF%BC%8C%E5%8A%A8%E6%9C%BA%E5%92%8C%E6%96%B9%E6%B3%95%E6%9C%80%E9%87%8D%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">一、信念和鸡汤不靠谱，动机和方法最重要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%9C%BA%EF%BC%9A%E9%83%BD%E6%98%AF%E5%9B%A0%E4%B8%BA%E8%AF%BB%E4%B9%A6%E5%B0%91"><span class="nav-number">1.1.</span> <span class="nav-text">动机：都是因为读书少</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%EF%BC%9A%E8%AF%BB%E4%B9%A6%E5%B0%91%E5%B0%B1%E8%B5%B6%E7%B4%A7%E8%AF%BB"><span class="nav-number">1.2.</span> <span class="nav-text">尝试：读书少就赶紧读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%91%E5%AD%A6%E6%96%B9%E6%B3%95%EF%BC%9A%E6%9E%9C%E7%84%B6%E8%BF%98%E6%98%AF%E8%AF%BB%E4%B9%A6%E5%B0%91"><span class="nav-number">1.3.</span> <span class="nav-text">科学方法：果然还是读书少</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%88%E8%AF%B4%E8%AF%B4%E3%80%8A%E8%87%AA%E6%8E%A7%E5%8A%9B%E3%80%8B"><span class="nav-number">1.3.1.</span> <span class="nav-text">先说说《自控力》</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%8D%E8%AF%B4%E8%AF%B4%E3%80%8A%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E4%B8%80%E6%9C%AC%E4%B9%A6%E3%80%8B"><span class="nav-number">1.3.2.</span> <span class="nav-text">再说说《如何阅读一本书》</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%EF%BC%9A%E4%B8%80%E7%9F%B3-N-%E9%B8%9F"><span class="nav-number">1.3.3.</span> <span class="nav-text">目标：一石 N 鸟</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%89%80%E8%B0%93%E4%B9%A0%E6%83%AF%E5%85%BB%E6%88%90%EF%BC%8C%E6%A0%B9%E6%9C%AC%E5%9C%A8%E6%84%8F%E5%BF%97%E5%8A%9B%E7%9A%84%E8%AE%AD%E7%BB%83"><span class="nav-number">2.</span> <span class="nav-text">二、所谓习惯养成，根本在意志力的训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%8F%E5%BF%97%E5%8A%9B%E6%AD%A6%E5%99%A8%E4%B9%8B%E4%B8%80%EF%BC%9A%E7%9D%A1%E7%9C%A0"><span class="nav-number">2.1.</span> <span class="nav-text">意志力武器之一：睡眠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%8F%E5%BF%97%E5%8A%9B%E6%AD%A6%E5%99%A8%E4%B9%8B%E4%BA%8C%EF%BC%9A%E5%81%A5%E8%BA%AB"><span class="nav-number">2.2.</span> <span class="nav-text">意志力武器之二：健身</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%8F%E5%BF%97%E5%8A%9B%E6%AD%A6%E5%99%A8%E4%B9%8B%E4%B8%89%EF%BC%9A%E5%86%A5%E6%83%B3"><span class="nav-number">2.3.</span> <span class="nav-text">意志力武器之三：冥想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%8F%E5%BF%97%E5%8A%9B%E6%AD%A6%E5%99%A8%E4%B9%8B%E5%9B%9B%EF%BC%9A%E7%AE%80%E5%8D%95%E7%9A%84%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86"><span class="nav-number">2.4.</span> <span class="nav-text">意志力武器之四：简单的时间管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%87%8F%E5%B0%91%E7%9C%8B%E6%89%8B%E6%9C%BA%E7%9A%84%E6%97%B6%E9%97%B4%EF%BC%8C%E5%B0%BD%E9%87%8F%E8%BF%9C%E7%A6%BB%E6%89%8B%E6%9C%BA"><span class="nav-number">2.4.1.</span> <span class="nav-text">方法一：减少看手机的时间，尽量远离手机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95%EF%BC%8C%E9%98%85%E8%AF%BB%E5%92%8C%E5%86%A5%E6%83%B3%E7%9A%84%E7%BB%9D%E4%BD%B3%E6%90%AD%E9%85%8D"><span class="nav-number">2.4.2.</span> <span class="nav-text">方法二：番茄工作法，阅读和冥想的绝佳搭配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">2.5.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%BA%AB%E8%BE%B9%E7%9A%84%E4%BA%BA%EF%BC%9A%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%8F%AF%E5%BF%BD%E8%A7%86%E7%9A%84%E5%82%AC%E5%8C%96%E5%89%82"><span class="nav-number">3.</span> <span class="nav-text">三、身边的人：一个不可忽视的催化剂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%9C%A8%E8%B7%AF%E4%B8%8A"><span class="nav-number">4.</span> <span class="nav-text">四、在路上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A2%E8%BF%8E%E5%85%B3%E6%B3%A8%E6%88%91%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="nav-number">5.</span> <span class="nav-text">欢迎关注我的微信公众号</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="胡皓"
+      src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-23-avatar.jpg">
+  <p class="site-author-name" itemprop="name">胡皓</p>
+  <div class="site-description" itemprop="description">胡皓的个人技术博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/howiehu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/howiehu" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-weibo fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
@@ -175,14 +268,16 @@
 
   <a href="https://github.com/howiehu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
+
       <div class="main-inner">
-        <div class="content-wrap">
-          
+        
 
-          <div class="content post posts-expand">
-            
+        <div class="content post posts-expand">
+          
 
     
   
@@ -199,6 +294,8 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="胡皓 - 枪炮与代码">
     </span>
+
+    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           44天读8本书——习惯养成不能靠信念和鸡汤
@@ -207,7 +304,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -215,7 +312,7 @@
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -232,8 +329,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p><strong><em>我是一个超级不爱看书的人，同时还觉得成天看书的人往往纸上谈兵，很傻。</em></strong></p>
 <p>但是，从 2017 年 2 月 2 日下定决心培养阅读习惯开始，我坚持每天读书至少 1 个小时，截至2017 年 3 月 18 日，在这 44 天里，我已经读完了 8 本书，这比我 2016 年整整一年所读过的书都要多。</p>
 <p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-113713.jpg" alt="44 天读完的 8 本书"></p>
@@ -266,18 +361,18 @@
 <p>怎么办？如何才能减少或避免以上三点对我这“又一次开始”的影响？我必须给自己立个“规矩”，或者说是个“操作规范”，以便“照此执行，不纠结”。</p>
 <p>针对以上的第一个“绊脚石”：我决定优先购买和阅读电子书，一来是获取容易和快速，二来是容易携带，实在没有电子书，那就买纸质书。</p>
 <p>针对第二个“绊脚石”：由于确定了电子书优先，所以我横向对比了各种阅读 App 及其书城的书籍丰富程度，发现亚马逊的 Kindle 阅读依然还是书籍最全的，而“多看阅读”则是排版和制作质量最好的，“微信阅读”越来越火，但是书籍数量和质量还有提升空间。所以我决定，如果某电子书只有某个 App 有，那就用这个 App 看，否则优先选择“多看阅读”上的看（或者对排版要求高的），“多看阅读”没有的，就选择“微信阅读”看，其次是“豆瓣阅读”，再次是“京东阅读”。</p>
-<p>针对第三个“绊脚石”：为了防止遇到难读的书看不下去导致阅读中断，特意找了一些自己非常感兴趣并且阅读起来不费脑细胞的书（比如<a href="https://www.amazon.cn/dp/B00NSGUFCQ" target="_blank" rel="noopener">《人类简史》</a>），当看不下去难读的书或者看完一本难读的书的时候，就看看这些书换换脑子。（习惯养成中一个很重要的要素就是防止中断，哪怕是中断一天）</p>
+<p>针对第三个“绊脚石”：为了防止遇到难读的书看不下去导致阅读中断，特意找了一些自己非常感兴趣并且阅读起来不费脑细胞的书（比如<a target="_blank" rel="noopener" href="https://www.amazon.cn/dp/B00NSGUFCQ">《人类简史》</a>），当看不下去难读的书或者看完一本难读的书的时候，就看看这些书换换脑子。（习惯养成中一个很重要的要素就是防止中断，哪怕是中断一天）</p>
 <p>最后来说说这第四个“绊脚石”，就是容易被干扰而导致分神这事儿：这毛病治起来可不容易，而且还挺贵……</p>
 <p>对我干扰最大的一个因素就是声音，首先环境噪音不能吵杂，而且凡是一丁点儿与环境噪音不协调的声音出现时，都会让我分神。（后面会讲到，其实就是自控力差）</p>
-<p>而由于刚刚有了小孩儿，加上房子不大，想要有个安静的书房看书是不太可能了；而乘坐交通工具时这么好的碎片时间，也不安静。怎么办？只好花钱买了个降噪神器：<a href="https://www.bose.cn/zh_cn/products/headphones/over_ear_headphones/quietcomfort-35-wireless.html" target="_blank" rel="noopener">Bose QuietComfort 35</a> 降噪耳机（后来因为出差和天气变热的缘故，又买了个易于便携的 <a href="https://www.bose.cn/zh_cn/products/headphones/earphones/quietcontrol-30.html" target="_blank" rel="noopener">Bose QuietControl 30</a>，两个手都剁没了……），神器就是神器，世界顿时清净了！</p>
+<p>而由于刚刚有了小孩儿，加上房子不大，想要有个安静的书房看书是不太可能了；而乘坐交通工具时这么好的碎片时间，也不安静。怎么办？只好花钱买了个降噪神器：<a target="_blank" rel="noopener" href="https://www.bose.cn/zh_cn/products/headphones/over_ear_headphones/quietcomfort-35-wireless.html">Bose QuietComfort 35</a> 降噪耳机（后来因为出差和天气变热的缘故，又买了个易于便携的 <a target="_blank" rel="noopener" href="https://www.bose.cn/zh_cn/products/headphones/earphones/quietcontrol-30.html">Bose QuietControl 30</a>，两个手都剁没了……），神器就是神器，世界顿时清净了！</p>
 <p>好啦，规矩立好，开始捧起 iPad Mini 看书！</p>
 <p>果然效果显著，在坚持每天读书之后，差不多一周半的时间（其中有几天休假，所以读书时间比较多），就读完了 3 本书—— 1 本难读的，2 本好读的。</p>
 <p>看完这三本书，让我对于读书这件事的信心大增！我从来没有在这么短的时间内读了这么多书。</p>
 <p>但是，<strong>与此同时，我也对如何能够更科学的培养阅读习惯产生了疑惑，因为到目前为止，主要还是依靠的我的个人意志和智慧（咦？……），而不是科学有效的方法——这依然还是不靠谱的。</strong></p>
-<p>另外，在这个过程中，我很明显的感到以我微弱的自控力，iPad Mini 这个东西依然会让我分神，我总会不自觉的想要去看看其他 App，刷刷网页什么的；而且，iPad Mini 的屏幕当看书久了以后，眼睛会疼，也更容易犯困。所以我把脚也剁了，买了第三件神器：<a href="https://www.amazon.cn/kindle-store/dp/B00QJDOLIO/" target="_blank" rel="noopener">Kindle Oasis</a>，而且 Kindle 还有个好处，就是它的客户端从电脑到移动设备一应俱全，即使没带 Kindle，也依然能够让我随时随地的看书，这是其它阅读产品所达不到的。所以 Kindle 接下来就成了我的个人阅读中心。</p>
+<p>另外，在这个过程中，我很明显的感到以我微弱的自控力，iPad Mini 这个东西依然会让我分神，我总会不自觉的想要去看看其他 App，刷刷网页什么的；而且，iPad Mini 的屏幕当看书久了以后，眼睛会疼，也更容易犯困。所以我把脚也剁了，买了第三件神器：<a target="_blank" rel="noopener" href="https://www.amazon.cn/kindle-store/dp/B00QJDOLIO/">Kindle Oasis</a>，而且 Kindle 还有个好处，就是它的客户端从电脑到移动设备一应俱全，即使没带 Kindle，也依然能够让我随时随地的看书，这是其它阅读产品所达不到的。所以 Kindle 接下来就成了我的个人阅读中心。</p>
 <p><strong><em>在这里，我特别想要给正在看本文的人说一句：“可以学我的思路，但是不要学我的剁手。设备诚可贵，金钱价更高！切记！切记！切记！”</em></strong></p>
 <p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-113828.jpg" alt="剁手三神器，莫学我！"></p>
-<h3 id="科学方法：果然还是读书少"><a href="#科学方法：果然还是读书少" class="headerlink" title="科学方法：果然还是读书少"></a>科学方法：果然还是读书少</h3><p>事实证明，果然还是读书少，当我寻找并阅读了两本书后，我对如何科学有效的培养阅读习惯才有了更加科学和完整的认识，这两本书，一本叫<a href="https://www.amazon.cn/dp/B008AGHPM2" target="_blank" rel="noopener">《自控力》</a>，另一本叫<a href="https://www.amazon.cn/dp/B00IX8NX5A" target="_blank" rel="noopener">《如何阅读一本书》</a>。</p>
+<h3 id="科学方法：果然还是读书少"><a href="#科学方法：果然还是读书少" class="headerlink" title="科学方法：果然还是读书少"></a>科学方法：果然还是读书少</h3><p>事实证明，果然还是读书少，当我寻找并阅读了两本书后，我对如何科学有效的培养阅读习惯才有了更加科学和完整的认识，这两本书，一本叫<a target="_blank" rel="noopener" href="https://www.amazon.cn/dp/B008AGHPM2">《自控力》</a>，另一本叫<a target="_blank" rel="noopener" href="https://www.amazon.cn/dp/B00IX8NX5A">《如何阅读一本书》</a>。</p>
 <h4 id="先说说《自控力》"><a href="#先说说《自控力》" class="headerlink" title="先说说《自控力》"></a>先说说《自控力》</h4><p>首先，《自控力》这本书不是一本让人一口气读完的书，而是应该按照作者所推荐的那样“慢慢来”：在每个周日的清晨，阅读完读一章，然后用这一章所讲述的自控力策略，对自己做一周的训练，不要跳跃，也不要着急（因为作者实际上是把他实际中 10 周的课程写在一本书里了），10 周以后如果还没有放弃，那自控力就有了质的改变。</p>
 <p>《自控力》的核心思想是：</p>
 <blockquote>
@@ -294,7 +389,7 @@
 <blockquote>
 <p>这是一本为阅读的人，或是想要成为阅读的人而写的书。尤其是想要阅读书的人。说得更具体一点，这本书是为那些想把读书的主要目的当作是增进理解能力的人而写。</p>
 </blockquote>
-<p>《如何阅读一本书》关注的是根本的阅读能力的问题，在没有对阅读能力做出提高之前，谈论阅读速度是不现实的。因此，我非常不推荐大家一开始就看<a href="https://www.amazon.cn/dp/B00XOGDCLQ" target="_blank" rel="noopener">《如何高效阅读》</a>这本书，因为我们绝大多数人遇到的是能不能有效“看懂”的问题，还谈不上“高效”。</p>
+<p>《如何阅读一本书》关注的是根本的阅读能力的问题，在没有对阅读能力做出提高之前，谈论阅读速度是不现实的。因此，我非常不推荐大家一开始就看<a target="_blank" rel="noopener" href="https://www.amazon.cn/dp/B00XOGDCLQ">《如何高效阅读》</a>这本书，因为我们绝大多数人遇到的是能不能有效“看懂”的问题，还谈不上“高效”。</p>
 <p>《如何阅读一本书》通过对四种阅读层次及每种层次的阅读方法进行论述，同时配以对阅读不同类型书籍的指导，完整的告诉读者：<strong>我该如何读懂一本书，并在此过程中提高我的阅读能力。</strong>当然，这一本书读起来也是比较费劲的。</p>
 <p>但是这本书让我明白了一个重要的道理：</p>
 <p><strong>我之所以觉得有些书读起来很难，很痛苦，很费脑细胞，正是因为我的理解能力不够高。而根本的解决办法就是去用正确的方法，坚持阅读下去，每当阅读完一本这样的书，我的理解能力就会得到提高。这样，当我再阅读下一本比较难读的书的时候，我就会越来越轻松了。（其实听不懂一些高水平的人所说的话的原因也与此有关）</strong></p>
@@ -307,7 +402,7 @@
 <p>那么既然如此重要，我就要保证睡足 7 个小时应该是一天当中最高优先级的事情，一切其他事情都要基于此目标来安排相应的时间。</p>
 <p>而且，由于人的一天当中，意志力是随着时间的推移而降低的，所以早睡早起就非常重要——把那些更需要意志力的事情尽可能放在早上去做。</p>
 <p>所以我要求自己每天晚上 11:30 前必须上床，每天早上 7:30 前必须起床。</p>
-<p>这里需要特别提醒注意的是，7 个小时的睡眠，并不是指卧床时间，而是指的有效睡眠时间。所以我需要工具来对我的睡眠进行监控和调整，这里我推荐一个 App，叫做 <a href="https://www.sleepcycle.com/" target="_blank" rel="noopener">Sleep Cycle</a>， 这是一款智能闹钟应用。</p>
+<p>这里需要特别提醒注意的是，7 个小时的睡眠，并不是指卧床时间，而是指的有效睡眠时间。所以我需要工具来对我的睡眠进行监控和调整，这里我推荐一个 App，叫做 <a target="_blank" rel="noopener" href="https://www.sleepcycle.com/">Sleep Cycle</a>， 这是一款智能闹钟应用。</p>
 <p>Sleep Cycle 能够调用 iPhone 上的各种传感器来检测睡眠，只需要按照它的要求，将手机连接数据线，手机正面朝下，然后用话筒一端对准我，放在靠近枕头的床头柜上就好了（如果是安卓手机，则只能放在床上）。</p>
 <p>它会持续监控我的睡眠情况，分析我什么时候醒着，什么时候进入深度睡眠，并且在我设置的时间范围之内（没错，是时间范围，这个很赞），保证用轻柔的音乐唤醒我。如果我想小睡，只需翻个身或动一下，他就进入小睡状态，然后隔一会儿提醒一下，直到我设置的时间时不可中断的叫醒我。并且在醒来以后，用手指遮住摄像头，它会用闪光点和摄像头对我的心率进行光学检测。</p>
 <p>以上所有数据都会输入 iPhone 的“健康”应用，从而让我持续跟踪和调整睡眠情况已达成有效睡眠 7 个小时的目标。</p>
@@ -315,7 +410,7 @@
 <p>所以，在理清了“我健身是为了训练我的意志力，而不是为了减肥”这个目标之后，我对于健身所投入的时间和强度就有了更加合理，并易于坚持的规划。</p>
 <p>而在利用了《自控力》中的方法，对影响坚持健身的原因进行分析后，发现：不能立即开始健身（比如健身房太远，就容易给自己找借口），没有场地健身（家里或酒店空间太小），健身时间太长（业余时间本来就紧张）是重要的三个原因。</p>
 <p>这时候，就需要一个能够在室内，且不使用器械，并且时间在 20 - 30 分钟的健身方案。</p>
-<p>对此，我找到并使用的工具是 <a href="https://www.gotokeep.com/" target="_blank" rel="noopener">Keep</a> 这个 App。</p>
+<p>对此，我找到并使用的工具是 <a target="_blank" rel="noopener" href="https://www.gotokeep.com/">Keep</a> 这个 App。</p>
 <p>Keep 的好处是，能够根据指引设计为期两周的针对性室内无器械课程，课程安排循序渐进，每天课程控制在 20 分钟左右，易于操作和坚持。支持 Apple Watch，能够有效监测运动情况并做记录。</p>
 <h3 id="意志力武器之三：冥想"><a href="#意志力武器之三：冥想" class="headerlink" title="意志力武器之三：冥想"></a>意志力武器之三：冥想</h3><p>冥想（也叫正念）也是增加意志力储备的重要手段，其核心内容是通过观察和控制思绪，保持专注。</p>
 <p>但是需要意识到的是，冥想是一种训练，所以也需要长期坚持才能见效。</p>
@@ -335,7 +430,7 @@
 <p>只要腾出 25 分钟，就能用来看书、健身或冥想！</p>
 <h4 id="方法二：番茄工作法，阅读和冥想的绝佳搭配"><a href="#方法二：番茄工作法，阅读和冥想的绝佳搭配" class="headerlink" title="方法二：番茄工作法，阅读和冥想的绝佳搭配"></a>方法二：番茄工作法，阅读和冥想的绝佳搭配</h4><p>所谓番茄工作法，就是保持 25 分钟专注做一件事情，任何其它事情都不要去打扰这件事，然后休息 5 分钟，再继续。</p>
 <p>这个方法和我的一系列计划简直就是绝配：阅读 25 分钟，然后休息 5 分钟或做 5 分钟的冥想，再继续阅读。</p>
-<p>作为工具，其实只要设置个闹钟就好了，如果非要用 App，也是有一大堆，这里推荐一个 iOS 上的 App：<a href="https://appsto.re/cn/Tkdp-.i" target="_blank" rel="noopener">嘀嗒番茄钟</a>，好处是功能专一，并且支持 Apple Watch 和播放白噪音（和降噪耳机是绝配，用来遮蔽无法消除的噪音部分，比如人声）。</p>
+<p>作为工具，其实只要设置个闹钟就好了，如果非要用 App，也是有一大堆，这里推荐一个 iOS 上的 App：<a target="_blank" rel="noopener" href="https://appsto.re/cn/Tkdp-.i">嘀嗒番茄钟</a>，好处是功能专一，并且支持 Apple Watch 和播放白噪音（和降噪耳机是绝配，用来遮蔽无法消除的噪音部分，比如人声）。</p>
 <h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>在坚持使用了以上意志力武器近一个月之后，我感到意志力有了明显的提升，最明显的表现就是：</p>
 <ul>
 <li>由于坚持了每日睡眠时间和健身，我之前因为晚睡导致的心慌再也没有出现了，并且每天的精神非常好。</li>
@@ -345,7 +440,7 @@
 </ul>
 <h2 id="三、身边的人：一个不可忽视的催化剂"><a href="#三、身边的人：一个不可忽视的催化剂" class="headerlink" title="三、身边的人：一个不可忽视的催化剂"></a>三、身边的人：一个不可忽视的催化剂</h2><p>已经写了很多了，想必那些意志力比较差的人都早已看不下去了吧，所以这些人是没有希望的，接下来就写给能继续看的人了！（哼哼哼哼……）</p>
 <p>这里要说一个我在这个过程中觉得非常重要的一个因素，就是我们身边的环境——那些我们每天接触到的人。</p>
-<p>我之所以能认清自身的问题，开始培养自己的阅读习惯，不能离开我所在的组织：<a href="https://www.thoughtworks.com/cn/about-us" target="_blank" rel="noopener">ThoughtWorks</a>，一家规模不大，但是在 IT 服务和咨询领域卓有成效，也很有名气的公司。在这个组织中，有着许许多多追求卓越，有着良好阅读习惯的同事。他/她们使得这个组织朝气蓬勃，积极向上。</p>
+<p>我之所以能认清自身的问题，开始培养自己的阅读习惯，不能离开我所在的组织：<a target="_blank" rel="noopener" href="https://www.thoughtworks.com/cn/about-us">ThoughtWorks</a>，一家规模不大，但是在 IT 服务和咨询领域卓有成效，也很有名气的公司。在这个组织中，有着许许多多追求卓越，有着良好阅读习惯的同事。他/她们使得这个组织朝气蓬勃，积极向上。</p>
 <p>在这个组织中，可以找到许许多多榜样，也可以找到许许多多和我一样不断努力改进自己的人。当我有所成绩，他们会为我点赞，并且效仿，然后很可能比我走的更快更远。</p>
 <p>周围的人群，时刻在提醒、督促、并鼓励着我不能懈怠，不断前行——这绝对是一个重要的催化剂。</p>
 <p>而我也知道，有很多人的周围环境不是这样子，更多的是停滞不前，消极，没有生气。因此，他们也长时间没什么进展或成长。</p>
@@ -365,17 +460,17 @@
     
         <div class="reward-container">
   <div></div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
+  <button onclick="document.getElementById('post-reward').classList.toggle('active');">
+    赞赏
   </button>
-  <div id="qr" style="display: none;">
+  <div id="post-reward">
       
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.jpg" alt="胡皓 微信支付">
-        <p>微信支付</p>
+      <div>
+        <img src="/images/wechatpay.jpg" alt="胡皓 微信">
+        <p>微信</p>
       </div>
       
-      <div style="display: inline-block;">
+      <div>
         <img src="/images/alipay.jpg" alt="胡皓 支付宝">
         <p>支付宝</p>
       </div>
@@ -395,7 +490,7 @@
     <a href="https://huhao.dev/posts/c0297a43/" title="44天读8本书——习惯养成不能靠信念和鸡汤">https://huhao.dev/posts/c0297a43/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -430,8 +525,8 @@
 
 
 
-          </div>
-          
+        </div>
+        
     
   
   <div class="comments">
@@ -462,87 +557,6 @@
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、信念和鸡汤不靠谱，动机和方法最重要"><span class="nav-number">1.</span> <span class="nav-text">一、信念和鸡汤不靠谱，动机和方法最重要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动机：都是因为读书少"><span class="nav-number">1.1.</span> <span class="nav-text">动机：都是因为读书少</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尝试：读书少就赶紧读"><span class="nav-number">1.2.</span> <span class="nav-text">尝试：读书少就赶紧读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#科学方法：果然还是读书少"><span class="nav-number">1.3.</span> <span class="nav-text">科学方法：果然还是读书少</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先说说《自控力》"><span class="nav-number">1.3.1.</span> <span class="nav-text">先说说《自控力》</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再说说《如何阅读一本书》"><span class="nav-number">1.3.2.</span> <span class="nav-text">再说说《如何阅读一本书》</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目标：一石-N-鸟"><span class="nav-number">1.3.3.</span> <span class="nav-text">目标：一石 N 鸟</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、所谓习惯养成，根本在意志力的训练"><span class="nav-number">2.</span> <span class="nav-text">二、所谓习惯养成，根本在意志力的训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#意志力武器之一：睡眠"><span class="nav-number">2.1.</span> <span class="nav-text">意志力武器之一：睡眠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#意志力武器之二：健身"><span class="nav-number">2.2.</span> <span class="nav-text">意志力武器之二：健身</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#意志力武器之三：冥想"><span class="nav-number">2.3.</span> <span class="nav-text">意志力武器之三：冥想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#意志力武器之四：简单的时间管理"><span class="nav-number">2.4.</span> <span class="nav-text">意志力武器之四：简单的时间管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一：减少看手机的时间，尽量远离手机"><span class="nav-number">2.4.1.</span> <span class="nav-text">方法一：减少看手机的时间，尽量远离手机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二：番茄工作法，阅读和冥想的绝佳搭配"><span class="nav-number">2.4.2.</span> <span class="nav-text">方法二：番茄工作法，阅读和冥想的绝佳搭配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">2.5.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、身边的人：一个不可忽视的催化剂"><span class="nav-number">3.</span> <span class="nav-text">三、身边的人：一个不可忽视的催化剂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、在路上"><span class="nav-number">4.</span> <span class="nav-text">四、在路上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎关注我的微信公众号"><span class="nav-number">5.</span> <span class="nav-text">欢迎关注我的微信公众号</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="胡皓"
-      src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-23-avatar.jpg">
-  <p class="site-author-name" itemprop="name">胡皓</p>
-  <div class="site-description" itemprop="description">胡皓的个人技术博客</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">22</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/howiehu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://weibo.com/howiehu" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i></a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
       </div>
     </main>
 
@@ -557,11 +571,11 @@
   &copy; 2019 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">胡皓</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
         
@@ -579,20 +593,13 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
 
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/pisces.js"></script>
-
-
 <script src="/js/next-boot.js"></script>
-
-
 
 
   

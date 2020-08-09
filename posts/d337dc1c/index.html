@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -19,11 +19,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
 
-<script id="hexo-configurations">
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
   <meta name="description" content="前言之前我们发表过一篇名为《先定个小目标，比如6周培养100人》的文章，详细回顾了ThoughtWorks思沃学院团队今年所举办的“2016年ThoughtWorks暑期特训营”活动，可以作为我们公司在教育领域探索实践的信息输入，便于大家更好的理解背后的故事。由于篇幅所限，所以此文中不对“暑期特训营”做更多描述。 如果你想了解更多的上下文，则可以阅读：  ThoughtWorks“卓越女生计划”">
@@ -48,7 +50,7 @@
 <link rel="canonical" href="https://huhao.dev/posts/d337dc1c/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -68,24 +70,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -96,22 +110,23 @@
   <div class="container use-motion">
     <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">胡皓 - 枪炮与代码</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">从士兵到软件匠人的侃侃而谈</p>
   </div>
@@ -124,37 +139,36 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-概念图">
 
-    <a href="https://cmap.huhao.dev/" rel="noopener" target="_blank"><i class="fa fa-fw fa-lightbulb-o"></i>概念图</a>
+    <a href="https://cmap.huhao.dev/" rel="noopener" target="_blank"><i class="fa fa-lightbulb-o fa-fw"></i>概念图</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
   </ul>
@@ -164,9 +178,88 @@
 
 
 </div>
-    </header>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
 
-    
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E6%84%8F%E6%96%99%E4%B9%8B%E4%B8%AD%E7%9A%84%E9%9C%87%E6%92%BC"><span class="nav-number">2.</span> <span class="nav-text">一个意料之中的震撼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%88%91%E4%BB%AC%E8%A7%82%E5%AF%9F%E5%88%B0%E7%9A%84%E4%BA%8B%E5%AE%9E"><span class="nav-number">3.</span> <span class="nav-text">一些我们观察到的事实</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E8%80%83%E4%B8%8D%E4%B8%8A%E5%A5%BD%E7%9A%84%E5%A4%A7%E5%AD%A6%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">你为什么考不上好的大学？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9C%E7%BB%A9%E8%83%BD%E4%B8%BB%E4%B9%89%E2%80%9D%E7%A4%BE%E4%BC%9A%E7%9A%84%E5%8F%8C%E5%88%83%E5%89%91"><span class="nav-number">5.</span> <span class="nav-text">“绩能主义”社会的双刃剑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E2%80%9C%E5%AE%B6%E5%BA%AD%E8%83%8C%E6%99%AF%E2%80%9D%EF%BC%9F"><span class="nav-number">5.1.</span> <span class="nav-text">什么是“家庭背景”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B6%E5%BA%AD%E8%83%8C%E6%99%AF%E4%B8%8E%E8%83%BD%E5%8A%9B"><span class="nav-number">5.2.</span> <span class="nav-text">家庭背景与能力</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%AF%B9%E6%AF%94%E8%B0%83%E6%9F%A5"><span class="nav-number">6.</span> <span class="nav-text">一次有意思的对比调查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%9D%E8%80%83"><span class="nav-number">7.</span> <span class="nav-text">问题与思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">8.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">9.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A2%E8%BF%8E%E5%85%B3%E6%B3%A8%E6%88%91%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="nav-number">10.</span> <span class="nav-text">欢迎关注我的微信公众号</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="胡皓"
+      src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-23-avatar.jpg">
+  <p class="site-author-name" itemprop="name">胡皓</p>
+  <div class="site-description" itemprop="description">胡皓的个人技术博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/howiehu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/howiehu" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-weibo fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
@@ -174,14 +267,16 @@
 
   <a href="https://github.com/howiehu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
+
       <div class="main-inner">
-        <div class="content-wrap">
-          
+        
 
-          <div class="content post posts-expand">
-            
+        <div class="content post posts-expand">
+          
 
     
   
@@ -198,6 +293,8 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="胡皓 - 枪炮与代码">
     </span>
+
+    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           软件技术顾问的培养（零）：绩能主义社会下的教育不公平
@@ -206,7 +303,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -214,7 +311,7 @@
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -231,13 +328,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前我们发表过一篇名为<a href="https://mp.weixin.qq.com/s/0vzRl8bSFop1BqK8mCx8Yw" target="_blank" rel="noopener">《先定个小目标，比如6周培养100人》</a>的文章，详细回顾了ThoughtWorks思沃学院团队今年所举办的“2016年ThoughtWorks暑期特训营”活动，可以作为我们公司在教育领域探索实践的信息输入，便于大家更好的理解背后的故事。由于篇幅所限，所以此文中不对“暑期特训营”做更多描述。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前我们发表过一篇名为<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/0vzRl8bSFop1BqK8mCx8Yw">《先定个小目标，比如6周培养100人》</a>的文章，详细回顾了ThoughtWorks思沃学院团队今年所举办的“2016年ThoughtWorks暑期特训营”活动，可以作为我们公司在教育领域探索实践的信息输入，便于大家更好的理解背后的故事。由于篇幅所限，所以此文中不对“暑期特训营”做更多描述。</p>
 <p>如果你想了解更多的上下文，则可以阅读：</p>
 <ul>
-<li><a href="http://zhaosheng.xupt.edu.cn/info/1059/1466.htm" target="_blank" rel="noopener">ThoughtWorks“卓越女生计划”</a></li>
-<li><a href="https://mp.weixin.qq.com/s/0vzRl8bSFop1BqK8mCx8Yw" target="_blank" rel="noopener">《先定个小目标，比如6周培养100人》</a></li>
+<li><a target="_blank" rel="noopener" href="http://zhaosheng.xupt.edu.cn/info/1059/1466.htm">ThoughtWorks“卓越女生计划”</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/0vzRl8bSFop1BqK8mCx8Yw">《先定个小目标，比如6周培养100人》</a></li>
 </ul>
 <h2 id="一个意料之中的震撼"><a href="#一个意料之中的震撼" class="headerlink" title="一个意料之中的震撼"></a>一个意料之中的震撼</h2><p>ThoughtWorks西安办公室的2017年校招内推专场面试刚刚结束，思沃学院团队根据六周时间的观察而推荐的24名“ThoughtWorks暑期特训营”学生也参与了全程的面试。</p>
 <p>记得曾经在暑假前，很多相关同事问我：“你觉得今年思沃学院培养的这近100名学生，最终能有多少个能顺利通过面试加入ThoughtWorks？”</p>
@@ -296,13 +391,13 @@
 </ul>
 <p>从以上四种维度我们可以看到，对于家庭背景的定义要比想象中更复杂。</p>
 <p>所以，像回答“家庭背景是好还是差”这样的问题来说，是不能以任何一种单一维度来衡量的。</p>
-<h3 id="家庭背景与能力"><a href="#家庭背景与能力" class="headerlink" title="家庭背景与能力"></a>家庭背景与能力</h3><p>清华大学社会学系教授<strong>刘精明</strong>在 2014 年的一项名为<a href="http://www.usc.cuhk.edu.hk/PaperCollection/webmanager/wkfiles/2012/201501_40_paper.pdf" target="_blank" rel="noopener">《能力与出身：高等教育入学机会分配的机制分析》</a>的研究中，详细的研究了“绩能主义”社会下家庭背景与高等教育机会分配不平等的问题。</p>
+<h3 id="家庭背景与能力"><a href="#家庭背景与能力" class="headerlink" title="家庭背景与能力"></a>家庭背景与能力</h3><p>清华大学社会学系教授<strong>刘精明</strong>在 2014 年的一项名为<a target="_blank" rel="noopener" href="http://www.usc.cuhk.edu.hk/PaperCollection/webmanager/wkfiles/2012/201501_40_paper.pdf">《能力与出身：高等教育入学机会分配的机制分析》</a>的研究中，详细的研究了“绩能主义”社会下家庭背景与高等教育机会分配不平等的问题。</p>
 <blockquote>
 <p><strong>绩能主义（Meritocracy）：</strong>与“社会再生产”（Social Reproduction）相对立。自 1958 年迈克尔·扬发表（The Rise of Meritocracy）一书以来，“绩能主义”一词被迅速广泛地应用到经济不平等领域的研究，其中“绩能”（Merit）是指个人能力（或智力）与努力的结合，而“能力”或“才能”通常以智商（IQ）、认知能力、教育水平等为重要的测量指标。社会学关于“社会再生产”与“绩能主义”间的争论发端于约20世纪七八十年代，其焦点是，一个更为开放的社会的社会分层原则是否会更多地以绩能主义为主导？<br>博特早年关于智力与社会阶级关系的研究是这场争论较早的一个来源。他指出，在智力测验中，平均而言，管理与专业技术人员得分高于低阶非体力者，低阶非体力者智力水平高于体力工人。虽然后来有学者指出，这种智力差异部分源于教育对智力的影响，部分源于智力对职业地位获得的直接效应，但<strong>这一发现产生了一个基本悖论：在一个更为开放的社会中，智力的阶级差异更大。这意味着，如果阶级或种族背景对职业成功的影响较大，有能力但处于不利阶级位置的人将被越来越限制在低层次的工作岗位上，而能力较差但处于有利阶级背景中的人将获得较高的工作职位。相反，在平等的阶级基础上相互竞争的人们，最有能力的人将赢得最好的职业位置，这样的社会即被称为“绩能主义”社会。在以“绩能”为原则的社会分层体系中，收入、权力、声望等与个人的能力具有正向关联。</strong></p>
 </blockquote>
 <p>这段解释比较烧脑，在这里我把以上对于“绩能主义”社会的解释总结成一句话就是：<strong>“绩能主义”社会，即“唯才是举”的社会。</strong></p>
 <p>根据刘精明教授的调查研究，形成了这样一幅“出身与能力效应系数的层级差异”图像：</p>
-<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-22-171510.png" alt=""></p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-22-171510.png"></p>
 <p>对于这幅图像，他指出：</p>
 <blockquote>
 <p>图2显示，沿着二本大学、一本大学（不含“211”）、“211”学校（不含“985”）、“985”学校（不含顶尖学校）向顶尖大学这一学校层级序列，能力效应值和出身效应值几乎都是线性递增的。这表明，学校的层级越高，相应的能力要求也越高，同时出身效应（或家庭背景优势）表现得也越强烈。<br>总体来说，研究结果表明，就不同层级的普通本科入学机会的分配而言，学生个人的能力作用较大程度地高于先天禀赋效应和出身效应，进入更高层级的大学，对能力要求非常明确地逐级提升。这说明，由于我国现行高等教育体系坚持以统一高考为工具、以学业能力为主要衡量标准，在年轻一代人才的选拔过程中，个人的能力（特别是学生的学业能力）是更为重要的。<br>在此前提下，上述分析还显示，如同能力效应一样，出身效应也同样具有较为明确的层级化特征。从出身效应内部来看，构成出身效应的两个子效应——家庭文化资本和社会经济地位对子代获得不同层次的普通本科教育机会的重要性程度几乎是相同的。这一结果表明，进入更好或更高层级的大学，家庭文化资本优势和社会经济地位方面的优势同样要求也更高。</p>
@@ -320,14 +415,14 @@
 <p>所以，如果我们把我们的最近一次毕业生家庭背景情况与一所非 985/211 院校的学生家庭背景情况进行对比，会不会得出与这些调查数据相吻合的结果？</p>
 <p>恰好，当时我们正在西安邮电大学开展“2016 年 ThoughtWorks 暑期特训营”活动，所以有了极佳的调查样本。</p>
 <p>经过调查，为了排除地区性干扰，我特别使用西安办公室的数据与特训营数据做了对比，对比结果如下：</p>
-<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-22-171537.png" alt=""></p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-22-171537.png"></p>
 <p>结果是不是很震撼？非常鲜明的印证了上述调查研究的可信性，同时还能够说明：</p>
 <p><strong>以强调人员综合能力表现为核心的 ThoughtWorks 招聘面试，也符合“绩能主义”社会下的典型做法。</strong></p>
 <p>为了大家更方便的查看完整的调查数据，我将相关报表共享在此，密码统一都是 <code>twer</code>：</p>
 <ul>
-<li><a href="https://jinshuju.net/f/LwAQVn/results" target="_blank" rel="noopener">ThoughtWorks 2016 届校招员工家庭背景调查</a> </li>
-<li><a href="https://jinshuju.net/f/2pUVnl/results" target="_blank" rel="noopener">ThoughtWorks 暑期特训营学员家庭背景调查（2016）</a></li>
-<li><a href="https://jinshuju.net/f/scy2wz/results" target="_blank" rel="noopener">ThoughtWorks 欧亚学院学生家庭背景调查（2016）</a></li>
+<li><a target="_blank" rel="noopener" href="https://jinshuju.net/f/LwAQVn/results">ThoughtWorks 2016 届校招员工家庭背景调查</a> </li>
+<li><a target="_blank" rel="noopener" href="https://jinshuju.net/f/2pUVnl/results">ThoughtWorks 暑期特训营学员家庭背景调查（2016）</a></li>
+<li><a target="_blank" rel="noopener" href="https://jinshuju.net/f/scy2wz/results">ThoughtWorks 欧亚学院学生家庭背景调查（2016）</a></li>
 </ul>
 <p>当看到这些数据后，我们开始集体回忆并反思团队成员之前所参与过的所有校招面试和毕业生试用期评价，我们惊讶的发现：<strong>曾经那些在评价中获得好评的毕业生，往往家庭背景都相对于其他同批毕业生来说更加优越。</strong></p>
 <p>我们非常想再更详细的去做更深入的调查研究，但是考虑到可能会触及个人隐私，还需要更多的权衡利弊和设计调查方法。</p>
@@ -358,18 +453,18 @@
 <p>他们的学识，只有翻过这第一座大山之后，在翻越第二座大山时才有可能被人看到——<strong>“绩能主义”社会下另一种相对高效的筛人方法：面试。这座大山用“能力”划出了第二道分水岭。</strong>那些“与生俱来”的应对面试的能力缺失，将成为“宣判”他们未来命运的“判决书”，任何面试官都不能看到他们日常的真实表现。</p>
 <p>而正在办公室中阅读此文的各位，则是越过这两道分水岭后的“胜利者”，此时此刻，如果回头看看已经望不见的山的那一边，你的心情是怎样的呢？</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li>刘精明，2014：<a href="http://www.usc.cuhk.edu.hk/PaperCollection/webmanager/wkfiles/2012/201501_40_paper.pdf" target="_blank" rel="noopener">《能力与出身：高等教育入学机会分配的机制分析》</a></li>
-<li>李春玲，2010：<a href="http://www.cngdsz.net/d/img/upfiles_8/51727446817eb812c3d90e01776ed864.pdf" target="_blank" rel="noopener">《高等教育扩张与教育机会不平等：高校扩招的平等化效应考查》</a></li>
-<li>李春玲，2014：<a href="http://blog.sina.com.cn/s/blog_5ffc2d870102v85y.html" target="_blank" rel="noopener">《“80 后”的教育经历与机会不平等》</a></li>
-<li>张兆曙 、陈奇，2013：<a href="http://wenku.baidu.com/view/ea21cbe0c8d376eeaeaa3134.html" target="_blank" rel="noopener">《高校扩招与高等教育机会的性别平等化——基于中国综合社会调查（CGSS2008）数据的实证分析》</a></li>
-<li>叶华、吴晓刚，2011：<a href="http://www.usc.cuhk.edu.hk/PaperCollection/webmanager/wkfiles/8356_1_paper.pdf" target="_blank" rel="noopener">《生育率下降与中国男女教育的平等化趋势》</a></li>
-<li>网易数读，2016：<a href="http://data.163.com/16/0719/03/BSACD45R00014MTN.html" target="_blank" rel="noopener">《过半农村学生初中后辍学，考大学难进名校》</a></li>
-<li>熊丙奇，2014：<a href="http://news.sina.com.cn/zl/zatan/2014-01-01/0854836.shtml" target="_blank" rel="noopener">《农村大学生为何就业更难？》</a></li>
-<li>知乎：<a href="https://www.zhihu.com/question/31507793" target="_blank" rel="noopener">《农村孩子读一个二本甚至三本大学的意义何在？》</a></li>
-<li>知乎：<a href="https://www.zhihu.com/question/30232584" target="_blank" rel="noopener">《知乎上有哪些“何不食肉糜”的言论？》</a></li>
-<li>网易教育：<a href="http://edu.163.com/special/ky_xlqs/" target="_blank" rel="noopener">《只招 211、985！院校歧视何时休？》</a></li>
-<li>金陵晚报，2015：<a href="http://js.qq.com/a/20151119/013190.htm" target="_blank" rel="noopener">《高校毕业生人数下降，信息、软件专业需求量大》</a></li>
-<li>教育在线，2016：<a href="http://www.eol.cn/html/c/2016gxbys/" target="_blank" rel="noopener">《2016 年全国高校毕业生人数 765 万，史上“更难就业季”，大学生就业形势分析》</a></li>
+<li>刘精明，2014：<a target="_blank" rel="noopener" href="http://www.usc.cuhk.edu.hk/PaperCollection/webmanager/wkfiles/2012/201501_40_paper.pdf">《能力与出身：高等教育入学机会分配的机制分析》</a></li>
+<li>李春玲，2010：<a target="_blank" rel="noopener" href="http://www.cngdsz.net/d/img/upfiles_8/51727446817eb812c3d90e01776ed864.pdf">《高等教育扩张与教育机会不平等：高校扩招的平等化效应考查》</a></li>
+<li>李春玲，2014：<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_5ffc2d870102v85y.html">《“80 后”的教育经历与机会不平等》</a></li>
+<li>张兆曙 、陈奇，2013：<a target="_blank" rel="noopener" href="http://wenku.baidu.com/view/ea21cbe0c8d376eeaeaa3134.html">《高校扩招与高等教育机会的性别平等化——基于中国综合社会调查（CGSS2008）数据的实证分析》</a></li>
+<li>叶华、吴晓刚，2011：<a target="_blank" rel="noopener" href="http://www.usc.cuhk.edu.hk/PaperCollection/webmanager/wkfiles/8356_1_paper.pdf">《生育率下降与中国男女教育的平等化趋势》</a></li>
+<li>网易数读，2016：<a target="_blank" rel="noopener" href="http://data.163.com/16/0719/03/BSACD45R00014MTN.html">《过半农村学生初中后辍学，考大学难进名校》</a></li>
+<li>熊丙奇，2014：<a target="_blank" rel="noopener" href="http://news.sina.com.cn/zl/zatan/2014-01-01/0854836.shtml">《农村大学生为何就业更难？》</a></li>
+<li>知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/31507793">《农村孩子读一个二本甚至三本大学的意义何在？》</a></li>
+<li>知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/30232584">《知乎上有哪些“何不食肉糜”的言论？》</a></li>
+<li>网易教育：<a target="_blank" rel="noopener" href="http://edu.163.com/special/ky_xlqs/">《只招 211、985！院校歧视何时休？》</a></li>
+<li>金陵晚报，2015：<a target="_blank" rel="noopener" href="http://js.qq.com/a/20151119/013190.htm">《高校毕业生人数下降，信息、软件专业需求量大》</a></li>
+<li>教育在线，2016：<a target="_blank" rel="noopener" href="http://www.eol.cn/html/c/2016gxbys/">《2016 年全国高校毕业生人数 765 万，史上“更难就业季”，大学生就业形势分析》</a></li>
 </ul>
 <hr>
 <h2 id="欢迎关注我的微信公众号"><a href="#欢迎关注我的微信公众号" class="headerlink" title="欢迎关注我的微信公众号"></a>欢迎关注我的微信公众号</h2><p>微信搜索：<code>枪炮与代码</code>，或者搜索公众号ID：<code>guns_n_code</code></p>
@@ -382,17 +477,17 @@
     
         <div class="reward-container">
   <div></div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
+  <button onclick="document.getElementById('post-reward').classList.toggle('active');">
+    赞赏
   </button>
-  <div id="qr" style="display: none;">
+  <div id="post-reward">
       
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.jpg" alt="胡皓 微信支付">
-        <p>微信支付</p>
+      <div>
+        <img src="/images/wechatpay.jpg" alt="胡皓 微信">
+        <p>微信</p>
       </div>
       
-      <div style="display: inline-block;">
+      <div>
         <img src="/images/alipay.jpg" alt="胡皓 支付宝">
         <p>支付宝</p>
       </div>
@@ -412,7 +507,7 @@
     <a href="https://huhao.dev/posts/d337dc1c/" title="软件技术顾问的培养（零）：绩能主义社会下的教育不公平">https://huhao.dev/posts/d337dc1c/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -448,8 +543,8 @@
 
 
 
-          </div>
-          
+        </div>
+        
     
   
   <div class="comments">
@@ -480,87 +575,6 @@
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个意料之中的震撼"><span class="nav-number">2.</span> <span class="nav-text">一个意料之中的震撼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些我们观察到的事实"><span class="nav-number">3.</span> <span class="nav-text">一些我们观察到的事实</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你为什么考不上好的大学？"><span class="nav-number">4.</span> <span class="nav-text">你为什么考不上好的大学？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“绩能主义”社会的双刃剑"><span class="nav-number">5.</span> <span class="nav-text">“绩能主义”社会的双刃剑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是“家庭背景”？"><span class="nav-number">5.1.</span> <span class="nav-text">什么是“家庭背景”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#家庭背景与能力"><span class="nav-number">5.2.</span> <span class="nav-text">家庭背景与能力</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次有意思的对比调查"><span class="nav-number">6.</span> <span class="nav-text">一次有意思的对比调查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与思考"><span class="nav-number">7.</span> <span class="nav-text">问题与思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">8.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">9.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎关注我的微信公众号"><span class="nav-number">10.</span> <span class="nav-text">欢迎关注我的微信公众号</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="胡皓"
-      src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-23-avatar.jpg">
-  <p class="site-author-name" itemprop="name">胡皓</p>
-  <div class="site-description" itemprop="description">胡皓的个人技术博客</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">22</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/howiehu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://weibo.com/howiehu" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i></a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
       </div>
     </main>
 
@@ -575,11 +589,11 @@
   &copy; 2019 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">胡皓</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
         
@@ -597,20 +611,13 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
 
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/pisces.js"></script>
-
-
 <script src="/js/next-boot.js"></script>
-
-
 
 
   
