@@ -10,7 +10,7 @@ menu:
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
-  概念图: https://cmap.huhao.dev || fa fa-lightbulb-o
+  概念图: https://cmap.huhao.dev || fa fa-lightbulb
   about: /about/ || fa fa-user
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
@@ -35,8 +35,9 @@ footer:
   since: 2019
 
 social:
-  GitHub: https://github.com/howiehu || fa fa-github
-  Weibo: https://weibo.com/howiehu || fa fa-weibo
+  GitHub: https://github.com/howiehu || fab fa-github
+  Weibo: https://weibo.com/howiehu || fab fa-weibo
+  Zhihu: https://www.zhihu.com/people/howiehu || fab fa-zhihu
   RSS: /atom.xml || fa fa-rss
 
 social_icons:
@@ -71,9 +72,6 @@ utteranc:
   # theme: github-light,github-dark,github-dark-orange
   theme: github-light
   cdn: https://utteranc.es/client.js
-
-vendors:
-  fontawesome: https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
 
 # ---------------------------------------------------------------
 # SEO Settings
