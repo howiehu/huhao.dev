@@ -2,6 +2,8 @@ scheme: Pisces
 
 darkmode: true
 
+preconnect: true
+
 post_meta:
   updated_at: false
 
@@ -65,13 +67,15 @@ reward:
   wechatpay: /images/wechatpay.jpg
   alipay: /images/alipay.jpg
 
-utteranc:
+# Utterances
+# For more information: https://utteranc.es
+utterances:
   enable: true
   repo: howiehu/huhao.dev
-  pathname: pathname
-  # theme: github-light,github-dark,github-dark-orange
-  theme: github-light
-  cdn: https://utteranc.es/client.js
+  # Available values: pathname | url | title | og:title
+  issue_term: pathname
+  # Available values: github-light | github-dark | preferred-color-scheme | github-dark-orange | icy-dark | dark-blue | photon-dark | boxy-light
+  theme: preferred-color-scheme
 
 # ---------------------------------------------------------------
 # SEO Settings
