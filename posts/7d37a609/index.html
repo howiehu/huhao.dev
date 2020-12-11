@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
 
-
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -26,10 +26,9 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-
-  <meta name="description" content="2013年9月13日，我从就职了一年半的S公司正式离职，并开始了我梦寐以求的“SOHO程序员”之路。 这对于我来说，是一次人生道路上的重要选择，在这里，我想分享一下我是如何选择了这条道路的，同时也是对我到目前为止的程序员生涯做一个回顾。">
+<meta name="description" content="2013年9月13日，我从就职了一年半的S公司正式离职，并开始了我梦寐以求的“SOHO程序员”之路。 这对于我来说，是一次人生道路上的重要选择，在这里，我想分享一下我是如何选择了这条道路的，同时也是对我到目前为止的程序员生涯做一个回顾。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从士兵到程序员再到SOHO程序员 (一) - 起航">
 <meta property="og:url" content="https://huhao.dev/posts/7d37a609/index.html">
@@ -57,12 +56,8 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>从士兵到程序员再到SOHO程序员 (一) - 起航 | 胡皓 - 枪炮与代码</title>
+<title>从士兵到程序员再到SOHO程序员 (一) - 起航 | 胡皓 - 枪炮与代码</title>
   
-
-
-
 
 
 
@@ -275,9 +270,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -472,13 +465,10 @@
 
 
 
-      
     
-  
   <div class="comments">
-  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+    <div id="utterances-container"></div>
   </div>
-  
   
 
 <script>
@@ -502,18 +492,14 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
 
 <div class="copyright">
-  
   &copy; 2019 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
@@ -548,17 +534,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -566,11 +541,18 @@
 
 
 
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('#utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "howiehu/huhao.dev");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "preferred-color-scheme");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('#utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
 
-
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -26,10 +26,9 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-
-  <meta name="description" content="前言2019年，在我对DDD进行基准化的过程中，遇到过非常多的挑战，其中一个便是： DDD的设计过程，到底应该分为多少个阶段？每个阶段做什么事情？ 这个困惑来自于书本上，以及其他咨询师在咨询过程中对于DDD设计和操作的差异：  有的人会从电梯演讲和用户地图开始做设计和分析； 有的人会从事件风暴开始做设计和分析； 有的人会从子域开始做设计和分析； 有的人会从限界上下文开始做设计和分析； 有的人会直接">
+<meta name="description" content="前言2019年，在我对DDD进行基准化的过程中，遇到过非常多的挑战，其中一个便是： DDD的设计过程，到底应该分为多少个阶段？每个阶段做什么事情？ 这个困惑来自于书本上，以及其他咨询师在咨询过程中对于DDD设计和操作的差异：  有的人会从电梯演讲和用户地图开始做设计和分析； 有的人会从事件风暴开始做设计和分析； 有的人会从子域开始做设计和分析； 有的人会从限界上下文开始做设计和分析； 有的人会直接">
 <meta property="og:type" content="article">
 <meta property="og:title" content="领域驱动实战思考（二）：用分段思想改进那些混乱的战略设计和战术设计">
 <meta property="og:url" content="https://huhao.dev/posts/58fe0824/index.html">
@@ -65,12 +64,8 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>领域驱动实战思考（二）：用分段思想改进那些混乱的战略设计和战术设计 | 胡皓 - 枪炮与代码</title>
+<title>领域驱动实战思考（二）：用分段思想改进那些混乱的战略设计和战术设计 | 胡皓 - 枪炮与代码</title>
   
-
-
-
 
 
 
@@ -283,9 +278,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -571,13 +564,10 @@
 
 
 
-      
     
-  
   <div class="comments">
-  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+    <div id="utterances-container"></div>
   </div>
-  
   
 
 <script>
@@ -601,18 +591,14 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
 
 <div class="copyright">
-  
   &copy; 2019 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
@@ -647,17 +633,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -665,11 +640,18 @@
 
 
 
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('#utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "howiehu/huhao.dev");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "preferred-color-scheme");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('#utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
 
-
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -26,10 +26,9 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-
-  <meta name="description" content="前言2015 年 12 月 1 日 再有四个半月，我来到 ThoughtWorks 就有两年了（2014年04月08日入职），新的 MacBook Pro 正在冲我招手，突然觉得，时间过得如飞速一般，我当义务兵的那两年咋就没觉得时间有这么快呢？这说明，我度过的这两年是相当充实且有意义的。 在加入 ThoughtWorks 三个月后，我就从国内交付项目上转入了思沃学院团队（那时还是个没有名字且加上我">
+<meta name="description" content="前言2015 年 12 月 1 日 再有四个半月，我来到 ThoughtWorks 就有两年了（2014年04月08日入职），新的 MacBook Pro 正在冲我招手，突然觉得，时间过得如飞速一般，我当义务兵的那两年咋就没觉得时间有这么快呢？这说明，我度过的这两年是相当充实且有意义的。 在加入 ThoughtWorks 三个月后，我就从国内交付项目上转入了思沃学院团队（那时还是个没有名字且加上我">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我和思沃学院（一）：成为 ThoughtWorker">
 <meta property="og:url" content="https://huhao.dev/posts/8a2f70fd/index.html">
@@ -59,12 +58,8 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>我和思沃学院（一）：成为 ThoughtWorker | 胡皓 - 枪炮与代码</title>
+<title>我和思沃学院（一）：成为 ThoughtWorker | 胡皓 - 枪炮与代码</title>
   
-
-
-
 
 
 
@@ -277,9 +272,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -462,13 +455,10 @@
 
 
 
-      
     
-  
   <div class="comments">
-  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+    <div id="utterances-container"></div>
   </div>
-  
   
 
 <script>
@@ -492,18 +482,14 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
 
 <div class="copyright">
-  
   &copy; 2019 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
@@ -538,17 +524,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -556,11 +531,18 @@
 
 
 
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('#utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "howiehu/huhao.dev");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "preferred-color-scheme");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('#utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

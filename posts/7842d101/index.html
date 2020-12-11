@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
 
-
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -26,10 +26,9 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-
-  <meta name="description" content="本人目前就职于北京盛安德科技发展有限公司西安第一分公司，由于趁自己还年轻（29了算不算年轻啊……），一直希望能够利用自己所喜爱的技术实现在家办公的愿望，所以我于8月7日向经理提出了辞职的想法，8月19日提交的辞职申请，目前正处于一个月的工作交接期内，也就是说，从下个月（9月份）开始，我就可以正式离职并利用三个月时间转型Ruby on Rails + SOHO工作了。 在这里罗列一下本人的技术状况和">
+<meta name="description" content="本人目前就职于北京盛安德科技发展有限公司西安第一分公司，由于趁自己还年轻（29了算不算年轻啊……），一直希望能够利用自己所喜爱的技术实现在家办公的愿望，所以我于8月7日向经理提出了辞职的想法，8月19日提交的辞职申请，目前正处于一个月的工作交接期内，也就是说，从下个月（9月份）开始，我就可以正式离职并利用三个月时间转型Ruby on Rails + SOHO工作了。 在这里罗列一下本人的技术状况和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三个月家里蹲转型 Ruby on Rails + SOHO 计划">
 <meta property="og:url" content="https://huhao.dev/posts/7842d101/index.html">
@@ -57,12 +56,8 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>三个月家里蹲转型 Ruby on Rails + SOHO 计划 | 胡皓 - 枪炮与代码</title>
+<title>三个月家里蹲转型 Ruby on Rails + SOHO 计划 | 胡皓 - 枪炮与代码</title>
   
-
-
-
 
 
 
@@ -275,9 +270,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -442,13 +435,10 @@
 
 
 
-      
     
-  
   <div class="comments">
-  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+    <div id="utterances-container"></div>
   </div>
-  
   
 
 <script>
@@ -472,18 +462,14 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
 
 <div class="copyright">
-  
   &copy; 2019 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
@@ -518,17 +504,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -536,11 +511,18 @@
 
 
 
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('#utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "howiehu/huhao.dev");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "preferred-color-scheme");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('#utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

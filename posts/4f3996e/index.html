@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
 
-
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -26,10 +26,9 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-
-  <meta name="description" content="前言在上一篇文章（沟通篇）中，我们讲了有关软件研发组织“在家办公”受到的沟通方面的挑战。 可能是在一家敏捷的公司待得久了，所以我很长一段时间认为“敏捷”在中国已经是家喻户晓不需要再去谈的东西。可是直到我后来做了技术顾问，开始为客户提供架构和工程能力的咨询服务时才发现，绝大多数技术架构和持续交付实践难以落地的问题，最后都会遇到团队不够敏捷这个关键障碍，而真正敏捷的团队，在整个中国的IT行业中，则是极">
+<meta name="description" content="前言在上一篇文章（沟通篇）中，我们讲了有关软件研发组织“在家办公”受到的沟通方面的挑战。 可能是在一家敏捷的公司待得久了，所以我很长一段时间认为“敏捷”在中国已经是家喻户晓不需要再去谈的东西。可是直到我后来做了技术顾问，开始为客户提供架构和工程能力的咨询服务时才发现，绝大多数技术架构和持续交付实践难以落地的问题，最后都会遇到团队不够敏捷这个关键障碍，而真正敏捷的团队，在整个中国的IT行业中，则是极">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10倍团队（二）：在家办公是软件研发组织的“敏捷试金石”之项目管理篇">
 <meta property="og:url" content="https://huhao.dev/posts/4f3996e/index.html">
@@ -66,12 +65,8 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>10倍团队（二）：在家办公是软件研发组织的“敏捷试金石”之项目管理篇 | 胡皓 - 枪炮与代码</title>
+<title>10倍团队（二）：在家办公是软件研发组织的“敏捷试金石”之项目管理篇 | 胡皓 - 枪炮与代码</title>
   
-
-
-
 
 
 
@@ -284,9 +279,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -511,13 +504,10 @@
 
 
 
-      
     
-  
   <div class="comments">
-  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+    <div id="utterances-container"></div>
   </div>
-  
   
 
 <script>
@@ -541,18 +531,14 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
 
 <div class="copyright">
-  
   &copy; 2019 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
@@ -587,17 +573,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -605,11 +580,18 @@
 
 
 
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('#utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "howiehu/huhao.dev");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "preferred-color-scheme");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('#utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

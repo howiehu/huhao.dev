@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
 
-
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -26,10 +26,9 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-
-  <meta name="description" content="胡皓，ThoughtWorks 首席技术顾问 &#x2F; 首席培训师 &#x2F; 全栈工程师 在中国人民解放军服役5年并以一级士官退役之后，自2008年开始进入IT行业，先后就职于鄂尔多斯集团，中国电力建设集团，北京盛安德科技发展有限公司。在此期间，从事过广泛的业务分析，软件开发，项目管理等工作。 在2014年加入ThoughtWorks之后，主要从事全栈软件开发工程师、培训师、技术顾问等工作。在技术领域，胡皓特">
+<meta name="description" content="胡皓，ThoughtWorks 首席技术顾问 &#x2F; 首席培训师 &#x2F; 全栈工程师 在中国人民解放军服役5年并以一级士官退役之后，自2008年开始进入IT行业，先后就职于鄂尔多斯集团，中国电力建设集团，北京盛安德科技发展有限公司。在此期间，从事过广泛的业务分析，软件开发，项目管理等工作。 在2014年加入ThoughtWorks之后，主要从事全栈软件开发工程师、培训师、技术顾问等工作。在技术领域，胡皓特">
 <meta property="og:type" content="website">
 <meta property="og:title" content="关于">
 <meta property="og:url" content="https://huhao.dev/about/index.html">
@@ -55,13 +54,9 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>关于 | 胡皓 - 枪炮与代码
+<title>关于 | 胡皓 - 枪炮与代码
 </title>
   
-
-
-
 
 
 
@@ -273,29 +268,23 @@
 
 
     <div class="main-inner page posts-expand">
-      
   
   
 
-      
 
     
     
     
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
+    <div class="post-block" lang="zh-CN"><header class="post-header">
 
 <h1 class="post-title" itemprop="name headline">关于
 </h1>
 
 <div class="post-meta-container">
-  
-
 </div>
 
 </header>
 
-      
       
       
       <div class="post-body">
@@ -310,20 +299,15 @@
       
       
     </div>
-    
 
-    
     
     
 
 
-      
     
-  
   <div class="comments">
-  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+    <div id="utterances-container"></div>
   </div>
-  
   
 
 <script>
@@ -347,18 +331,14 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
 
 <div class="copyright">
-  
   &copy; 2019 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
@@ -393,17 +373,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -411,11 +380,18 @@
 
 
 
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('#utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "howiehu/huhao.dev");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "preferred-color-scheme");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('#utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

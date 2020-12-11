@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
 
-
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -26,10 +26,9 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huhao.dev","root":"/","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-
-  <meta name="description" content="前言在我的上一篇文章中，给大家介绍了我在实践中对于DDD设计过程进行梳理的思考。本篇则是向大家整体介绍一下我的“DDD分段式协作设计”的步骤和内容。 同时，该方法的基准化操作手册，也在曾经的一篇文章中公开提供了下载，可以作为更细化的内容进行参考和使用。 由于DDD的相关概念和设计方法极多，相比其他市场上所能见到的操作手法，我在这里向大家所介绍的方法，更加聚焦如何能够确保达到“绝大多数人的60分”，">
+<meta name="description" content="前言在我的上一篇文章中，给大家介绍了我在实践中对于DDD设计过程进行梳理的思考。本篇则是向大家整体介绍一下我的“DDD分段式协作设计”的步骤和内容。 同时，该方法的基准化操作手册，也在曾经的一篇文章中公开提供了下载，可以作为更细化的内容进行参考和使用。 由于DDD的相关概念和设计方法极多，相比其他市场上所能见到的操作手法，我在这里向大家所介绍的方法，更加聚焦如何能够确保达到“绝大多数人的60分”，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="领域驱动实战思考（三）：DDD的分段式协作设计">
 <meta property="og:url" content="https://huhao.dev/posts/61190ae2/index.html">
@@ -68,12 +67,8 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>领域驱动实战思考（三）：DDD的分段式协作设计 | 胡皓 - 枪炮与代码</title>
+<title>领域驱动实战思考（三）：DDD的分段式协作设计 | 胡皓 - 枪炮与代码</title>
   
-
-
-
 
 
 
@@ -286,9 +281,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -589,13 +582,10 @@
 
 
 
-      
     
-  
   <div class="comments">
-  <script src="https://utteranc.es/client.js" repo="howiehu/huhao.dev" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+    <div id="utterances-container"></div>
   </div>
-  
   
 
 <script>
@@ -619,18 +609,14 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
 
 <div class="copyright">
-  
   &copy; 2019 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
@@ -665,17 +651,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -683,11 +658,18 @@
 
 
 
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('#utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "howiehu/huhao.dev");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "preferred-color-scheme");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('#utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>
