@@ -104,3 +104,4 @@ deploy:
 abbrlink:
   alg: crc32  #support crc16(default) and crc32
   rep: hex    #support dec(default) and hex
+  drafts: true
