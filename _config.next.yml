@@ -59,13 +59,13 @@ github_banner:
 
 # Reward (Donate)
 # Front-matter variable (unsupport animation).
-reward_settings:
+# reward_settings:
   # If true, reward will be displayed in every article by default.
-  enable: true
+  # enable: true
 
-reward:
-  wechatpay: /images/wechatpay.jpg
-  alipay: /images/alipay.jpg
+# reward:
+#   wechatpay: /images/wechatpay.jpg
+#   alipay: /images/alipay.jpg
 
 # Utterances
 # For more information: https://utteranc.es
