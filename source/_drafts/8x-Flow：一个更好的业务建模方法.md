@@ -41,25 +41,45 @@ tags:
 
 ### 领域逻辑 vs 业务逻辑
 
-![domain-and-business-2021-02-07-17-27-09](https://huhao-dev.oss-cn-beijing.aliyuncs.com/domain-and-business-2021-02-07-17-27-09.png)
+![领域逻辑 vs 业务逻辑](https://huhao-dev.oss-cn-beijing.aliyuncs.com/domain-and-business-2021-02-07-17-27-09.png)
+
+![医院门诊就诊流程](https://huhao-dev.oss-cn-beijing.aliyuncs.com/医院门诊就诊流程-2021-02-07-23-02-25.png)
+
+![医院门诊就诊-事件风暴](https://huhao-dev.oss-cn-beijing.aliyuncs.com/医院门诊就诊流程-事件风暴-2021-02-07-23-02-37.png)
+
+![医院门诊就诊-业务与领域识别](https://huhao-dev.oss-cn-beijing.aliyuncs.com/医院门诊就诊流程-业务与领域识别-2021-02-07-23-02-48.png)
+
+![医院门诊就诊-业务流程](https://huhao-dev.oss-cn-beijing.aliyuncs.com/医院门诊就诊流程-业务流程-2021-02-07-23-03-00.png)
 
 ### 业务即履约过程
 
 ## 8x Flow过程简介
 
-### 合约上下文分析
+（由于8x Flow的分析建模过程较长，所以这里仅给大家做关键内容的简介，便于快速了解8x Flow。关于具体的过程及操作方法，我会从下一篇文章开始，分步骤做详细介绍。）
+
+![8x Flow - 业务建模基准图例](https://huhao-dev.oss-cn-beijing.aliyuncs.com/8xFlow基准图例-2021-02-07-19-04-33.png)
 
 ### 业务凭证分析
 
+![8x Flow - 业务凭证分析](https://huhao-dev.oss-cn-beijing.aliyuncs.com/业务凭证分析-2021-02-07-18-59-59.png)
+
 ### 相关元素分析
+
+![8x Flow - 相关元素分析](https://huhao-dev.oss-cn-beijing.aliyuncs.com/相关元素分析-2021-02-07-19-05-21.png)
 
 ### 角色分析和抽象
 
+![8x Flow - 角色分析和抽象](https://huhao-dev.oss-cn-beijing.aliyuncs.com/角色分析和抽象-2021-02-07-19-05-30.png)
+
 ### 上下文识别和划分
 
-### 业务能力API设计
+![8x Flow - 上下文边界识别](https://huhao-dev.oss-cn-beijing.aliyuncs.com/上下文边界识别-2021-02-07-19-05-43.png)
+
+### 后续工作
 
 ## 总结
+
+### 8x Flow 仅适用于业务建模
 
 ## 参考资料
 
