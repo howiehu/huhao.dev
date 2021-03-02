@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
@@ -24,7 +24,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 <meta name="description" content="前言你是不是和我一样，是一个会使用一大堆编程语言的软件开发工程师？例如：  Java、C#、JavaScript、Ruby、Python、Go……  你是不是和我一样，会在电脑上装一大堆以上各种语言的“版本管理器（Version Mananger）”，为了管理和切换不同项目的运行时（Runtime）版本？例如：  sdkman、nvm、rvm、pyenv、gvm……  你是不是和我一样，是一个浪费">
 <meta property="og:type" content="article">
@@ -322,7 +322,7 @@
 <p>你是不是和我一样，平时使用macOS或者Linux操作系统呢？</p>
 <p>如果以上答案都和我一样，那这篇神器推荐就是写给你的，让我们隆重介绍这款“一统江湖的语言版本管理器”：<a target="_blank" rel="noopener" href="https://asdf-vm.com/"><strong>asdf-vm</strong></a>！</p>
 <p>（对不起，我也用Windows，只是神器不支持……囧）</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="asdf-vm介绍"><a href="#asdf-vm介绍" class="headerlink" title="asdf-vm介绍"></a>asdf-vm介绍</h2><p>asdf-vm是一个能够按项目管理多种语言运行时版本的命令行工具，当前以插件的方式已经支持150+的语言或常用开发工具。</p>
 <p>官网地址为：<a target="_blank" rel="noopener" href="https://asdf-vm.com/">https://asdf-vm.com</a></p>
@@ -347,23 +347,31 @@
 <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>工具的安装方法非常简单，在这里就不过多介绍了，可以看官网说明。在这里主要给大家快速展示下常用的使用方法。</p>
 <h3 id="安装语言插件"><a href="#安装语言插件" class="headerlink" title="安装语言插件"></a>安装语言插件</h3><p>安装完成后，可以首先通过以下命令列出所有支持的语言插件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf plugin list all</span><br></pre></td></tr></table></figure>
+
 <p>当然，如果想快速知道某种语言是否已被支持，可以用grep根据关键字进行快速查找，例如：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf plugin list all | grep golang</span><br></pre></td></tr></table></figure>
+
 <p>每种语言的一些特殊使用要求和注意事项，可以查看该语言的插件页面。</p>
 <h3 id="安装某种语言的可用版本"><a href="#安装某种语言的可用版本" class="headerlink" title="安装某种语言的可用版本"></a>安装某种语言的可用版本</h3><p>在安装了某种语言的插件之后，可以通过<code>asdf list all &lt;name&gt;</code>命令查看所有在线的可用版本，例如：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf list all golang</span><br></pre></td></tr></table></figure>
+
 <p>然后，根据自己的需要，通过<code>asdf install [&lt;name&gt; &lt;version]</code>命令安装指定的语言版本，例如：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf install golang 1.13.6</span><br></pre></td></tr></table></figure>
+
 <p><strong>PS：小心点，如果你没有加版本号，则默认安装的是该语言的所有可用版本！</strong></p>
 <p>在安装完成后，可以通过以下命令显示所有已安装的语言和版本：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf list</span><br></pre></td></tr></table></figure>
+
 <h3 id="使用某种语言的已安装版本"><a href="#使用某种语言的已安装版本" class="headerlink" title="使用某种语言的已安装版本"></a>使用某种语言的已安装版本</h3><p>在日常使用时，切换指定的语言版本非常简单。</p>
 <p>如果仅仅是在当前的shell会话中临时进行切换，可以使用<code>asdf shell &lt;name&gt; &lt;version&gt;</code>命令，例如：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf shell golang 1.13.6</span><br></pre></td></tr></table></figure>
+
 <p>如果希望设置在某个目录之下使用特定的版本，可以使用<code>asdf local &lt;name&gt; &lt;version&gt;</code>命令，这个命令能够在当前文件夹下生成一个<code>.tool-version</code>文件记录指定的语言和版本号，这样下回再从命令行访问改目录的时候，就会自动切换到对应的语言版本（同时还兼容常见的其他版本管理器的配置文件），例如：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf local golang 1.13.6</span><br></pre></td></tr></table></figure>
+
 <p>如果希望在全局设置默认的语言版本，则可以使用<code>asdf global &lt;name&gt; &lt;version&gt;</code>命令，这个命令能够在用户的<code>$HOME</code>文件夹下生成一个<code>.tool-version</code>文件记录默认的语言和版本号，例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf global golang 1.13.6</span><br></pre></td></tr></table></figure>
+
 <p>怎么样？以上命令是不是非常简单好用？</p>
 <p><strong>从现在开始，用asdf-vm来挨个替换你电脑上各种专用的运行时版本管理器吧！</strong></p>
 <hr>
