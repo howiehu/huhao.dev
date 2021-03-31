@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://huhao.dev/"/>
-  <updated>2020-02-06T13:58:40.000Z</updated>
+  <updated>2021-03-31T15:35:40.000Z</updated>
   <id>https://huhao.dev/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>8x Flow 业务建模法（一）：你能分清业务和领域吗？</title>
+    <link href="https://huhao.dev/posts/2932e594/"/>
+    <id>https://huhao.dev/posts/2932e594/</id>
+    <published>2021-03-31T15:35:40.000Z</published>
+    <updated>2021-03-31T15:35:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近两年，以“事件风暴（Event Storming）”为代表的“领域驱动设计（Domain Driven Design，以下简称DDD）”分析建模方法红遍大江南北。<strong>伴随着按照DDD思想指导微服务拆分的流行，“搞微服务必用DDD，用DDD必做事件风暴，写代码必用六边形架构”的做法已几乎成为了某种所谓的“最佳实践”。</strong></p><p><strong>虽然我们一边反复强调“DDD不是银弹，事件风暴也不是DDD”，但是还是眼睁睁的看着DDD被用成了银弹，用了事件风暴也被等同于做了DDD。</strong></p><p>这两年，我也做了不少DDD的实践和咨询服务，也写过一些文章和组织过DDDChina峰会上的工作坊。但是在持续的解决不同的客户需求的过程中，确实经历了一个从“忽视到真香，再从真香到疑惑”的过程。其中在使用DDD和事件风暴的过程中，经常困惑的一些典型案例（也是经常被问到的问题）包括：</p><ul><li>数据类应用的设计和开发如何应用DDD思想？</li><li>客户交易系统和GIS这样的系统，DDD应用上有何区别？</li><li>很明显的流程类功能或系统适合DDD吗？还是用个工作流引擎就完了？</li><li>以上这些系统的分析建模都能应用事件风暴吗？还是说可以用其它方法？</li></ul><p>如果一定要收敛一下以上的问题，那就是经常会被大家问到的一句话：</p><blockquote><p>问：“DDD到底在什么情况下适用什么情况下适用？”<br>答：“业务逻辑复杂的系统。”</p></blockquote><p>DDD的这个回答就很诡异了——<strong>到底什么是业务逻辑？到底什么是复杂？</strong>这回答面对上述4个问题基本就等于什么都没讲。</p><p>虽然我在之前的实践中，尝试过进行更加明确的说明，但是在业务和复杂性的关键定义上，基本上没有质的变化。我的相关解释请参看：<a href="/posts/58fe0824/#%E6%9B%B4%E5%90%88%E7%90%86%E7%9A%84%E2%80%9CDDD%E5%88%86%E6%AE%B5%E5%BC%8F%E8%AE%BE%E8%AE%A1%E2%80%9D">《领域驱动实战思考（二）：用分段思想改进那些混乱的战略设计和战术设计》</a></p><p>换句话说，我认为DDD并没有真正的清晰定义和解答什么是“软件核心复杂性”，而是绕过了这个关键点，认为“问题都需要澄清和定义”，然后在所谓“战略设计”和“战术设计”的包装下，打着“澄清问题”的旗号，直接切进了“统一语言”和“协作设计”，以及系统架构和实现细节——有一种“别问，问就是需要澄清”的甩锅嫌疑。</p><p>而遗憾的是，在持续多年的修修补补之下，DDD的这个核心问题却丝毫未被解决。</p><p>那么，到底有没有什么方法能对于以上问题（业务、领域、复杂性）做出相对更加清晰的澄清和解答呢？</p><p>幸运的是，在和<strong>ThoughtWorks中国区CTO徐昊</strong>一起推动本公司工程效能变革的过程中，我了解并学习到了一套<strong>基于徐昊对于软件工程和架构设计多年的实践和思考，由他总结沉淀的，从“四色建模”所发展出来的，被称之为“8x Flow”的业务建模方法</strong>，有效的解答了我的困惑。</p><p>在此，我将利用一系列文章，将相关的思想、方法和配套的工程效能实践分享给大家，希望能够对大家有所帮助，同时也希望得到更多的碰撞和反馈。</p><span id="more"></span><h2 id="8x-Flow核心思想"><a href="#8x-Flow核心思想" class="headerlink" title="8x Flow核心思想"></a>8x Flow核心思想</h2><p>在介绍基于8x Flow的业务建模过程之前，大家需要先了解8x Flow背后的关键思想。</p><p>（有关于徐昊本人对于这些思想的说明，我作为参考资料附在了文章结尾，欢迎大家参阅。在此，更多的是基于我与徐昊的多次讨论和我个人的理解，来向大家予以介绍。）</p><h3 id="业务逻辑与领域逻辑分离"><a href="#业务逻辑与领域逻辑分离" class="headerlink" title="业务逻辑与领域逻辑分离"></a>业务逻辑与领域逻辑分离</h3><p>首先，我们来关注什么是“业务逻辑（Business Logic）”，什么是“领域逻辑（Domain Logic）”。</p><p>在DDD的解释中，“领域”指的是：</p><blockquote><p>Domain: A sphere of knowledge, influence, or activity. The subject area to which the user applies a program is the domain of the software.（领域：知识、影响或活动的范畴，用户应用了程序的主题领域就是软件的领域。）<br>—— 2015，Eric Evans《Driven Design Reference》</p></blockquote><p>这句话有点拗口，但是通常大家对于DDD所说的领域的白话理解就是：</p><blockquote><p>领域就是问题的集合。</p></blockquote><p>然而，徐昊在8x Flow中对于“业务”和“领域”进行了更为清晰的区分和解释，即：</p><p><strong>业务逻辑：源自业务运营的逻辑，是领域中立且运营特定的，其复杂度来自于流程本身，关注的是如何盈利和成本结构（或者可以理解为对外体现为利润或现金，对内体现为成本和绩效承诺），常见于：合同、法务、会计、审计等。</strong></p><p><strong>领域逻辑：源自问题域的逻辑，是运营中立而领域特定的，其复杂度来自于问题本身，关注的是如何解决问题，常见于：算法、计划、统计、优化等。</strong></p><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/business-and-domain-2021-03-30-16-05-34.png" alt="业务逻辑与领域逻辑分离"></p><p>直接看以上定义可能并不好理解，让我们基于一个简单的医院门诊就诊流程，通过事件风暴和以上解释的视角区别来看一下。</p><p>下图为我们接下来要用到的医院门诊就诊流程：</p><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-2021-02-07-23-02-25.png" alt="医院门诊就诊流程"></p><p>如果我们使用事件风暴来进行DDD分析建模的话，基本上会围绕事件得到如下的分析结果：</p><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4-2021-02-07-23-02-37.png" alt="医院门诊就诊-事件风暴"></p><p>我们会发现，以上事件风暴的分析结果和原始流程看起来似乎没有什么不同，只是更多的关注了每一步的结果。</p><p>但是按照8x Flow对于业务和领域的区分视角，重新分析这个就诊流程的时候，就会发现，按照前面所说的业务和领域的定义进行分别标注，其实这个流程中的不同过程，是不一样的：</p><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E4%B8%9A%E5%8A%A1%E4%B8%8E%E9%A2%86%E5%9F%9F%E8%AF%86%E5%88%AB-2021-02-07-23-02-48.png" alt="医院门诊就诊-业务与领域识别"></p><p>为什么是这样呢？我们来拿其中的几个环节来说明一下。</p><p>回顾之前的定义，“业务逻辑的复杂度来自于流程本身，关注的是如何盈利和成本结构“，在现实中，其实更多的关注的是甲乙双方，基于某种具有权责关系的合作约定的<strong>过程凭证留存和追溯</strong>。</p><p>那么大家脑补一下门诊就诊这件事，这里面门诊挂号单、检查单、检查报告……等等这些单据，就是现实中（假设没有IT系统）非常重要的“可追溯业务凭证”。</p><p>那么我们再看“领域逻辑的复杂度来自于问题本身，关注的是如何解决问题”这件事儿，结合门诊流程来看，那么门诊如何挂号（线下还是线上，窗口还是挂号机），医生如何根据其专业技能和经验进行检查和诊断……等等，其实就是非常复杂和专业的“如何解决问题”。</p><p>说了这么多，区分了这两种不同的逻辑，到底有什么用呢？</p><p>当我们把这两种逻辑从图像上进行显式的区分后，就能看出来有什么不一样了，见下图：</p><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B-2021-02-07-23-03-00.png" alt="医院门诊就诊-业务流程"></p><p>图中灰色的部分就是业务流程（业务逻辑），而每一个领域（领域逻辑）则是形成业务流程中每一个“可追溯业务凭证”的具体过程（可以想象一下“计算结果”和“算法”的区别，虽不准确但可以感觉出来）。</p><p>有经验的架构师会明显的发现，以上例子中，所分析出来的<strong>业务逻辑和领域逻辑，具有明显不一样的变化原因和变化频率</strong>，如果不能理解的话，可以想象一下折扣总额（业务）和促销活动（领域）。</p><p>那么，反观DDD和事件风暴现有的分析和建模方法，如果我们都不能识别业务和领域的明显的变化边界，那如何能够有效的隔离变化呢？</p><blockquote><p><strong>识别并区分业务与领域的变化边界，这是8x Flow的第一个显著的优点。</strong></p></blockquote><p>除了这个优点之外，对于架构设计来说，有什么样的好处呢？我们来对图片做个小小的调整，将领域变成“接口（Interface）”：</p><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E6%89%A9%E5%B1%95%E7%82%B9-2021-03-30-23-35-43.png" alt="医院门诊就诊流程-扩展点-2021-03-30-23-35-43"></p><p>铛铛！有没有发现所有的Domain都可以是系统架构的扩展点？从而实现可替换？</p><p>从这里也能看出一个道理，往往业务的变化相对较慢，而领域的变化，是可以很快的。</p><blockquote><p><strong>通过抽象领域逻辑，提升业务系统的可扩展性和灵活度，这是8x Flow的第二个显著优点。</strong></p></blockquote><p>最后，结合以上两个优点，我们再来回顾一下门诊就医这件事情。</p><p>医院的业务，就是提供医疗服务，与盈利有关，他的业务模式是相对比较稳定的：挂号、检查、出具检查报告、出具诊断书、出具处方笺、拿缴费单缴费、拿缴费证明取药……</p><p>不论是看眼科、特诊科还是骨科，医院的业务流程是不变的，而具体要看哪个科室，医生怎么看病出诊断等等，都是领域专有的问题。</p><p>正是因为业务的相对稳定和领域的可变性，才共同建立起了医院的多样化医疗服务。</p><h3 id="分离了，然后呢？"><a href="#分离了，然后呢？" class="headerlink" title="分离了，然后呢？"></a>分离了，然后呢？</h3><p>到现在，应该把什么是业务什么是领域这个问题说清楚了，但是然后呢？分的这么清楚，除了前面所说的隔离变化和识别扩展点，还有什么用呢？</p><p>这里，其实特别要说的就是我的感受最为重要的一个：</p><blockquote><p><strong>业务与领域分离后，能够让我们分清问题，并应用不同的分析、建模和设计方法，防止出现把单一方法论当银弹。</strong></p></blockquote><p>首先，针对业务逻辑，历史上有过多种分析建模法，其中更加贴近“业务可追溯性”的一个就是四色建模，而通过徐昊的改良后，我们可以采用8x Flow实施更加套路化的业务分析和建模。</p><p>这里需要强调一下，我们后面介绍的8x Flow只适合业务建模！只适合业务建模！只适合业务建模！</p><p>而领域系统的分析、建模和设计就很特别了，因为没有唯一方案。</p><p>这是因为不同的领域问题往往是”专有的“，具备很强的专业性质，解决这些问题的时候，通常需要以下几种解决方法：</p><ol><li>相关问题可以找到行业内已有的解决方案，拿过来直接借鉴即可；</li><li>需要依据专业研究或领域专家经验，结合研究成果和经验来设计解决方案；</li><li>没有已知解决方案，需要不断的调整和尝试。</li></ol><p>在通过软件解决领域问题的时候，连编程范式都不是唯一的，例如要按需选择是使用面向对象还是函数式编程语言进行实现。</p><p>通常来说，当遇到一些领域系统的时候，如果想用DDD和事件风暴来分析建模的话，一定会犯难，例如：</p><ul><li>数据处理模块</li><li>算法引擎</li><li>工作流</li><li>地理信息系统（GIS）</li></ul><p>说了这么多，其实就是想说：</p><p><strong>当面对一个软件系统的时候，请不要一上来就DDD拆微服务，麻烦先搞清哪里是业务，哪里是领域。</strong></p><p>当然，我也不是说DDD和事件风暴不能用，就拿我来说，我这俩也玩儿的挺溜呀，武器库里多一些兵器来解决不同的问题不好吗？</p><p>PS：当遇到大规模、无共识、技术复杂度不高、同时又不知道还有啥别的更好的方法的场景时，我觉得事件风暴这种建模过程还是能尝试用的，毕竟相对比传统的面向对象设计更套路化一点。</p><h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>这一篇文章，重点在于说明业务与领域的区别，算是热热身。我会在后续的文章，逐步为大家介绍如何对于业务进行分析，并使用8x Flow进行建模。</p><p>在此，先给出8x Flow建模的一个例子仅供提前过过眼瘾（和以上门诊就医无关）：</p><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E8%A7%92%E8%89%B2%E5%88%86%E6%9E%90%E5%92%8C%E6%8A%BD%E8%B1%A1-2021-02-07-19-05-30.png" alt="8x Flow 举例"></p><p><strong>而下一篇，我会来讲讲如何通过“合约上下文”分析并提取业务逻辑，敬请期待。</strong></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://www.infoq.cn/article/xh-four-color-modeling">《运用四色建模法进行领域分析》（作者：徐昊）</a></li><li><a href="https://www.bilibili.com/video/BV1Rf4y1Q7Y4">《八叉说 - 我们到底要微服务还是业务能力？》（作者：徐昊）</a></li><li><a href="https://www.bilibili.com/video/BV1MT4y1M7Kv">《八叉说DDD - 领域驱动还是业务模型驱动？》（作者：徐昊）</a></li><li><a href="https://www.bilibili.com/video/BV1Rz4y1S7oW">《八叉说DDD - 统一语言的坏味道》（作者：徐昊）</a></li><li><a href="https://www.bilibili.com/video/BV1mf4y1k75k">《八叉说DDD - 为什么说《领域驱动设计》已经过时了》（作者：徐昊）</a></li><li><a href="https://www.bilibili.com/video/BV1Ep4y1W7Ku">《八叉说 - 当DDD遇到业务系统，还是最佳实践吗？》（作者：徐昊）</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近两年，以“事件风暴（Event Storming）”为代表的“领域驱动设计（Domain Driven Design，以下简称DDD）”分析建模方法红遍大江南北。&lt;strong&gt;伴随着按照DDD思想指导微服务拆分的流行，“搞微服务必用DDD，用DDD必做事件风暴，写代码必用六边形架构”的做法已几乎成为了某种所谓的“最佳实践”。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;虽然我们一边反复强调“DDD不是银弹，事件风暴也不是DDD”，但是还是眼睁睁的看着DDD被用成了银弹，用了事件风暴也被等同于做了DDD。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这两年，我也做了不少DDD的实践和咨询服务，也写过一些文章和组织过DDDChina峰会上的工作坊。但是在持续的解决不同的客户需求的过程中，确实经历了一个从“忽视到真香，再从真香到疑惑”的过程。其中在使用DDD和事件风暴的过程中，经常困惑的一些典型案例（也是经常被问到的问题）包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据类应用的设计和开发如何应用DDD思想？&lt;/li&gt;
+&lt;li&gt;客户交易系统和GIS这样的系统，DDD应用上有何区别？&lt;/li&gt;
+&lt;li&gt;很明显的流程类功能或系统适合DDD吗？还是用个工作流引擎就完了？&lt;/li&gt;
+&lt;li&gt;以上这些系统的分析建模都能应用事件风暴吗？还是说可以用其它方法？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果一定要收敛一下以上的问题，那就是经常会被大家问到的一句话：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;问：“DDD到底在什么情况下适用什么情况下适用？”&lt;br&gt;答：“业务逻辑复杂的系统。”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;DDD的这个回答就很诡异了——&lt;strong&gt;到底什么是业务逻辑？到底什么是复杂？&lt;/strong&gt;这回答面对上述4个问题基本就等于什么都没讲。&lt;/p&gt;
+&lt;p&gt;虽然我在之前的实践中，尝试过进行更加明确的说明，但是在业务和复杂性的关键定义上，基本上没有质的变化。我的相关解释请参看：&lt;a href=&quot;/posts/58fe0824/#%E6%9B%B4%E5%90%88%E7%90%86%E7%9A%84%E2%80%9CDDD%E5%88%86%E6%AE%B5%E5%BC%8F%E8%AE%BE%E8%AE%A1%E2%80%9D&quot;&gt;《领域驱动实战思考（二）：用分段思想改进那些混乱的战略设计和战术设计》&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;换句话说，我认为DDD并没有真正的清晰定义和解答什么是“软件核心复杂性”，而是绕过了这个关键点，认为“问题都需要澄清和定义”，然后在所谓“战略设计”和“战术设计”的包装下，打着“澄清问题”的旗号，直接切进了“统一语言”和“协作设计”，以及系统架构和实现细节——有一种“别问，问就是需要澄清”的甩锅嫌疑。&lt;/p&gt;
+&lt;p&gt;而遗憾的是，在持续多年的修修补补之下，DDD的这个核心问题却丝毫未被解决。&lt;/p&gt;
+&lt;p&gt;那么，到底有没有什么方法能对于以上问题（业务、领域、复杂性）做出相对更加清晰的澄清和解答呢？&lt;/p&gt;
+&lt;p&gt;幸运的是，在和&lt;strong&gt;ThoughtWorks中国区CTO徐昊&lt;/strong&gt;一起推动本公司工程效能变革的过程中，我了解并学习到了一套&lt;strong&gt;基于徐昊对于软件工程和架构设计多年的实践和思考，由他总结沉淀的，从“四色建模”所发展出来的，被称之为“8x Flow”的业务建模方法&lt;/strong&gt;，有效的解答了我的困惑。&lt;/p&gt;
+&lt;p&gt;在此，我将利用一系列文章，将相关的思想、方法和配套的工程效能实践分享给大家，希望能够对大家有所帮助，同时也希望得到更多的碰撞和反馈。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="软件工程实践" scheme="https://huhao.dev/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/"/>
+    
+    
+      <category term="8x Flow" scheme="https://huhao.dev/tags/8x-Flow/"/>
+    
+      <category term="领域驱动设计" scheme="https://huhao.dev/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="事件风暴" scheme="https://huhao.dev/tags/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/"/>
+    
+      <category term="业务建模" scheme="https://huhao.dev/tags/%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>10倍团队（二）：在家办公是软件研发组织的“敏捷试金石”之项目管理篇</title>
@@ -277,9 +325,9 @@
       <category term="领域驱动实战思考" scheme="https://huhao.dev/categories/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E5%AE%9E%E6%88%98%E6%80%9D%E8%80%83/"/>
     
     
-      <category term="领域驱动设计" scheme="https://huhao.dev/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
-    
       <category term="测试驱动开发" scheme="https://huhao.dev/tags/%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="领域驱动设计" scheme="https://huhao.dev/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
     
       <category term="基准化" scheme="https://huhao.dev/tags/%E5%9F%BA%E5%87%86%E5%8C%96/"/>
     
@@ -620,30 +668,6 @@
 &lt;p&gt;很多朋友告诉我，前两篇文章带给大家了许多“正能量”和“激情”，但是这一次，我要用我的实际经历来给大家泼泼凉水。 &lt;strong&gt;所有的努力和奋斗在初始阶段都不会是一帆风顺的&lt;/strong&gt; ，这个道理你知我知，我也提前有心理准备，但是后来所遇到的很多问题却超出了自己的预想。&lt;/p&gt;
 &lt;p&gt;到了现在自己回过头想一想，其实人生的旅途也需要敏捷，所有的变化都是合理的，如果变化过大，说明先前总有哪个地方没做好，埋下了隐患。最后，既然发生了变化，就要勇于去处理解决以及适应变化。&lt;/p&gt;
 &lt;p&gt;接下来我会先总结一下这3个月来的工作和成长经历，然后说一说除了工作以外更加重要的现实阻力。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="从士兵到程序员再到咨询师" scheme="https://huhao.dev/categories/%E4%BB%8E%E5%A3%AB%E5%85%B5%E5%88%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%8D%E5%88%B0%E5%92%A8%E8%AF%A2%E5%B8%88/"/>
-    
-    
-      <category term="在家办公" scheme="https://huhao.dev/tags/%E5%9C%A8%E5%AE%B6%E5%8A%9E%E5%85%AC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从士兵到程序员再到SOHO程序员 (二) - 求职</title>
-    <link href="https://huhao.dev/posts/90a65bc6/"/>
-    <id>https://huhao.dev/posts/90a65bc6/</id>
-    <published>2013-12-13T15:46:28.000Z</published>
-    <updated>2013-12-13T15:46:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>当我开始写这篇文章的时候，我猛然发现，此时此刻距离我辞职（2013年9月13日）至今刚好整整3个月时间，看来写这样一篇文章是冥冥之中必须干的事儿。</p><p>那么就让我接着上一篇文章继续写下去吧（上一篇文章请见<a href="https://huhao.dev/posts/7d37a609/" title="从士兵到程序员再到SOHO程序员">《从士兵到程序员再到SOHO程序员》</a>）。</p><span id="more"></span><h2 id="三个月的收获"><a href="#三个月的收获" class="headerlink" title="三个月的收获"></a>三个月的收获</h2><p>三个月之前，我制定过一个学习计划：<a href="https://huhao.dev/posts/7842d101/" title="《三个月家里蹲转型 Ruby on Rails + SOHO 计划">《三个月家里蹲转型 Ruby on Rails + SOHO 计划》</a>。</p><p>但是，俗话说得好，计划赶不上变化，在这三个月里我有将近一半的时间在忙于新房装修，跑灵活就业人员社保手续，以及其他杂事上面。</p><p>所以，真正用于学习的时间也就是一个半月左右，回过头来梳理了一下，发现收获的东西倒还是不少的（按照时间先后顺序排列）：</p><h3 id="1-学会并爱上Vim，最终欲罢不能"><a href="#1-学会并爱上Vim，最终欲罢不能" class="headerlink" title="1. 学会并爱上Vim，最终欲罢不能"></a>1. 学会并爱上Vim，最终欲罢不能</h3><p>我是一个工具控，尤其是在写代码这件事情上更是如此。由于先前一直是在搞.NET开发，使用的最多的IDE便是微软的 Visual Studio，所以深受这种高度智能的IDE工具的“照顾”和“坑害”。在我的概念中，只有像电影里那样熟练且飞快的使用纯文本编辑器或者命令行工具的家伙们才是真正的在写代码。接触Ruby on Rails以后，我一直使用的是Sublime Text 2，这也是现在比较流行的编辑器。但是，当我在西安Rubyist社区活动时，亲眼目睹 <strong><em>魏伦（Allen Wei）</em></strong> 同学娴熟飞快的使用Vim进行开发，在被那种行云流水般的操作震撼的五体投地之后，我下定了决心： <strong>欲善其工，必先利其器，在开始后面一系列计划之前，先把Vim学会了再说！</strong></p><p>于是，我利用一周时间，通过以下两个Vim在线学习网站学会了Vim的使用：</p><ul><li><a href="http://vim-adventures.com/" title="VimAdventures">VimAdventures</a></li><li><a href="http://vimgenius.com/" title="VimGenius">VimGenius</a></li></ul><p>随后，我在学习和写代码的过程中，强制要求自己尽可能的使用Vim。到现在为止，我已经能够熟练的使用Vim，并且在自己寻找的一堆Vim插件的帮助下，高效的进行Ruby on Rails开发了，这里秀一下我现在写代码时的屏幕：</p><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-26045-7b64477e3c7b7c8b.png" alt="My Vim Editor" title="My Vim Editor"></p><p><strong>总结一下使用Vim的好处：</strong></p><ul><li>在OS X下配合Dash这个工具可以做到双手不离键盘，注意力可以集中，开发效率很高。</li><li>随时随地，不管是Windows、OS X还是Linux，不管是本地还是远程服务器，都可以立刻开始工作。</li></ul><p><strong>以下是我在学习过程中整理的一些资料：</strong></p><ul><li><a href="https://github.com/howiehu/vim_tutorials" title="My Favorite Vim Tutorials And Tools">《My Favorite Vim Tutorials And Tools》</a></li><li><a href="https://github.com/howiehu/mini-vimtutor" title="Vim官方教程“精编版”">《Vim官方教程“精编版”》</a></li></ul><h3 id="2-在西安Rubyist社区活动中做了一次技术分享"><a href="#2-在西安Rubyist社区活动中做了一次技术分享" class="headerlink" title="2. 在西安Rubyist社区活动中做了一次技术分享"></a>2. 在西安Rubyist社区活动中做了一次技术分享</h3><p>在辞职之后，紧接着我就在西安Rubyist社区活动中进行了一次有关REST的技术分享，这也是我有史以来在众人面前做的第二次技术分享（第一次是在先前公司内部做的ASP.NET MVC 4技术分享），这次活动是在ThoughtWorks西安公司会议室进行的，人也不少，所以当时挺紧张，不过感觉真的很棒！</p><p><strong>这是分享时制作并使用的PPT，保存在SkyDrive上，可以直接查看和播放：</strong></p><ul><li><a href="http://sdrv.ms/1jWxObp" title="About REST and RESTful Web API">《About REST and RESTful Web API》</a></li></ul><h3 id="3-回顾和复习先前所学的内容"><a href="#3-回顾和复习先前所学的内容" class="headerlink" title="3. 回顾和复习先前所学的内容"></a>3. 回顾和复习先前所学的内容</h3><p>由于先前所说的原因，<a href="https://huhao.dev/posts/7842d101/" title="《三个月家里蹲转型 Ruby on Rails + SOHO 计划">《三个月家里蹲转型 Ruby on Rails + SOHO 计划》</a>这个里面的内容我只完成了如下两个：</p><ul><li>重读一遍<a href="http://railstutorial-china.org/">《Ruby on Rails Tutorial 3rd Edition》</a></li><li>完整阅读<a href="https://leanpub.com/everydayrailsrspec">《Everyday Rails Testing with RSpec》</a></li></ul><p>现在回过头来一想，多读书在我目前这个阶段确实不是很重要，以上这两本已经足够用了，看完以后赶快多练手才行，所以也推荐给其他想学Ruby on Rails的朋友这两本书，而且这两本书都有 <strong><em>Andor Chen</em></strong> 同学辛勤翻译的中文版哦！</p><h3 id="4-短时间参与了一个项目"><a href="#4-短时间参与了一个项目" class="headerlink" title="4. 短时间参与了一个项目"></a>4. 短时间参与了一个项目</h3><p>这个项目先前在Ruby China论坛发布过招聘贴，帖子写的非常诚恳，当然其中的人也确实非常诚恳，我一直在关注。</p><p>但是后来加入到项目中后（真正干活的话总共是3天时间），发现困难比想象中要高，主要原因是：</p><ul><li>项目MVP阶段及后续阶段的准备资金不足。</li><li>创业团队没有技术领头人，这在资金不足的情况下使得情况更加紧迫。</li><li>我无法认同项目本身的定位和目标。</li><li>个人准备还是不够充分，所以工作起来有些吃力。</li></ul><p>所以，在我认真思考之后，我认为项目本身的客观实际加上我当时的技术状况使得我的加入有可能加速这个项目的失败，所以我还是退出了。</p><p>通过这个短时间的尝试，让我还是有一些收获的：</p><ul><li>远程工作没有想象中那样简单。</li><li>亲身体验了远程工作，初步总结了一些经验。</li><li>对自己的技术水平有了更加深刻的认识，所以后来花了更多的时间去学习和练习。</li></ul><h3 id="5-参加了RubyConf-China-2013"><a href="#5-参加了RubyConf-China-2013" class="headerlink" title="5. 参加了RubyConf China 2013"></a>5. 参加了RubyConf China 2013</h3><p>RubyConf China 2013是中国Rubyist在2013年的一次最重要的聚会，我很高兴参加了这次会议。</p><p>在这次会议上，我见到了许多先前只在网络上知道的国际国内Ruby社区的精英，同时也震撼于很多工作时间不长的朋友都敢于上台演讲。</p><p>通过参加这次会议，让我收获到：</p><ul><li>对国内Ruby社区的认识更加清晰。</li><li>很多比我还年轻的朋友的出色演讲让我更加坚定了利用Ruby on Rails实现我远程工作的决心。</li><li>认识到自己在这个圈子内的水平处于什么位置。</li><li>英语很重要，作为一个忠实的“听众”，当看到周边朋友们抓住机会就冲上去和大牛们用英语交流的场面我是那个汗颜啊……（不过后来在从北京回西安的高铁上，我和身边的一个澳大利亚哥们儿用英语聊了一路，这才发现原来说英语也没那么困难，而且周围刚工作的小姑娘们对我这英语水平还是报以很崇拜的眼神，好吧这个扯的有点远了……）</li></ul><p><strong>在 RubyConf China 2013 的签售活动上比较幸运的排在第一位与 Dave Thomas 合影留念：</strong></p><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-26045-be5d1c952aabee6c.png" alt="2013年10月27日 RubyConfChina 2013 与 Dave Thomas 签售合影" title="2013年10月27日 RubyConfChina 2013 与 Dave Thomas 签售合影"></p><h3 id="6-深入学习Ruby-on-Rails"><a href="#6-深入学习Ruby-on-Rails" class="headerlink" title="6. 深入学习Ruby on Rails"></a>6. 深入学习Ruby on Rails</h3><p>有了先前这些经历，我认识到我的学习上还有很多不足和欠缺，所以我在练手的同时更加深入的去学习了Ruby on Rails的相关知识。</p><p>到目前为止，我已经能够比较完整和系统的建立起了对Ruby on Rails的认识，并且结合多年Web开发经验，对利用Ruby on Rails进行Web开发也不再犯怵了，基本上遇到问题都能够有解决的思路和信心。</p><p>和先前短期参与那个项目时的状态相比，可以说现在我已经是一只翅膀硬了，敢于并期待飞翔的“菜鸟”了！</p><h3 id="7-初步学会iOS开发"><a href="#7-初步学会iOS开发" class="headerlink" title="7. 初步学会iOS开发"></a>7. 初步学会iOS开发</h3><p>对于iOS的学习完全是出于我的兴趣加上对这个行业的认识所决定的。</p><p>现在这个时代是一个移动设备崛起的时代，或者说是一场革命，对于我们Web Developer来说，单单的掌握从前到后的Web开发技术已经不够了，我认为还必须加上移动设备开发才算完整，所以结合我个人对于Apple的喜爱，我选择了iOS开发而不是Android，从我个人来说，如果有一天就算要做Android的东西，我也可能会去选择Xamarin这样自己比较方便过渡的技术。</p><p>目前，我已经在这段时间学习了iOS开发的基本知识，并正在征服CodeSchool的iOS开发课程中，根据当前的进度，应该半个月后就能自己做点小东西玩了。</p><h3 id="8-通过开发西安Rubyist社区网站来实践所学知识"><a href="#8-通过开发西安Rubyist社区网站来实践所学知识" class="headerlink" title="8. 通过开发西安Rubyist社区网站来实践所学知识"></a>8. 通过开发西安Rubyist社区网站来实践所学知识</h3><p>项目GitHub：<a href="https://github.com/xian-rubyists/xian-rubyists-site">xian-rubyists-site</a></p><p>这是我实践我先前所学Ruby on Rails知识和BDD思想的一个重要途径，由于先前事情太多，所以都是断断续续在做，现在终于有时间做下去了，所以感兴趣的朋友们可以关注下，也算是对我学习成果的一次检验吧。</p><h2 id="寻求一份远程工作"><a href="#寻求一份远程工作" class="headerlink" title="寻求一份远程工作"></a>寻求一份远程工作</h2><p>OK，以上说了说我这三个月以来的收获，现在转入下一个重要的话题：找工作！</p><p>之前一哥们儿在Ruby China上得求职贴令我有了写文章求职的动力：<a href="http://ruby-china.org/topics/15217">《介绍我的项目 ＋ 找一份工作》</a>，<strong>别看错了，不是我写的啊！:)</strong></p><p>如果您对我感兴趣，并且愿意给我一次实现SOHO程序员理想的机会，那么我希望您能够看完我的三篇文章，这样能够让您对我有更加全面的了解：</p><ul><li><a href="https://huhao.dev/posts/7842d101/" title="《三个月家里蹲转型 Ruby on Rails + SOHO 计划">《三个月家里蹲转型 Ruby on Rails + SOHO 计划》</a></li><li><a href="https://huhao.dev/posts/7d37a609/" title="从士兵到程序员再到SOHO程序员">《从士兵到程序员再到SOHO程序员 (一)》</a></li><li>不用找了，就是这篇文章了。</li></ul><h3 id="我的简要介绍："><a href="#我的简要介绍：" class="headerlink" title="我的简要介绍："></a>我的简要介绍：</h3><ul><li>自动步枪的使用、单兵战术技能、军用车辆驾驶……这样的东西你们应该用不着，就不说了，如果需要用到的话我会很感兴趣……</li><li>从零开始自学成才，有很强的学习能力，所以下面不会列出哪些短时间就能学会的东西</li><li>能够阅读英文技术书籍和进行文字交流，能够进行英语对话（敢说，但是还需要不断提高）</li><li>5年基于ASP.NET的Web开发经验（其中2年ASP.NET MVC）</li><li>2年敏捷团队经验</li><li>2年欧美外包项目经验</li><li>熟练掌握 Windows / OS X / Linux</li><li>TDD / BDD</li><li>HTML5</li><li>CSS3</li><li>Javascript</li><li>JQuery</li><li>CoffeeScript</li><li>Sass</li><li>Ruby on Rails</li><li>iOS</li><li>Git / SVN</li></ul><h3 id="对于工作的希望"><a href="#对于工作的希望" class="headerlink" title="对于工作的希望"></a>对于工作的希望</h3><ul><li><strong>远程工作，远程工作，远程工作……</strong></li><li><strong>靠谱，靠谱，靠谱……</strong></li><li><strong>热爱技术，热爱技术，热爱技术……</strong></li><li><strong>最重要的：认同远程工作，并且充满活力。</strong></li></ul><h3 id="如果您对我感兴趣"><a href="#如果您对我感兴趣" class="headerlink" title="如果您对我感兴趣"></a>如果您对我感兴趣</h3><p>可以通过以下方式与我联系，或者留下您的联系方式：</p><p>Email: huhao艾特outlook.com</p><p>Skype: howiehu （几乎随时都在）</p><p>QQ: 54252159 （一般工作、学习、写代码的时候都不会开）</p><p><strong>我期待着尽早拥有一份能够实现我的个人理想，也能证明我自己能力的工作！</strong></p><hr><h2 id="欢迎关注我的微信公众号"><a href="#欢迎关注我的微信公众号" class="headerlink" title="欢迎关注我的微信公众号"></a>欢迎关注我的微信公众号</h2><p>微信搜索：<code>枪炮与代码</code>，或者搜索公众号ID：<code>guns_n_code</code></p><p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png" alt="枪炮与玫瑰"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;当我开始写这篇文章的时候，我猛然发现，此时此刻距离我辞职（2013年9月13日）至今刚好整整3个月时间，看来写这样一篇文章是冥冥之中必须干的事儿。&lt;/p&gt;
-&lt;p&gt;那么就让我接着上一篇文章继续写下去吧（上一篇文章请见&lt;a href=&quot;https://huhao.dev/posts/7d37a609/&quot; title=&quot;从士兵到程序员再到SOHO程序员&quot;&gt;《从士兵到程序员再到SOHO程序员》&lt;/a&gt;）。&lt;/p&gt;
     
     </summary>
     

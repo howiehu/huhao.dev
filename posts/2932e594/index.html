@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msvalidate.01" content="0F08F252C8D1F3EDE6EA6BFDFCDCACFB">
+  <meta name="baidu-site-verification" content="17XyprouqJ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="前言最近两年，以“事件风暴（Event Storming）”为代表的“领域驱动设计（Domain Driven Design，以下简称DDD）”分析建模方法红遍大江南北。伴随着按照DDD思想指导微服务拆分的流行，“搞微服务必用DDD，用DDD必做事件风暴，写代码必用六边形架构”的做法已几乎成为了某种所谓的“最佳实践”。 虽然我们一边反复强调“DDD不是银弹，事件风暴也不是DDD”，但是还是眼睁睁的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8x Flow 业务建模法（一）：你能分清业务和领域吗？">
+<meta property="og:url" content="https://huhao.dev/posts/2932e594/index.html">
+<meta property="og:site_name" content="胡皓 - 枪炮与代码">
+<meta property="og:description" content="前言最近两年，以“事件风暴（Event Storming）”为代表的“领域驱动设计（Domain Driven Design，以下简称DDD）”分析建模方法红遍大江南北。伴随着按照DDD思想指导微服务拆分的流行，“搞微服务必用DDD，用DDD必做事件风暴，写代码必用六边形架构”的做法已几乎成为了某种所谓的“最佳实践”。 虽然我们一边反复强调“DDD不是银弹，事件风暴也不是DDD”，但是还是眼睁睁的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/business-and-domain-2021-03-30-16-05-34.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-2021-02-07-23-02-25.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4-2021-02-07-23-02-37.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E4%B8%9A%E5%8A%A1%E4%B8%8E%E9%A2%86%E5%9F%9F%E8%AF%86%E5%88%AB-2021-02-07-23-02-48.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B-2021-02-07-23-03-00.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E6%89%A9%E5%B1%95%E7%82%B9-2021-03-30-23-35-43.png">
+<meta property="og:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E8%A7%92%E8%89%B2%E5%88%86%E6%9E%90%E5%92%8C%E6%8A%BD%E8%B1%A1-2021-02-07-19-05-30.png">
+<meta property="article:published_time" content="2021-03-31T15:35:40.000Z">
+<meta property="article:modified_time" content="2021-03-31T15:35:40.000Z">
+<meta property="article:author" content="胡皓">
+<meta property="article:tag" content="8x Flow">
+<meta property="article:tag" content="领域驱动设计">
+<meta property="article:tag" content="事件风暴">
+<meta property="article:tag" content="业务建模">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/business-and-domain-2021-03-30-16-05-34.png">
+
+
+<link rel="canonical" href="https://huhao.dev/posts/2932e594/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>8x Flow 业务建模法（一）：你能分清业务和领域吗？ | 胡皓 - 枪炮与代码</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="胡皓 - 枪炮与代码" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">胡皓 - 枪炮与代码</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从士兵到软件匠人的侃侃而谈</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-概念图"><a href="https://cmap.huhao.dev/" rel="noopener" target="_blank"><i class="fa fa-lightbulb fa-fw"></i>概念图</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8x-Flow%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">2.</span> <span class="nav-text">8x Flow核心思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E4%B8%8E%E9%A2%86%E5%9F%9F%E9%80%BB%E8%BE%91%E5%88%86%E7%A6%BB"><span class="nav-number">2.1.</span> <span class="nav-text">业务逻辑与领域逻辑分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%A6%BB%E4%BA%86%EF%BC%8C%E7%84%B6%E5%90%8E%E5%91%A2%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">分离了，然后呢？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E5%B0%BE"><span class="nav-number">3.</span> <span class="nav-text">结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="胡皓"
+      src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-23-avatar.jpg">
+  <p class="site-author-name" itemprop="name">胡皓</p>
+  <div class="site-description" itemprop="description">胡皓的个人技术博客</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/howiehu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/howiehu" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;howiehu" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/howiehu" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;howiehu" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/howiehu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huhao.dev/posts/2932e594/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-23-avatar.jpg">
+      <meta itemprop="name" content="胡皓">
+      <meta itemprop="description" content="胡皓的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="胡皓 - 枪炮与代码">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          8x Flow 业务建模法（一）：你能分清业务和领域吗？
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-31 23:35:40" itemprop="dateCreated datePublished" datetime="2021-03-31T23:35:40+08:00">2021-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" itemprop="url" rel="index"><span itemprop="name">软件工程实践</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近两年，以“事件风暴（Event Storming）”为代表的“领域驱动设计（Domain Driven Design，以下简称DDD）”分析建模方法红遍大江南北。<strong>伴随着按照DDD思想指导微服务拆分的流行，“搞微服务必用DDD，用DDD必做事件风暴，写代码必用六边形架构”的做法已几乎成为了某种所谓的“最佳实践”。</strong></p>
+<p><strong>虽然我们一边反复强调“DDD不是银弹，事件风暴也不是DDD”，但是还是眼睁睁的看着DDD被用成了银弹，用了事件风暴也被等同于做了DDD。</strong></p>
+<p>这两年，我也做了不少DDD的实践和咨询服务，也写过一些文章和组织过DDDChina峰会上的工作坊。但是在持续的解决不同的客户需求的过程中，确实经历了一个从“忽视到真香，再从真香到疑惑”的过程。其中在使用DDD和事件风暴的过程中，经常困惑的一些典型案例（也是经常被问到的问题）包括：</p>
+<ul>
+<li>数据类应用的设计和开发如何应用DDD思想？</li>
+<li>客户交易系统和GIS这样的系统，DDD应用上有何区别？</li>
+<li>很明显的流程类功能或系统适合DDD吗？还是用个工作流引擎就完了？</li>
+<li>以上这些系统的分析建模都能应用事件风暴吗？还是说可以用其它方法？</li>
+</ul>
+<p>如果一定要收敛一下以上的问题，那就是经常会被大家问到的一句话：</p>
+<blockquote>
+<p>问：“DDD到底在什么情况下适用什么情况下适用？”<br>答：“业务逻辑复杂的系统。”</p>
+</blockquote>
+<p>DDD的这个回答就很诡异了——<strong>到底什么是业务逻辑？到底什么是复杂？</strong>这回答面对上述4个问题基本就等于什么都没讲。</p>
+<p>虽然我在之前的实践中，尝试过进行更加明确的说明，但是在业务和复杂性的关键定义上，基本上没有质的变化。我的相关解释请参看：<a href="/posts/58fe0824/#%E6%9B%B4%E5%90%88%E7%90%86%E7%9A%84%E2%80%9CDDD%E5%88%86%E6%AE%B5%E5%BC%8F%E8%AE%BE%E8%AE%A1%E2%80%9D">《领域驱动实战思考（二）：用分段思想改进那些混乱的战略设计和战术设计》</a></p>
+<p>换句话说，我认为DDD并没有真正的清晰定义和解答什么是“软件核心复杂性”，而是绕过了这个关键点，认为“问题都需要澄清和定义”，然后在所谓“战略设计”和“战术设计”的包装下，打着“澄清问题”的旗号，直接切进了“统一语言”和“协作设计”，以及系统架构和实现细节——有一种“别问，问就是需要澄清”的甩锅嫌疑。</p>
+<p>而遗憾的是，在持续多年的修修补补之下，DDD的这个核心问题却丝毫未被解决。</p>
+<p>那么，到底有没有什么方法能对于以上问题（业务、领域、复杂性）做出相对更加清晰的澄清和解答呢？</p>
+<p>幸运的是，在和<strong>ThoughtWorks中国区CTO徐昊</strong>一起推动本公司工程效能变革的过程中，我了解并学习到了一套<strong>基于徐昊对于软件工程和架构设计多年的实践和思考，由他总结沉淀的，从“四色建模”所发展出来的，被称之为“8x Flow”的业务建模方法</strong>，有效的解答了我的困惑。</p>
+<p>在此，我将利用一系列文章，将相关的思想、方法和配套的工程效能实践分享给大家，希望能够对大家有所帮助，同时也希望得到更多的碰撞和反馈。</p>
+<span id="more"></span>
+
+<h2 id="8x-Flow核心思想"><a href="#8x-Flow核心思想" class="headerlink" title="8x Flow核心思想"></a>8x Flow核心思想</h2><p>在介绍基于8x Flow的业务建模过程之前，大家需要先了解8x Flow背后的关键思想。</p>
+<p>（有关于徐昊本人对于这些思想的说明，我作为参考资料附在了文章结尾，欢迎大家参阅。在此，更多的是基于我与徐昊的多次讨论和我个人的理解，来向大家予以介绍。）</p>
+<h3 id="业务逻辑与领域逻辑分离"><a href="#业务逻辑与领域逻辑分离" class="headerlink" title="业务逻辑与领域逻辑分离"></a>业务逻辑与领域逻辑分离</h3><p>首先，我们来关注什么是“业务逻辑（Business Logic）”，什么是“领域逻辑（Domain Logic）”。</p>
+<p>在DDD的解释中，“领域”指的是：</p>
+<blockquote>
+<p>Domain: A sphere of knowledge, influence, or activity. The subject area to which the user applies a program is the domain of the software.（领域：知识、影响或活动的范畴，用户应用了程序的主题领域就是软件的领域。）<br>—— 2015，Eric Evans《Driven Design Reference》</p>
+</blockquote>
+<p>这句话有点拗口，但是通常大家对于DDD所说的领域的白话理解就是：</p>
+<blockquote>
+<p>领域就是问题的集合。</p>
+</blockquote>
+<p>然而，徐昊在8x Flow中对于“业务”和“领域”进行了更为清晰的区分和解释，即：</p>
+<p><strong>业务逻辑：源自业务运营的逻辑，是领域中立且运营特定的，其复杂度来自于流程本身，关注的是如何盈利和成本结构（或者可以理解为对外体现为利润或现金，对内体现为成本和绩效承诺），常见于：合同、法务、会计、审计等。</strong></p>
+<p><strong>领域逻辑：源自问题域的逻辑，是运营中立而领域特定的，其复杂度来自于问题本身，关注的是如何解决问题，常见于：算法、计划、统计、优化等。</strong></p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/business-and-domain-2021-03-30-16-05-34.png" alt="业务逻辑与领域逻辑分离"></p>
+<p>直接看以上定义可能并不好理解，让我们基于一个简单的医院门诊就诊流程，通过事件风暴和以上解释的视角区别来看一下。</p>
+<p>下图为我们接下来要用到的医院门诊就诊流程：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-2021-02-07-23-02-25.png" alt="医院门诊就诊流程"></p>
+<p>如果我们使用事件风暴来进行DDD分析建模的话，基本上会围绕事件得到如下的分析结果：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4-2021-02-07-23-02-37.png" alt="医院门诊就诊-事件风暴"></p>
+<p>我们会发现，以上事件风暴的分析结果和原始流程看起来似乎没有什么不同，只是更多的关注了每一步的结果。</p>
+<p>但是按照8x Flow对于业务和领域的区分视角，重新分析这个就诊流程的时候，就会发现，按照前面所说的业务和领域的定义进行分别标注，其实这个流程中的不同过程，是不一样的：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E4%B8%9A%E5%8A%A1%E4%B8%8E%E9%A2%86%E5%9F%9F%E8%AF%86%E5%88%AB-2021-02-07-23-02-48.png" alt="医院门诊就诊-业务与领域识别"></p>
+<p>为什么是这样呢？我们来拿其中的几个环节来说明一下。</p>
+<p>回顾之前的定义，“业务逻辑的复杂度来自于流程本身，关注的是如何盈利和成本结构“，在现实中，其实更多的关注的是甲乙双方，基于某种具有权责关系的合作约定的<strong>过程凭证留存和追溯</strong>。</p>
+<p>那么大家脑补一下门诊就诊这件事，这里面门诊挂号单、检查单、检查报告……等等这些单据，就是现实中（假设没有IT系统）非常重要的“可追溯业务凭证”。</p>
+<p>那么我们再看“领域逻辑的复杂度来自于问题本身，关注的是如何解决问题”这件事儿，结合门诊流程来看，那么门诊如何挂号（线下还是线上，窗口还是挂号机），医生如何根据其专业技能和经验进行检查和诊断……等等，其实就是非常复杂和专业的“如何解决问题”。</p>
+<p>说了这么多，区分了这两种不同的逻辑，到底有什么用呢？</p>
+<p>当我们把这两种逻辑从图像上进行显式的区分后，就能看出来有什么不一样了，见下图：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B-2021-02-07-23-03-00.png" alt="医院门诊就诊-业务流程"></p>
+<p>图中灰色的部分就是业务流程（业务逻辑），而每一个领域（领域逻辑）则是形成业务流程中每一个“可追溯业务凭证”的具体过程（可以想象一下“计算结果”和“算法”的区别，虽不准确但可以感觉出来）。</p>
+<p>有经验的架构师会明显的发现，以上例子中，所分析出来的<strong>业务逻辑和领域逻辑，具有明显不一样的变化原因和变化频率</strong>，如果不能理解的话，可以想象一下折扣总额（业务）和促销活动（领域）。</p>
+<p>那么，反观DDD和事件风暴现有的分析和建模方法，如果我们都不能识别业务和领域的明显的变化边界，那如何能够有效的隔离变化呢？</p>
+<blockquote>
+<p><strong>识别并区分业务与领域的变化边界，这是8x Flow的第一个显著的优点。</strong></p>
+</blockquote>
+<p>除了这个优点之外，对于架构设计来说，有什么样的好处呢？我们来对图片做个小小的调整，将领域变成“接口（Interface）”：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E5%8C%BB%E9%99%A2%E9%97%A8%E8%AF%8A%E5%B0%B1%E8%AF%8A%E6%B5%81%E7%A8%8B-%E6%89%A9%E5%B1%95%E7%82%B9-2021-03-30-23-35-43.png" alt="医院门诊就诊流程-扩展点-2021-03-30-23-35-43"></p>
+<p>铛铛！有没有发现所有的Domain都可以是系统架构的扩展点？从而实现可替换？</p>
+<p>从这里也能看出一个道理，往往业务的变化相对较慢，而领域的变化，是可以很快的。</p>
+<blockquote>
+<p><strong>通过抽象领域逻辑，提升业务系统的可扩展性和灵活度，这是8x Flow的第二个显著优点。</strong></p>
+</blockquote>
+<p>最后，结合以上两个优点，我们再来回顾一下门诊就医这件事情。</p>
+<p>医院的业务，就是提供医疗服务，与盈利有关，他的业务模式是相对比较稳定的：挂号、检查、出具检查报告、出具诊断书、出具处方笺、拿缴费单缴费、拿缴费证明取药……</p>
+<p>不论是看眼科、特诊科还是骨科，医院的业务流程是不变的，而具体要看哪个科室，医生怎么看病出诊断等等，都是领域专有的问题。</p>
+<p>正是因为业务的相对稳定和领域的可变性，才共同建立起了医院的多样化医疗服务。</p>
+<h3 id="分离了，然后呢？"><a href="#分离了，然后呢？" class="headerlink" title="分离了，然后呢？"></a>分离了，然后呢？</h3><p>到现在，应该把什么是业务什么是领域这个问题说清楚了，但是然后呢？分的这么清楚，除了前面所说的隔离变化和识别扩展点，还有什么用呢？</p>
+<p>这里，其实特别要说的就是我的感受最为重要的一个：</p>
+<blockquote>
+<p><strong>业务与领域分离后，能够让我们分清问题，并应用不同的分析、建模和设计方法，防止出现把单一方法论当银弹。</strong></p>
+</blockquote>
+<p>首先，针对业务逻辑，历史上有过多种分析建模法，其中更加贴近“业务可追溯性”的一个就是四色建模，而通过徐昊的改良后，我们可以采用8x Flow实施更加套路化的业务分析和建模。</p>
+<p>这里需要强调一下，我们后面介绍的8x Flow只适合业务建模！只适合业务建模！只适合业务建模！</p>
+<p>而领域系统的分析、建模和设计就很特别了，因为没有唯一方案。</p>
+<p>这是因为不同的领域问题往往是”专有的“，具备很强的专业性质，解决这些问题的时候，通常需要以下几种解决方法：</p>
+<ol>
+<li>相关问题可以找到行业内已有的解决方案，拿过来直接借鉴即可；</li>
+<li>需要依据专业研究或领域专家经验，结合研究成果和经验来设计解决方案；</li>
+<li>没有已知解决方案，需要不断的调整和尝试。</li>
+</ol>
+<p>在通过软件解决领域问题的时候，连编程范式都不是唯一的，例如要按需选择是使用面向对象还是函数式编程语言进行实现。</p>
+<p>通常来说，当遇到一些领域系统的时候，如果想用DDD和事件风暴来分析建模的话，一定会犯难，例如：</p>
+<ul>
+<li>数据处理模块</li>
+<li>算法引擎</li>
+<li>工作流</li>
+<li>地理信息系统（GIS）</li>
+</ul>
+<p>说了这么多，其实就是想说：</p>
+<p><strong>当面对一个软件系统的时候，请不要一上来就DDD拆微服务，麻烦先搞清哪里是业务，哪里是领域。</strong></p>
+<p>当然，我也不是说DDD和事件风暴不能用，就拿我来说，我这俩也玩儿的挺溜呀，武器库里多一些兵器来解决不同的问题不好吗？</p>
+<p>PS：当遇到大规模、无共识、技术复杂度不高、同时又不知道还有啥别的更好的方法的场景时，我觉得事件风暴这种建模过程还是能尝试用的，毕竟相对比传统的面向对象设计更套路化一点。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>这一篇文章，重点在于说明业务与领域的区别，算是热热身。我会在后续的文章，逐步为大家介绍如何对于业务进行分析，并使用8x Flow进行建模。</p>
+<p>在此，先给出8x Flow建模的一个例子仅供提前过过眼瘾（和以上门诊就医无关）：</p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/%E8%A7%92%E8%89%B2%E5%88%86%E6%9E%90%E5%92%8C%E6%8A%BD%E8%B1%A1-2021-02-07-19-05-30.png" alt="8x Flow 举例"></p>
+<p><strong>而下一篇，我会来讲讲如何通过“合约上下文”分析并提取业务逻辑，敬请期待。</strong></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.infoq.cn/article/xh-four-color-modeling">《运用四色建模法进行领域分析》（作者：徐昊）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Rf4y1Q7Y4">《八叉说 - 我们到底要微服务还是业务能力？》（作者：徐昊）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MT4y1M7Kv">《八叉说DDD - 领域驱动还是业务模型驱动？》（作者：徐昊）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Rz4y1S7oW">《八叉说DDD - 统一语言的坏味道》（作者：徐昊）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1mf4y1k75k">《八叉说DDD - 为什么说《领域驱动设计》已经过时了》（作者：徐昊）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ep4y1W7Ku">《八叉说 - 当DDD遇到业务系统，还是最佳实践吗？》（作者：徐昊）</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>胡皓
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://huhao.dev/posts/2932e594/" title="8x Flow 业务建模法（一）：你能分清业务和领域吗？">https://huhao.dev/posts/2932e594/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/8x-Flow/" rel="tag"># 8x Flow</a>
+              <a href="/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" rel="tag"># 领域驱动设计</a>
+              <a href="/tags/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/" rel="tag"># 事件风暴</a>
+              <a href="/tags/%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1/" rel="tag"># 业务建模</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/4f3996e/" rel="prev" title="10倍团队（二）：在家办公是软件研发组织的“敏捷试金石”之项目管理篇">
+                  <i class="fa fa-chevron-left"></i> 10倍团队（二）：在家办公是软件研发组织的“敏捷试金石”之项目管理篇
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">胡皓</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+<script>
+NexT.utils.loadComments('.utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "howiehu/huhao.dev");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "preferred-color-scheme");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('.utterances-container').appendChild(script);
+});
+</script>
+
+</body>
+</html>
