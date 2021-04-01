@@ -1,5 +1,5 @@
 ---
-title: 8x Flow 业务建模法（二）：分析并提取业务
+title: 8x Flow 业务建模法（二）：基于合约关系分析并提取业务逻辑
 abbrlink: a7c771dd
 tags:
 ---
