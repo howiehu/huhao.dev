@@ -183,3 +183,11 @@ PS：当遇到大规模、无共识、技术复杂度不高、同时又不知道
 - [《八叉说DDD - 统一语言的坏味道》（作者：徐昊）](https://www.bilibili.com/video/BV1Rz4y1S7oW)
 - [《八叉说DDD - 为什么说《领域驱动设计》已经过时了》（作者：徐昊）](https://www.bilibili.com/video/BV1mf4y1k75k)
 - [《八叉说 - 当DDD遇到业务系统，还是最佳实践吗？》（作者：徐昊）](https://www.bilibili.com/video/BV1Ep4y1W7Ku)
+
+---
+
+## 欢迎关注我的个人公众号
+
+微信搜索：`枪炮与代码`，或者搜索公众号ID：`guns_n_code`
+
+![枪炮与玫瑰](https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-20-wechat.png)
