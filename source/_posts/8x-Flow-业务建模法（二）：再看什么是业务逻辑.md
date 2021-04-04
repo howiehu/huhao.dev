@@ -1,6 +1,7 @@
 ---
 title: 8x Flow 业务建模法（二）：再看什么是业务逻辑
 abbrlink: a7c771dd
+date: 2021-04-04 17:42:01
 categories:
   - 软件工程实践
 tags:
