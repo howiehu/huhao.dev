@@ -51,6 +51,7 @@ creative_commons:
   sidebar: true
   post: true
   language: deed.zh
+  size: big
 
 github_banner:
   enable: true
