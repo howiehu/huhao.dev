@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
 <meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -22,7 +23,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="前言最近两年，以“事件风暴（Event Storming）”为代表的“领域驱动设计（Domain Driven Design，以下简称DDD）”分析建模方法红遍大江南北。伴随着按照DDD思想指导微服务拆分的流行，“搞微服务必用DDD，用DDD必做事件风暴，写代码必用六边形架构”的做法已几乎成为了某种所谓的“最佳实践”。 虽然我们一边反复强调“DDD不是银弹，事件风暴也不是DDD”，但是还是眼睁睁的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="8x Flow 业务建模法（一）：你能分清业务和领域吗？">
@@ -41,10 +42,10 @@
 <meta property="article:published_time" content="2021-03-31T15:35:40.000Z">
 <meta property="article:modified_time" content="2021-03-31T15:35:40.000Z">
 <meta property="article:author" content="胡皓">
+<meta property="article:tag" content="业务建模">
 <meta property="article:tag" content="8x Flow">
 <meta property="article:tag" content="领域驱动设计">
 <meta property="article:tag" content="事件风暴">
-<meta property="article:tag" content="业务建模">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://huhao-dev.oss-cn-beijing.aliyuncs.com/business-and-domain-2021-03-30-16-05-34.png">
 
@@ -143,8 +144,7 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-overview">
-            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="胡皓"
       src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-23-avatar.jpg">
   <p class="site-author-name" itemprop="name">胡皓</p>
@@ -190,7 +190,6 @@
 
 
 
-          </div>
         </div>
       </div>
     </div>
@@ -409,10 +408,10 @@
 </div>
 
           <div class="post-tags">
+              <a href="/tags/%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1/" rel="tag"># 业务建模</a>
               <a href="/tags/8x-Flow/" rel="tag"># 8x Flow</a>
               <a href="/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" rel="tag"># 领域驱动设计</a>
               <a href="/tags/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/" rel="tag"># 事件风暴</a>
-              <a href="/tags/%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1/" rel="tag"># 业务建模</a>
           </div>
 
         
@@ -465,6 +464,7 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
+
 
 
 
