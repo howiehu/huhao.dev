@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.0.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
@@ -23,8 +22,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="前言最近“新型冠状病毒（2019-nCoV）”汹汹来袭，一时间“在家办公（Working From Home，简称WFH）”成了一个非常现实和火热的话题。我心想着：“这时候理应有篇写在家办公的文章”，但是又一想：“想必一定有很多人写”，所以一直没动笔。 结果呢，各种渠道和平台的在家办公类文章铺天盖地，无奈的是，里面大量的都是在卖自家产品，没几个在认真说在家办公的挑战和问题的。似乎买了某家的在线协作">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.10.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+  <meta name="description" content="前言最近“新型冠状病毒（2019-nCoV）”汹汹来袭，一时间“在家办公（Working From Home，简称WFH）”成了一个非常现实和火热的话题。我心想着：“这时候理应有篇写在家办公的文章”，但是又一想：“想必一定有很多人写”，所以一直没动笔。 结果呢，各种渠道和平台的在家办公类文章铺天盖地，无奈的是，里面大量的都是在卖自家产品，没几个在认真说在家办公的挑战和问题的。似乎买了某家的在线协作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10倍团队（一）：在家办公是软件研发组织的“敏捷试金石”之沟通篇">
 <meta property="og:url" content="https://huhao.dev/posts/e2efaab2/index.html">
@@ -55,6 +55,7 @@
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>10倍团队（一）：在家办公是软件研发组织的“敏捷试金石”之沟通篇 | 胡皓 - 枪炮与代码</title>
   
+
 
 
 
@@ -292,7 +293,7 @@
 <p>我相信很多人都听说过亚马逊CEO贝索斯所提倡的“2 Pizza Team”这个概念，也就是一个团队适合的规模，应当在2个披萨刚好够吃的人数范围内（嗯……然而我一直不知道这个里面对于披萨尺寸和饭量的约束……手动滑稽……）。</p>
 <p><strong>很多人都只记住了“2 Pizza Team”的结论，就是要小，大概在6-10人左右（Scrum提倡开发团队规模应当控制在9个人左右），但是却忽略了其中的一个非常重要的计算公式，就是（其中N代表人数）：</strong></p>
 <blockquote>
-<p><strong>人与人之间的沟通管道数量 = N(N-1) / 2</strong></p>
+<p><strong>人与人之间的沟通管道数量 &#x3D; N(N-1) &#x2F; 2</strong></p>
 </blockquote>
 <p>如果以图来举例（图片来自于<a target="_blank" rel="noopener" href="https://www.calcey.com/blog/why-the-two-pizza-team-rule-is-the-name-game-at-calcey">https://www.calcey.com/blog/why-the-two-pizza-team-rule-is-the-name-game-at-calcey</a>），就是：</p>
 <p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/20200205211839.png" alt="人员沟通管道关系图"></p>
