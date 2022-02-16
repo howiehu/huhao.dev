@@ -18,4 +18,4 @@ type: about
 
 **拥有的认证：**
 
-![togaf9-certified](https://huhao-dev.oss-cn-beijing.aliyuncs.com/togaf9-certified_web-2022-02-15-21-47-25.png)
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="1bc3479a-3e21-402e-bafe-fc28431522c3" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
