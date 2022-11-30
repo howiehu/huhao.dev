@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - 16 # use nodejs v16 LTS
+  - 18 # use nodejs v16 LTS
 cache: npm
 branches:
   only:
