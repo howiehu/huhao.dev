@@ -1,7 +1,8 @@
+dist: jammy
 sudo: false
 language: node_js
 node_js:
-  - 18 # use nodejs v16 LTS
+  - 18 # use nodejs v18 LTS
 cache: npm
 branches:
   only:
