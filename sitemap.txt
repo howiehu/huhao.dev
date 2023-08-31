@@ -1,3 +1,4 @@
+https://huhao.dev/about/index.html
 https://huhao.dev/posts/a7c771dd/
 https://huhao.dev/posts/2932e594/
 https://huhao.dev/posts/4f3996e/
@@ -6,7 +7,6 @@ https://huhao.dev/posts/56bcf73b/
 https://huhao.dev/posts/61efd12a/
 https://huhao.dev/posts/61190ae2/
 https://huhao.dev/posts/58fe0824/
-https://huhao.dev/about/index.html
 https://huhao.dev/categories/index.html
 https://huhao.dev/tags/index.html
 https://huhao.dev/posts/130bb570/
