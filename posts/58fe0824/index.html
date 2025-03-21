@@ -18,10 +18,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huhao.dev","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="前言2019年，在我对DDD进行基准化的过程中，遇到过非常多的挑战，其中一个便是： DDD的设计过程，到底应该分为多少个阶段？每个阶段做什么事情？ 这个困惑来自于书本上，以及其他咨询师在咨询过程中对于DDD设计和操作的差异：  有的人会从电梯演讲和用户地图开始做设计和分析； 有的人会从事件风暴开始做设计和分析； 有的人会从子域开始做设计和分析； 有的人会从限界上下文开始做设计和分析； 有的人会直接">
 <meta property="og:type" content="article">
@@ -266,7 +266,7 @@
 
 <h2 id="混乱的战略设计和战术设计"><a href="#混乱的战略设计和战术设计" class="headerlink" title="混乱的战略设计和战术设计"></a>混乱的战略设计和战术设计</h2><p>一谈起“战略设计”和“战术设计”，你一定会听到“问题域”、“方案域”、“实现域”等名词。</p>
 <p>我的同事肖然在经过反复理解和提炼之后，曾经提出过一个用于解释“问题与方案”、“战略与战术”的“元模型”：</p>
-<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-13-DDD-Essence.png" alt="从问题/解决方案和战略/战术维度分析DDD元模型的元素"></p>
+<p><img src="https://huhao-dev.oss-cn-beijing.aliyuncs.com/2020-01-13-DDD-Essence.png" alt="从问题&#x2F;解决方案和战略&#x2F;战术维度分析DDD元模型的元素"></p>
 <p>这个模型其实对于具备多维思维和对DDD有着深入理解的人来说，是一种不错的可视化辅助理解手段（划分的合理性仅供参考）。但是在成为更多的咨询师做DDD咨询或培训时开篇必用的材料之后，事情就变得诡异了。因为这个元模型对于咨询师或者培训师是一个比较好的记忆工具，而不是用来给别人解释的适合的工具。</p>
 <p>当没有意识到这一点的人在使用这个模型给客户解释的时候，会向客户描述成：“问题域的战略设计”、“问题域的战术设计”、“解决方案域的战略设计”以及“解决方案的战术设计”。</p>
 <p>经过实战证明，这种方式不到1分钟，就能让客户及对DDD理论没有深入了解的人晕菜，屡试不爽。</p>
@@ -303,7 +303,7 @@
 </ul>
 <p>让我给予一个简单而非严谨的总结：</p>
 <p><strong>问题需要被澄清，问题澄清的结果决定解决方案，问题往往会有多种解决方案，每种解决方案的落地过程是实现细节。</strong></p>
-<p>那么，所谓的“问题域”无非就是“待解决问题的集合”，“方案域”便是“解决方案的集合”，“实现域”便是“实现细节的集合”。而<strong>“领域驱动”</strong>，其实就是<strong>“问题驱动”</strong>——<strong>从澄清关键业务问题开始，逐渐寻找适合的解决方案，再到确定实现细节的过程。</strong></p>
+<p>那么，所谓的“问题域”无非就是“待解决问题的集合”，“方案域”便是“解决方案的集合”，“实现域”便是“实现细节的集合”。而**“领域驱动”<strong>，其实就是</strong>“问题驱动”**——<strong>从澄清关键业务问题开始，逐渐寻找适合的解决方案，再到确定实现细节的过程。</strong></p>
 <h4 id="战略设计-战术设计"><a href="#战略设计-战术设计" class="headerlink" title="战略设计 &#x2F; 战术设计"></a>战略设计 &#x2F; 战术设计</h4><p>说到“战略设计”和“战术设计”，这两个词的来源也非常有意思，让我们来说说。</p>
 <p>（以下仅以国内翻译过的书籍来介绍）</p>
 <h5 id="Eric-Evans最初的解释"><a href="#Eric-Evans最初的解释" class="headerlink" title="Eric Evans最初的解释"></a>Eric Evans最初的解释</h5><p>“战略设计（strategic design）”一词最早来自于2004年Eric Evans最初的《领域驱动设计：软件核心复杂性应对之道》一书的最后一个部分（第四部分：战略设计）。</p>
@@ -468,7 +468,7 @@
 
   <div class="copyright">
     &copy; 2019 – 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
